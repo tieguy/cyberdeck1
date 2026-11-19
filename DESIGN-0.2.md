@@ -14,3 +14,8 @@ Rev 0.2 is not in design. This file collects the ideas that wait for it. Part di
   connector free to fold out, or the battery must leave the holder to charge.
 - A hinge with two pins and a spine between them, if the extra depth of the one-pin hinge's arms
   is a problem in use. It needs no arms, but it has two joints to hold.
+- A landscape case. The hinge runs along a long edge and the screen is 138 mm tall. The touch
+  buttons are then on the user's right, so the lip on that edge covers 1 to 2 mm only. The power
+  button is on the left edge, 9.5 mm from the top, and the USB-C port is on the right edge,
+  13.6 mm from the bottom; both need cut-outs. `case/case.scad` can draw this case.
+

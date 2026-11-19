@@ -10,10 +10,8 @@ are for looking at, not for printing. GitHub shows each one in 3D.
 
 | File | Shows |
 |---|---|
-| `views/landscape_spine_stand.stl` | Landscape prototype as a stand, with the unfolded keyboard in front |
-| `views/landscape_spine_closed.stl` | Landscape prototype closed, with the folded keyboard and the tablet inside |
-| `views/portrait_spine_stand.stl` | Portrait prototype as a stand |
-| `views/portrait_spine_closed.stl` | Portrait prototype closed |
+| `views/portrait_stand.stl` | The case as a stand, with the unfolded keyboard in front |
+| `views/portrait_closed.stl` | The case closed, with the folded keyboard and the tablet inside |
 | `views/lug.stl` | One of the slide-on lugs, alone |
 
 In the stand views, the user sits on the keyboard's side and the table is at z = 0.
@@ -24,7 +22,8 @@ In the stand views, the user sits on the keyboard's side and the table is at z =
   table. It rests on feet at the front and on a lip along its free edge at the back.
 - **T half**: the tablet holder. It rises at 45°. The tablet's lower edge rests on the hinge
   side. The upper side is open.
-- **Spine hinge**: a strip about 26 mm long between two pins. When the case is closed, it stands
+- **Spine hinge**: a plate 2.4 mm thick and about 26 mm long, with a barrel 5.5 mm across at
+  each edge. The pins are pieces of 1.75 mm filament. When the case is closed, it stands
   in front of the hinge-side walls. In the stand, it lies flat on the back of the K half, and the
   T half rises from its far edge. The weight of the T half presses it down.
 - **Lugs**: two small separate parts that hold the spine's first pin. Each one slides onto a
@@ -35,23 +34,24 @@ In the stand views, the user sits on the keyboard's side and the table is at z =
   angles. When it is stowed, it lies on the outside of the K half.
 - **Lip on the K half's free edge**: when the case is closed, it covers the open side of the
   tablet holder.
-- **Cut-outs**: for the USB-C port and, in landscape, for the power button.
+- **Cut-out**: for the USB-C port, on the tablet's lower edge.
 
 | Estimate from the model | |
 |---|---|
-| Landscape stand, depth on the table | 156 mm |
-| Portrait stand, depth on the table | 202 mm |
-| Closed case, added in front of the hinge side | 8 mm |
+| Stand, depth on the table | 202 mm |
+| Stand, height | 173 mm |
+| Closed case, added in front of the hinge side | 6 mm |
+| Hinge parts proud of the K half's outer face, closed | 6 mm |
 
-`case.scad` can also draw a hinge with one pin and arms (`hinge="arms"`). That hinge is not
-chosen; refer to `../DESIGN-0.1.md`.
+`case.scad` can also draw a landscape case (`orient="landscape"`) and a hinge with one pin and
+arms (`hinge="arms"`). Neither is part of rev 0.1; refer to `../DESIGN-0.1.md`.
 
 ## Make the views again
 
 ```
-for o in landscape portrait; do for v in stand closed; do
-  openscad-nightly -D "orient=\"$o\"" -D "view=\"$v\"" -o views/${o}_spine_$v.stl case.scad
-done; done
+for v in stand closed; do
+  openscad-nightly -D "view=\"$v\"" -o views/portrait_$v.stl case.scad
+done
 openscad-nightly -D 'view="k_lug"' -o views/lug.stl case.scad
 ```
 
@@ -62,7 +62,7 @@ openscad-nightly -D 'view="k_lug"' -o views/lug.stl case.scad
   2.5 mm.
 - Nothing holds the case shut, and nothing holds the bail when it is stowed.
 - Nothing but friction keeps a lug on its rail when the case is closed.
-- In portrait, a USB-C plug possibly does not fit while the stand is set
+- A USB-C plug possibly does not fit while the stand is set
   up: the port faces the back of the K half at a short distance. It fits when the case is closed.
 - The hinge pins are not drawn.
 - The folded keyboard's long side is an estimate (196.3 mm).

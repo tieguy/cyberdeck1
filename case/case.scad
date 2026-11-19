@@ -20,7 +20,7 @@
 //          covers the hinge side. In the stand it lies flat on the back of the K half.
 //          In this variant the edge of each body on the hinge side is at y = 0.
 
-orient = "landscape";   // landscape | portrait
+orient = "portrait";    // portrait | landscape. Rev 0.1 is the portrait case.
 hinge  = "spine";       // arms | spine
 view   = "stand";       // stand | closed | k_half | t_half | bail | spine | k_lug
 
@@ -77,8 +77,9 @@ HSETS = spine ? [] : HX;
 
 // Spine hinge. Pin 1 joins the spine to the K half. It is outside the K half's outer face,
 // so that the spine can lie on that face. Pin 2 joins the spine to the T half.
-RS      = 4;                         // knuckle radius
-SP_HOLE = 3.3;
+RS      = 2.75;                      // knuckle radius
+SP_HOLE = 2.0;                       // for a pin of 1.75 mm filament
+SP_T    = 2.4;                       // thickness of the spine's plate
 PY      = -RS - 0.4;                 // both pins, closed: distance in front of the walls
 P1      = [PY, -T_K - RS - 0.4];     // pin 1, fixed to the K half
 P2C     = [PY, T_T - RS];            // pin 2 when the case is closed
@@ -134,7 +135,8 @@ module lug(p, z0, x0) {
 // Dovetail rail on the K half's hinge-side wall, and the matching slot in a lug.
 // xc is the centre along the hinge. "grow" widens the outline, for the slot.
 RAIL_D = 2.4;      // how far the rail stands out from the wall
-RAIL_TOP = -3;     // the rail stops below the inner face
+RAIL_H = 8;        // length of the rail, from the outer face
+RAIL_TOP = -T_K + RAIL_H;
 module rail(xc, grow, z0 = -T_K, z1 = RAIL_TOP) {
     translate([xc, 0, z0]) linear_extrude(z1 - z0)
         polygon([[-2 - grow, 0.01], [2 + grow, 0.01],
@@ -153,7 +155,7 @@ module k_lug(x0) {
             }
             translate([x0, -0.11, -T_K - RS]) cube([KN, 3.11, RS - 0.15]);   // shoulder
         }
-        rail(x0 + KN / 2, 0.15, -T_K - 0.15, 0);
+        rail(x0 + KN / 2, 0.15, -T_K - 0.15, RAIL_TOP + 1);
         // the body stays clear of the K half's wall and outer face
         translate([x0 - 1, 0, -T_K - 0.15]) cube([KN + 2, 10, T_K + 1]);
         x_cyl(P1, SP_HOLE / 2, x0 - 1, x0 + KN + 1);
@@ -164,9 +166,10 @@ module k_lugs() { for (x0 = [SX0, SX1]) k_lug(x0); }
 // Spine, drawn closed: it stands in front of the hinge-side walls.
 module spine_part() {
     difference() {
-        hull() {
+        union() {   // a thin plate with a barrel at each pin
             x_cyl(P1, RS, SX0 + KN + 0.4, SX1 - 0.4);
             x_cyl(P2C, RS, SX0 + KN + 0.4, SX1 - 0.4);
+            translate([SX0 + KN + 0.4, PY - SP_T / 2, P1[1]]) cube([SX1 - SX0 - KN - 0.8, SP_T, LS]);
         }
         x_cyl(P1, SP_HOLE / 2, 0, W);
         x_cyl(P2C, SP_HOLE / 2, 0, W);
