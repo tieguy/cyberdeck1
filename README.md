@@ -106,8 +106,9 @@ connector free to fold out, or the battery must leave the holder to charge.
 
 ## Ideas for rev 0.2
 
-- Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. Not known
-  yet: whether the tablet has magnets or steel that a case magnet can grip, and where.
+- Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. The tablet
+  has magnets inside that hold the official case; the owner reports this. Their positions and
+  polarity are [unknown]. Find them with a small magnet before the magnet pockets are designed.
 - A holder for an external battery (refer to Battery).
 
 ## Hinge geometry
