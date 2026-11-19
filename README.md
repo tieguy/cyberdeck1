@@ -104,7 +104,18 @@ connector free to fold out, or the battery must leave the holder to charge.
 - Rev 0.1 has no external battery. A later revision adds a battery holder.
 - No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
+## Hinge geometry
+
+With one pin, the two halves end up inside the angle between the legs, outer face to outer face.
+Their thickness limits how close the legs can come. To reach a small angle, the bodies of the
+halves must start some distance from the pin, on arms. For halves about 9 mm and 17 mm thick
+(estimates: tablet and folded keyboard, each with walls) and legs 40° apart, that distance is
+about 37 mm. A hinge with two pins and a spine between them needs no such arms. This choice is
+open.
+
 ## Open questions
+
+- Hinge: one pin with arms about 37 mm long, or two pins with a spine?
 
 - Stand layout. The case is a clamshell: one half carries the folded keyboard, the other half
   carries the tablet, and one hinge joins them along a long edge. Two layouts are candidates.
@@ -112,8 +123,11 @@ connector free to fold out, or the battery must leave the holder to charge.
   - Base flat: the keyboard half swings about 300 degrees round the hinge and lies flat on the
     table behind the tablet half. A stop in the hinge sets the angle and carries the tablet's
     weight.
-  - A-frame: the hinge is at the top and the two halves stand on their free edges. A stop or a
-    strap between the halves sets the angle. This layout lets the open side of the tablet holder
+  - A-frame: the hinge is at the top and the two halves stand on their free edges. The weight
+    pushes the feet apart, back along the path that the half took when it opened. A fixed stop
+    cannot block that path. A ratchet in the hinge holds the angle: it clicks toward the stand
+    position and locks against the return until a tab releases it. `hinge-test/` is a test piece
+    for this ratchet. This layout lets the open side of the tablet holder
     be the hinge side. When the case is closed, the other half blocks that side, so the tablet
     is fully enclosed with no latch. When the case stands as an A-frame, that side is at the top:
     the tablet lifts out upward, and its weight keeps it in.
