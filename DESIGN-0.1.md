@@ -9,7 +9,7 @@ good to use at a cafe table. Part dimensions are in `PARTS.md`.
 - The screen is about 45° up from the table. The owner read this from a phone's level on the stand
   that the owner uses now, and found the level hard to read (2026-11-19). Treat it as approximate.
 - The case is a clamshell: one half carries the folded keyboard, the other half carries the
-  tablet, and a one-pin hinge joins them along a long edge.
+  tablet, and a hinge joins them along one edge.
 - A prop holds the angle of the stand. It sits proud of the case when it is stowed.
 - No external battery and no battery holder. The tablet runs on its own battery. The owner reports
   that this battery drains fast when the keyboard is connected, and accepts that for the
@@ -34,12 +34,11 @@ the lips of the tablet holder.
 ## Stand layout
 
 The keyboard half lies on the table with its pocket down. The tablet half swings the long way
-round the hinge, about 315°, and rises from the hinge at 45°. The outer faces of the two halves
+round the hinge and rises at 45°. The outer faces of the two halves
 then face each other. The model is in `case/`. This layout is the working choice; the owner has
 not confirmed it.
 
-- The keyboard half rests on the hinge knuckles at the front and on a lip along its free edge at
-  the back. When the case is closed, the same lip covers the open side of the tablet holder.
+- The keyboard half rests on feet at the front and on a lip along its free edge at the back. When the case is closed, the same lip covers the open side of the tablet holder.
 - A bail holds the angle. It is a U-shaped prop that pivots in the side walls of the keyboard
   half. Its cross bar sits in a groove in the back of the tablet half, square to it. A tap on the
   screen presses the bail down onto its pivots. More grooves give steeper screen angles.
@@ -47,8 +46,8 @@ not confirmed it.
 - To set up the stand takes two motions: swing the tablet half round, then lift the bail into a
   groove.
 
-Estimates from the model: the landscape stand is about 180 mm deep on the table and 130 mm high;
-the portrait stand is about 235 mm deep and 170 mm high.
+Estimates from the model, with the spine hinge: the landscape stand is about 155 mm deep on the
+table and 135 mm high; the portrait stand is about 200 mm deep and 175 mm high.
 
 A layout that was considered and not chosen: an A-frame, with the hinge at the top and the two
 halves standing on their free edges. At a 45° screen it is about 220 mm deep in landscape and
@@ -56,17 +55,23 @@ halves standing on their free edges. At a 45° screen it is about 220 mm deep in
 
 ## Hinge
 
-With one pin, the two halves end up inside the angle between them, outer face to outer face.
-Their thickness limits how small that angle can be. To reach a small angle, the bodies of the
-halves must start some distance from the pin, on arms. In the model the arms are 32 mm, which lets
-the halves close to 43° of each other. A hinge with two pins and a spine between
-them needs no such arms, but it has two joints to hold. Rev 0.1 uses the one-pin hinge, because
-it has one joint.
+Not decided. The model in `case/` draws two candidates.
 
-The brace carries the load, so the hinge can be a plain pin hinge. A ratchet in the hinge is
-optional: it would click toward the stand position and lock against the return until a tab
-releases it. `hinge-test/` is a test piece for the pin fit and for this ratchet. Its stop is at
-40° between the halves, which is near the stand angle.
+- **Spine**: two pins and a spine about 26 mm long between them, like the spine of a book. When
+  the case is closed, the spine stands in front of the hinge-side walls. In the stand, it lies
+  flat on the back of the keyboard half, and the tablet half rises from its far edge. The weight
+  of the tablet half presses the spine down, and the push from the bail presses it lengthways, so
+  it needs no catch. The closed case is 8 mm longer than its halves.
+  Its cost: the first pin is outside the keyboard half's outer face, and that half prints with its
+  outer face on the bed. The lugs for that pin must be separate parts, or the floor of the half
+  must be a separate plate.
+- **Arms**: one pin in the plane of the inner faces. The two halves end up back to back, 45°
+  apart, and near the pin there is no room for their thickness. The bodies must start 32 mm from
+  the pin, on arms. It prints as two halves and a pin. The closed case is 37 mm longer than its
+  halves.
+
+A ratchet in the hinge is not planned: the bail holds the angle. `hinge-test/` is a test piece for
+the pin fit and for a ratchet. Its pin-fit result applies to both candidates.
 
 ## Tablet holder
 
@@ -94,10 +99,10 @@ can be the same size. The folded keyboard is 13 mm thick.
 
 ## Open questions
 
-- The owner's review of the model in `case/`.
+- The owner's review of the model in `case/`, and the choice of hinge.
+- For the spine hinge: how the lugs on the keyboard half print.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
-- Arm length. Compute it again when the two halves are designed.
 - The exact long side of the folded keyboard.
 - The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet is worth
   having.

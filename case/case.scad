@@ -11,10 +11,18 @@
 // is closed.
 //
 // Make a view:
-//   openscad-nightly -D 'orient="landscape"' -D 'view="stand"' -o view.stl case.scad
+//   openscad-nightly -D 'orient="landscape"' -D 'hinge="spine"' -D 'view="stand"' -o view.stl case.scad
+//
+// Two hinges are drawn, for comparison:
+//   arms:  one pin in the plane of the inner faces. The bodies of the halves start E from
+//          the pin, on arms, so that they fit back to back in the stand.
+//   spine: two pins and a spine between them, like the spine of a book. Closed, the spine
+//          covers the hinge side. In the stand it lies flat on the back of the K half.
+//          In this variant the edge of each body on the hinge side is at y = 0.
 
 orient = "landscape";   // landscape | portrait
-view   = "stand";       // stand | closed | k_half | t_half | bail
+hinge  = "spine";       // arms | spine
+view   = "stand";       // stand | closed | k_half | t_half | bail | spine
 
 $fn = 48;
 
@@ -32,7 +40,9 @@ kd = landscape ? KB_S : KB_L;
 // ---- Case ----
 WALL    = 2.4;
 SCREEN  = 45;      // angle between the halves in the stand = screen angle from the table
-E       = 32;      // distance from the pin to the bodies of the halves (the arms)
+spine   = hinge == "spine";
+E       = 32;      // arms hinge: distance from the pin to the bodies of the halves
+EB      = spine ? 0 : E;   // where the bodies start
 RK      = 5;       // knuckle radius. The knuckles are also the front feet of the stand.
 PIN_D   = 5.2;
 KN      = 12;      // knuckle length
@@ -62,21 +72,38 @@ OV      = 2.5;     // how far a normal lip covers the bezel
 OV_BTN  = 1.5;     // how far the lip on the touch-button edge covers the bezel
 
 // Hinge: two sets of knuckles. In portrait they stay clear of the USB-C port.
-HSETS = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
+HX    = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
+HSETS = spine ? [] : HX;
+
+// Spine hinge. Pin 1 joins the spine to the K half. It is outside the K half's outer face,
+// so that the spine can lie on that face. Pin 2 joins the spine to the T half.
+RS      = 4;                         // knuckle radius
+SP_HOLE = 3.3;
+PY      = -RS - 0.4;                 // both pins, closed: distance in front of the walls
+P1      = [PY, -T_K - RS - 0.4];     // pin 1, fixed to the K half
+P2C     = [PY, T_T - RS];            // pin 2 when the case is closed
+LS      = P2C[1] - P1[1];            // spine length between the pins
+P2S     = [P1[0] + LS, P1[1]];       // pin 2 in the stand: the spine lies on the K half
+P2L     = [-PY, RS - T_T];           // pin 2 in the T half's own frame
+// Knuckle bands along the hinge: [lug of a half, spine edge] at each end of the spine.
+SX0     = HX[0];
+SX1     = HX[1] + KN + 0.4;
+function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
+// Where the T half's frame goes when the halves are "wedge" degrees apart.
+function t_shift(wedge) = spine ? P2S - rot(P2L, 180 - wedge) : [0, 0];
 
 // ---- Bail ----
 BAIL_R  = 2.5;     // radius of the cross bar
 GROOVE  = 1.5;     // depth of the grooves in the T half's outer face
 BT      = 4;       // thickness of the bail's arms
 PIV_Z   = -T_K + 6;                 // pivot holes in the K half's side walls
-S0      = E + 0.55 * D_T;           // main groove: distance from the pin, along the T half
+S0      = EB + 0.55 * D_T;          // main groove: distance from the T half's hinge line
 GSTEP   = 12;                       // spacing of the other grooves
 
 // Centre of the cross bar when it sits in a groove at distance s, with the
 // halves "wedge" degrees apart. [y, z] in the model frame.
 function bar_centre(s, wedge) =
-    let (a = 180 - wedge, zl = -T_T - (BAIL_R - GROOVE))
-    [-s * cos(a) - zl * sin(a), -s * sin(a) + zl * cos(a)];
+    t_shift(wedge) + rot([-s, -T_T - (BAIL_R - GROOVE)], 180 - wedge);
 
 // The bail is square to the T half in the main position.
 C0     = bar_centre(S0, SCREEN);
@@ -84,10 +111,40 @@ BAIL_L = (PIV_Z - C0[1]) / cos(SCREEN);
 PIV_Y  = C0[0] + BAIL_L * sin(SCREEN);
 
 echo(orient = orient, W = W, D_K = D_K, D_T = D_T, T_K = T_K, T_T = T_T, wb = wb);
-echo(stop_angle = atan(T_T / E) + atan(T_K / E), BAIL_L = BAIL_L, PIV_Y = PIV_Y);
+echo(hinge = hinge, BAIL_L = BAIL_L, PIV_Y = PIV_Y, LS = LS);
+if (!spine) echo(arms_stop_angle = atan(T_T / E) + atan(T_K / E));
 
 module pin_holes() {
-    translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = W + 2);
+    if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = W + 2);
+}
+
+module x_cyl(p, r, x0, x1) {   // cylinder along X at [y, z] = p
+    translate([x0, p[0], p[1]]) rotate([0, 90, 0]) cylinder(r = r, h = x1 - x0);
+}
+
+// Spine hinge: a lug that joins a knuckle at pin p to the wall of a half at y = 0.
+// z0 is the bottom of the strip of wall that the lug grows from.
+module lug(p, z0, x0) {
+    hull() {
+        x_cyl(p, RS, x0, x0 + KN);
+        translate([x0, -0.1, z0]) cube([KN, 0.1, 2 * RS]);
+    }
+}
+
+// Spine, drawn closed: it stands in front of the hinge-side walls.
+module spine_part() {
+    difference() {
+        hull() {
+            x_cyl(P1, RS, SX0 + KN + 0.4, SX1 - 0.4);
+            x_cyl(P2C, RS, SX0 + KN + 0.4, SX1 - 0.4);
+        }
+        x_cyl(P1, SP_HOLE / 2, 0, W);
+        x_cyl(P2C, SP_HOLE / 2, 0, W);
+    }
+}
+module spine_at(folded) {
+    if (folded) translate([0, P1[0], P1[1]]) rotate([-90, 0, 0]) translate([0, -P1[0], -P1[1]]) spine_part();
+    else spine_part();
 }
 
 module knuckle(x0, thick) {
@@ -101,17 +158,23 @@ module knuckle(x0, thick) {
 module k_half() {
     difference() {
         union() {
-            translate([0, E, -T_K]) cube([W, D_K, T_K]);
-            translate([0, E + D_K - WALL, -0.01]) cube([W, WALL, FOOT + 0.01]);   // lip and foot
+            translate([0, EB, -T_K]) cube([W, D_K, T_K]);
+            translate([0, EB + D_K - WALL, -0.01]) cube([W, WALL, FOOT + 0.01]);  // lip and foot
+            if (spine) {
+                for (x0 = [SX0, SX1]) lug(P1, -T_K, x0);
+                // front feet of the stand. The T half has notches for them.
+                for (x = [0, W - 4]) translate([x, 0, -0.01]) cube([4, 5, FOOT + 0.01]);
+            }
             for (x0 = HSETS) {
                 translate([x0, 0, -T_K]) cube([KN, E + 0.01, T_K]);               // arm
                 knuckle(x0, T_K);
             }
         }
-        translate([WALL, E + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);              // pocket
+        translate([WALL, EB + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);             // pocket
         pin_holes();
+        if (spine) x_cyl(P1, SP_HOLE / 2, 0, W);
         // finger notch in the free edge, to lift the keyboard out
-        translate([W / 2, E + D_K - WALL - 1, 0]) rotate([-90, 0, 0]) cylinder(r = 12, h = WALL + 2);
+        translate([W / 2, EB + D_K - WALL - 1, 0]) rotate([-90, 0, 0]) cylinder(r = 12, h = WALL + 2);
         // pivot holes for the bail
         for (x = [-1, W - WALL - 1])
             translate([x, PIV_Y, PIV_Z]) rotate([0, 90, 0]) cylinder(d = 4.4, h = WALL + 2);
@@ -121,8 +184,8 @@ module k_half() {
 // ---- T half: tablet holder. Drawn in the flat pose, on the -Y side. ----
 // The hinge side is the lower side in the stand. The free edge is open.
 module t_half() {
-    y_hinge = -E;                 // edge of the body on the hinge side
-    y_free  = -E - D_T;           // free edge
+    y_hinge = -EB;                // edge of the body on the hinge side
+    y_free  = -EB - D_T;          // free edge
     y_low   = y_hinge - wb;       // lower end of the pocket
     z_floor = -T_T + T_FLOOR;
     // Lip widths. In landscape the touch buttons are at low x. In portrait they are at the bottom.
@@ -132,6 +195,7 @@ module t_half() {
     difference() {
         union() {
             translate([0, y_free, -T_T]) cube([W, D_T, T_T]);
+            if (spine) for (x0 = [SX0, SX1]) mirror([0, 1, 0]) lug([-P2L[0], P2L[1]], -T_T, x0);
             // Arms and knuckles. The corner next to the pin is cut at the angle of the
             // table, so that it is a flat foot in the stand and prints with no support.
             intersection() {
@@ -170,6 +234,11 @@ module t_half() {
             translate([-1, -(S0 + k * GSTEP), -T_T - (BAIL_R - GROOVE)])
                 rotate([0, 90, 0]) cylinder(r = BAIL_R + 0.2, h = W + 2);
         pin_holes();
+        if (spine) {
+            x_cyl(P2L, SP_HOLE / 2, 0, W);
+            // notches for the K half's front feet
+            for (x = [-0.01, W - 4.4]) translate([x, -5.4, -FOOT - 0.4]) cube([4.41, 5.41, FOOT + 1]);
+        }
     }
 }
 
@@ -187,20 +256,25 @@ module bail_at(target) {   // target = [y, z] of the cross bar's centre
 
 // ---- Stand-ins for the bought parts ----
 module tablet() {
-    translate([px0 + 0.3, -E - wb - 0.3 - th, -T_T + T_FLOOR]) cube([tw, th, TAB_T]);
+    translate([px0 + 0.3, -EB - wb - 0.3 - th, -T_T + T_FLOOR]) cube([tw, th, TAB_T]);
 }
 module keyboard_folded() {
-    translate([WALL + 0.35, E + WALL + 0.5, -KPD]) cube([kw, kd, KB_T]);
+    translate([WALL + 0.35, EB + WALL + 0.5, -KPD]) cube([kw, kd, KB_T]);
 }
 
-module posed(theta) { rotate([theta - 180, 0, 0]) children(); }
+// Put the T half (and what it holds) with the halves "wedge" degrees apart. 360 = closed.
+module posed(wedge) {
+    s = wedge == 360 ? [0, 0] : t_shift(wedge);
+    translate([0, s[0], s[1]]) rotate([180 - wedge, 0, 0]) children();
+}
 
 // Closed: the K half's outer face is on the table.
 module view_closed() {
-    translate([0, 0, T_K + 2 * BAIL_R + 0.5]) {
+    translate([0, 0, T_K + (spine ? 2 * RS + 0.8 : 2 * BAIL_R + 0.5)]) {
         k_half();
         keyboard_folded();
-        posed(0) { t_half(); tablet(); }
+        posed(360) { t_half(); tablet(); }
+        if (spine) spine_at(false);
         stow_z = -T_K - BAIL_R - 0.2;
         bail_at([PIV_Y - sqrt(BAIL_L * BAIL_L - pow(PIV_Z - stow_z, 2)), stow_z]);
     }
@@ -209,9 +283,10 @@ module view_closed() {
 // Stand: the K half's inner face is toward the table. The user sits at -Y.
 // +X is the user's right.
 module view_stand() {
-    translate([W, 0, RK]) rotate([0, 180, 0]) {
+    translate([W, 0, FOOT]) rotate([0, 180, 0]) {
         k_half();
-        posed(360 - SCREEN) { t_half(); tablet(); }
+        posed(SCREEN) { t_half(); tablet(); }
+        if (spine) spine_at(true);
         bail_at(C0);
     }
     translate([(W - KB_OPEN[0]) / 2, -25 - KB_OPEN[1], 0]) cube(KB_OPEN);
@@ -223,6 +298,9 @@ else if (view == "k_half") translate([0, 0, T_K]) k_half();
 else if (view == "t_half") translate([0, 0, T_T]) t_half();
 else if (view == "bail") bail();
 else if (view == "check_k") k_half();
-else if (view == "check_t") posed(360 - SCREEN) t_half();
-else if (view == "check_t0") posed(0) t_half();
+else if (view == "spine") spine_part();
+else if (view == "check_t") posed(SCREEN) t_half();
+else if (view == "check_t0") posed(360) t_half();
+else if (view == "check_s") spine_at(true);
+else if (view == "check_s0") spine_at(false);
 else if (view == "check_bail") bail_at(C0);
