@@ -1,10 +1,13 @@
 # cyberdeck1
 
-A 3D-printed frame that holds three parts together as one portable writing machine:
+A 3D-printed frame for a portable writing setup made of three parts:
 
 - a Viwoods AiPaper Mini e-ink tablet (the screen)
 - a Keychron B11 Pro foldable keyboard
 - a battery (not chosen yet)
+
+The frame holds the folded keyboard. In use, the keyboard comes out of the frame and sits
+unfolded on the table, in front of the tablet and the battery, which stand propped up.
 
 ## Parts
 
@@ -34,13 +37,10 @@ Keychron 2026-07-31.
 |---|---|---|
 | Size unfolded (W × D) | 392.6 × 143 mm | [spec: [Keychron product page](https://www.keychron.com/products/keychron-b11-pro-ultra-slim-wireless-foldable-keyboard)] |
 | Weight | 258 g ± 10 g | [spec: Keychron product page] |
-| Thickness | [unknown] | |
-| Size folded | [unknown] | |
-| Hinge position and fold direction | [unknown] | |
-| Port, switch and foot positions | [unknown] | |
+| Size folded (W × D × H) | [unknown] — the owner will measure it with calipers | |
+| Port, switch and foot positions when folded | [unknown] | |
 
-The unfolded width (392.6 mm) is larger than the printer's widest bed (350 mm, refer to
-`../PRINTER.md`). A frame part that spans the full keyboard must print in two or more pieces.
+The frame holds only the folded keyboard. The folded size is the one that the frame design needs.
 
 ### Battery
 
@@ -49,7 +49,7 @@ keyboard, or both charge from it.
 
 ## Open questions
 
-- Configuration: does the frame fold closed with the keyboard folded, or open flat like a laptop?
-- Screen angle: fixed, or adjustable with a hinge?
+- What props up the tablet and the battery: the frame itself, or a separate stand?
+- Screen angle: fixed, or adjustable?
 - Does the tablet stay removable for use as a notebook with the stylus?
-- Battery: which model, and where in the frame?
+- Battery: which model, and does the frame hold it?
