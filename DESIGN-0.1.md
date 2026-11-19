@@ -8,7 +8,8 @@ a cafe table. Part dimensions are in `PARTS.md`.
 - The tablet travels inside the case.
 - The tablet is in landscape when it is the screen. The hinge runs along a long edge of the case.
 - In the stand, the tablet's long edge near the power button is up.
-- The stand is an A-frame with a one-pin hinge on arms.
+- The stand is an A-frame with a one-pin hinge on arms. A brace between the legs makes it a
+  rigid triangle.
 - The legs are 40° apart, so the tablet leans back 20°. This is a working figure, to confirm with
   the hinge test piece.
 - No external battery and no battery holder. The tablet runs on its own battery. The owner reports
@@ -25,10 +26,14 @@ and one hinge joins them along a long edge. To make the stand, the keyboard half
 320° round the hinge. The hinge is then at the top and the two halves stand on their free edges
 as an A-frame.
 
-- The weight pushes the feet apart, back along the path that the half took when it opened. A
-  fixed stop cannot block that path. A ratchet in the hinge holds the angle: it clicks toward the
-  stand position and locks against the return until a tab releases it. `hinge-test/` is a test
-  piece for this ratchet.
+- A brace holds the angle. It is a flap that is hinged near the foot of the keyboard half, on the
+  outer face. In the stand, the outer faces of the two halves face each other, so the flap swings
+  across and hooks into the tablet half. The stand is then a closed triangle. The brace resists
+  the weight, which pushes the feet apart, and the taps on the touch buttons, which push the
+  tablet leg toward the other leg. At the feet, the legs are about 123 mm apart (estimate, from
+  arms of 37 mm and halves 143 mm deep).
+- When the brace is stowed, it sits proud of the outer face. No recess is necessary.
+- To set up the stand takes two motions: swing the half round, then hook the brace.
 - The open side of the tablet holder is the hinge side. In the stand, that side is at the top: the
   tablet lifts out upward, and its weight keeps it in.
 
@@ -47,9 +52,13 @@ halves must start some distance from the pin, on arms. For halves about 9 mm and
 about 37 mm. A hinge with two pins and a spine between them needs no such arms, but it has two
 joints to hold.
 
-Rev 0.1 uses the one-pin hinge, because it has one joint and one ratchet, and the test piece in
-`hinge-test/` tests that ratchet directly. The cost is a case about 37 mm deeper. The slot between
-the pin and the two halves can serve as a carry handle.
+Rev 0.1 uses the one-pin hinge, because it has one joint. The cost is a case about 37 mm deeper.
+The slot between the pin and the two halves can serve as a carry handle.
+
+The brace carries the load, so the hinge can be a plain pin hinge. A ratchet in the hinge is
+optional: it would click toward the stand position and lock against the return until a tab
+releases it. `hinge-test/` is a test piece for the pin fit and for this ratchet. Its results
+decide whether rev 0.1 has the ratchet.
 
 ## Tablet holder
 
@@ -75,4 +84,7 @@ can be the same size. The folded keyboard is 13 mm thick.
 - Arm length. About 37 mm is an estimate from guessed half thicknesses. Compute it again when the
   two halves are designed.
 - The exact long side of the folded keyboard.
-- The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet holds.
+- The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet is worth
+  having.
+- The brace: its hinge, its hook, and where it meets the tablet half.
+- Feet that do not slide on a smooth table.

@@ -1,6 +1,7 @@
 # Ratchet hinge test piece
 
-A small hinge to print before the case is designed. It answers three questions:
+A small hinge to print before the case is designed. In rev 0.1 a brace holds the stand's angle, so
+the ratchet is optional there (refer to `../DESIGN-0.1.md`). The test piece answers three questions:
 
 1. Does a printed ratchet click, and does it hold?
 2. Which pin diameter turns freely in a 5.2 mm hole on this printer?
