@@ -3,8 +3,12 @@
 Read `../CLAUDE.md` and `../PRINTER.md` first. They hold the printer limits and the rule on
 OpenGL programs for all projects in `3D-Printing/`.
 
-`README.md` lists the parts and their dimensions. Each dimension has a source tag. When the owner
-measures a part, replace the [spec] or [unknown] figure with the [measured] one.
+`PARTS.md` lists the bought parts and their dimensions. Each dimension has a source tag. When the
+owner measures a part, replace the [spec] or [unknown] figure with the [measured] one.
+
+Each revision of the case has one design file, `DESIGN-<revision>.md`. It holds the decisions,
+the reasons and the open questions for that revision, and later the results of the print. Put an
+idea for a later revision in that revision's file, not in the current one.
 
 ## Models: OpenSCAD first
 
