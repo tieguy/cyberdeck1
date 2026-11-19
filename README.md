@@ -75,10 +75,10 @@ connector free to fold out, or the battery must leave the holder to charge.
 - The tablet travels inside the case.
 - The stand holds the tablet at one fixed angle.
 - The case has a holder for the battery.
+- No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
 ## Open questions
 
 - Case folds: how does the case open, and how does it fold into the stand? (Sketch to come.)
 - Screen angle: what angle?
-- Does the tablet stay removable for use as a notebook with the stylus?
 - Battery: which model? The holder shape depends on it.
