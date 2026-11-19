@@ -1,19 +1,25 @@
 # cyberdeck1
 
-A 3D-printed frame for a portable writing setup made of three parts:
+A 3D-printed case for a portable writing setup made of three parts:
 
 - a Viwoods AiPaper Mini e-ink tablet (the screen)
 - a Keychron B11 Pro foldable keyboard
 - a battery (not chosen yet)
 
-The frame holds the folded keyboard. In use, the keyboard comes out of the frame and sits
-unfolded on the table, in front of the tablet and the battery, which stand propped up.
+## How it is used
+
+1. Carry the closed case, for example to a cafe. The folded keyboard is inside it.
+2. Open the case and take out the keyboard. Unfold the keyboard and put it on the table.
+3. Fold the case into a stand. The stand holds the tablet up as the screen, behind the keyboard.
+
+The owner will sketch the case and its folds. Until the sketch is in this repo, the fold geometry
+is not decided.
 
 ## Parts
 
 Each dimension has a source tag. **[spec]** is a manufacturer or retailer figure. **[measured]** is
 a caliper measurement of the owner's unit. **[unknown]** has no figure yet. Measure the real parts
-before the frame design depends on a number: a published figure does not give the tolerances or
+before the case design depends on a number: a published figure does not give the tolerances or
 the position of ports and buttons.
 
 ### Screen: Viwoods AiPaper Mini
@@ -26,7 +32,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | Weight | 230 g | [spec: Viwoods product page] |
 | Display | 8.2 in E Ink Carta 1000, 1920 × 1440, glass front | [spec: [Parka Blogs review](https://www.parkablogs.com/index.php/content/viwoods-aipaper-mini-review)] |
 | Port and button positions | [unknown] | |
-| Bezel widths (for the frame lip) | [unknown] | |
+| Bezel widths (for the stand's lip) | [unknown] | |
 
 ### Keyboard: Keychron B11 Pro
 
@@ -40,7 +46,7 @@ Keychron 2026-07-31.
 | Size folded (W × D × H) | [unknown] — the owner will measure it with calipers | |
 | Port, switch and foot positions when folded | [unknown] | |
 
-The frame holds only the folded keyboard. The folded size is the one that the frame design needs.
+The case carries the keyboard folded only. The folded size is the one that the case design needs.
 
 ### Battery
 
@@ -49,7 +55,8 @@ keyboard, or both charge from it.
 
 ## Open questions
 
-- What props up the tablet and the battery: the frame itself, or a separate stand?
-- Screen angle: fixed, or adjustable?
+- Case folds: how does the case open, and how does it fold into the stand? (Sketch to come.)
+- Does the tablet travel inside the case, or separately?
+- Screen angle in the stand: fixed, or adjustable?
 - Does the tablet stay removable for use as a notebook with the stylus?
-- Battery: which model, and does the frame hold it?
+- Battery: which model, and does the case carry it?
