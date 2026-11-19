@@ -22,7 +22,7 @@
 
 orient = "landscape";   // landscape | portrait
 hinge  = "spine";       // arms | spine
-view   = "stand";       // stand | closed | k_half | t_half | bail | spine
+view   = "stand";       // stand | closed | k_half | t_half | bail | spine | k_lug
 
 $fn = 48;
 
@@ -131,6 +131,36 @@ module lug(p, z0, x0) {
     }
 }
 
+// Dovetail rail on the K half's hinge-side wall, and the matching slot in a lug.
+// xc is the centre along the hinge. "grow" widens the outline, for the slot.
+RAIL_D = 2.4;      // how far the rail stands out from the wall
+RAIL_TOP = -3;     // the rail stops below the inner face
+module rail(xc, grow, z0 = -T_K, z1 = RAIL_TOP) {
+    translate([xc, 0, z0]) linear_extrude(z1 - z0)
+        polygon([[-2 - grow, 0.01], [2 + grow, 0.01],
+                 [3.2 + grow, -RAIL_D - grow], [-3.2 - grow, -RAIL_D - grow]]);
+}
+
+// Lug for pin 1: a separate part. It slides onto a rail from the outer-face side. A
+// shoulder hooks over the edge of the outer face. In the stand the K half is upside
+// down, so the lug sits on the K half like a saddle and the load presses it on.
+module k_lug(x0) {
+    difference() {
+        union() {
+            hull() {
+                x_cyl(P1, RS, x0, x0 + KN);
+                translate([x0, -2 * RS - 0.4, RAIL_TOP - 0.1]) cube([KN, 2 * RS + 0.4 - 0.1, 0.1]);
+            }
+            translate([x0, -0.11, -T_K - RS]) cube([KN, 3.11, RS - 0.15]);   // shoulder
+        }
+        rail(x0 + KN / 2, 0.15, -T_K - 0.15, 0);
+        // the body stays clear of the K half's wall and outer face
+        translate([x0 - 1, 0, -T_K - 0.15]) cube([KN + 2, 10, T_K + 1]);
+        x_cyl(P1, SP_HOLE / 2, x0 - 1, x0 + KN + 1);
+    }
+}
+module k_lugs() { for (x0 = [SX0, SX1]) k_lug(x0); }
+
 // Spine, drawn closed: it stands in front of the hinge-side walls.
 module spine_part() {
     difference() {
@@ -161,7 +191,7 @@ module k_half() {
             translate([0, EB, -T_K]) cube([W, D_K, T_K]);
             translate([0, EB + D_K - WALL, -0.01]) cube([W, WALL, FOOT + 0.01]);  // lip and foot
             if (spine) {
-                for (x0 = [SX0, SX1]) lug(P1, -T_K, x0);
+                for (x0 = [SX0, SX1]) rail(x0 + KN / 2, 0);   // the lugs for pin 1 slide on these
                 // front feet of the stand. The T half has notches for them.
                 for (x = [0, W - 4]) translate([x, 0, -0.01]) cube([4, 5, FOOT + 0.01]);
             }
@@ -172,7 +202,6 @@ module k_half() {
         }
         translate([WALL, EB + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);             // pocket
         pin_holes();
-        if (spine) x_cyl(P1, SP_HOLE / 2, 0, W);
         // finger notch in the free edge, to lift the keyboard out
         translate([W / 2, EB + D_K - WALL - 1, 0]) rotate([-90, 0, 0]) cylinder(r = 12, h = WALL + 2);
         // pivot holes for the bail
@@ -272,6 +301,7 @@ module posed(wedge) {
 module view_closed() {
     translate([0, 0, T_K + (spine ? 2 * RS + 0.8 : 2 * BAIL_R + 0.5)]) {
         k_half();
+        if (spine) k_lugs();
         keyboard_folded();
         posed(360) { t_half(); tablet(); }
         if (spine) spine_at(false);
@@ -285,6 +315,7 @@ module view_closed() {
 module view_stand() {
     translate([W, 0, FOOT]) rotate([0, 180, 0]) {
         k_half();
+        if (spine) k_lugs();
         posed(SCREEN) { t_half(); tablet(); }
         if (spine) spine_at(true);
         bail_at(C0);
@@ -299,6 +330,8 @@ else if (view == "t_half") translate([0, 0, T_T]) t_half();
 else if (view == "bail") bail();
 else if (view == "check_k") k_half();
 else if (view == "spine") spine_part();
+else if (view == "k_lug") k_lug(0);
+else if (view == "check_l") k_lugs();
 else if (view == "check_t") posed(SCREEN) t_half();
 else if (view == "check_t0") posed(360) t_half();
 else if (view == "check_s") spine_at(true);
