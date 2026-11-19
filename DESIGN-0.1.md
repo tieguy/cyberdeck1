@@ -6,8 +6,8 @@ good to use at a cafe table. Part dimensions are in `PARTS.md`.
 ## Decisions
 
 - The tablet travels inside the case.
-- The screen is about 40° up from the table. This is the owner's estimate, to confirm with a
-  measurement of the stand that the owner uses now.
+- The screen is about 45° up from the table. The owner read this from a phone's level on the stand
+  that the owner uses now, and found the level hard to read (2026-11-19). Treat it as approximate.
 - The case is a clamshell: one half carries the folded keyboard, the other half carries the
   tablet, and a one-pin hinge joins them along a long edge.
 - A brace holds the angle of the stand. It sits proud of the case when it is stowed.
@@ -37,15 +37,15 @@ Two layouts are candidates. In each, the keyboard half swings the long way round
 that the outer faces of the two halves face each other, and a brace sets the angle. The figures
 are estimates for the landscape prototype. They assume halves about 9 mm and 17 mm thick and
 143 mm deep. For the portrait prototype, the halves are about 196 mm deep: the A-frame is then
-about 315 mm deep on the table and the flat base about 235 mm.
+about 295 mm deep on the table and the flat base about 225 mm.
 
 | | A-frame | Flat base |
 |---|---|---|
-| Shape | The hinge is at the top. The two halves stand on their free edges. | The keyboard half lies flat on the table. The tablet half rises from the hinge at 40°. |
-| Angle between the halves | 100° | 40° |
-| Arm length (refer to Hinge) | About 10 mm | About 37 mm |
-| Depth on the table | About 235 mm | About 180 mm |
-| Brace | Across the feet it is about 235 mm long. That is longer than a half, so it cannot stow flat as one flap. A shorter brace must sit higher. | A prop about 75 mm long between the base and the back of the tablet half. A tap on the screen presses the prop down. |
+| Shape | The hinge is at the top. The two halves stand on their free edges. | The keyboard half lies flat on the table. The tablet half rises from the hinge at 45°. |
+| Angle between the halves | 90° | 45° |
+| Arm length (refer to Hinge) | About 12 mm | About 31 mm |
+| Depth on the table | About 220 mm | About 175 mm |
+| Brace | Across the feet it is about 220 mm long. That is longer than a half, so it cannot stow flat as one flap. A shorter brace must sit higher. | A prop about 85 mm long between the base and the back of the tablet half. A tap on the screen presses the prop down. |
 | Sliding | The feet can slide apart or across the table. | The base lies flat. Nothing spreads. |
 | Tablet's weight | Rests on the edge away from the hinge | Rests on the hinge edge |
 
@@ -60,7 +60,7 @@ it has one joint.
 The brace carries the load, so the hinge can be a plain pin hinge. A ratchet in the hinge is
 optional: it would click toward the stand position and lock against the return until a tab
 releases it. `hinge-test/` is a test piece for the pin fit and for this ratchet. Its stop is at
-40° between the halves, which is the flat-base angle.
+40° between the halves, which is near the flat-base angle.
 
 ## Tablet holder
 
@@ -78,6 +78,8 @@ right, as in `PARTS.md`.
 - When the case is closed, a lip on the keyboard half covers the open side, so that the tablet
   cannot slide out.
 - In the landscape prototype, the tablet's long edge near the power button is up.
+- In the portrait prototype, the short edge with the touch buttons is down. The tablet's weight
+  rests on that edge, and the lip in front of it covers 1 to 2 mm only.
 
 ## Keyboard half
 
@@ -88,8 +90,6 @@ can be the same size. The folded keyboard is 13 mm thick.
 
 - The stand layout (refer to the section above).
 - The screen angle, measured.
-- In the portrait prototype, which short edge is down: the edge with the touch buttons, or the other one? A lip
-  on the touch-button edge can cover 1 to 2 mm only.
 - Arm length. Compute it again when the two halves are designed.
 - The exact long side of the folded keyboard.
 - The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet is worth
