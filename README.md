@@ -45,10 +45,14 @@ Keychron 2026-07-31.
 |---|---|---|
 | Size unfolded (W × D) | 392.6 × 143 mm | [spec: [Keychron product page](https://www.keychron.com/products/keychron-b11-pro-ultra-slim-wireless-foldable-keyboard)] |
 | Weight | 258 g ± 10 g | [spec: Keychron product page] |
-| Size folded (W × D × H) | [unknown] — the owner will measure it with calipers | |
+| Size folded, long side | Less than 10 mm longer than the tablet's long side (191 mm). Too long for the owner's calipers; no exact figure yet. | [measured, approximate, 2026-11-19] |
+| Size folded, short side | Almost the same as the tablet's short side (138 mm) | [measured, approximate, 2026-11-19] |
+| Thickness folded | [unknown] | |
 | Port, switch and foot positions when folded | [unknown] | |
 
 The case carries the keyboard folded only. The folded size is the one that the case design needs.
+The folded keyboard and the tablet have almost the same footprint, so the two halves of the case
+can be the same size.
 
 ### Battery
 
