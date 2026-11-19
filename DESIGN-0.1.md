@@ -10,7 +10,7 @@ good to use at a cafe table. Part dimensions are in `PARTS.md`.
   that the owner uses now, and found the level hard to read (2026-11-19). Treat it as approximate.
 - The case is a clamshell: one half carries the folded keyboard, the other half carries the
   tablet, and a one-pin hinge joins them along a long edge.
-- A brace holds the angle of the stand. It sits proud of the case when it is stowed.
+- A prop holds the angle of the stand. It sits proud of the case when it is stowed.
 - No external battery and no battery holder. The tablet runs on its own battery. The owner reports
   that this battery drains fast when the keyboard is connected, and accepts that for the
   prototype. The owner charges the tablet at home, in the case, through its USB-C port.
@@ -31,45 +31,51 @@ The two halves have the same footprint in both prototypes, because the folded ke
 tablet have almost the same footprint. The prototypes differ in the edge that has the hinge and in
 the lips of the tablet holder.
 
-## Not decided: stand layout
+## Stand layout
 
-Two layouts are candidates. In each, the keyboard half swings the long way round the hinge, so
-that the outer faces of the two halves face each other, and a brace sets the angle. The figures
-are estimates for the landscape prototype. They assume halves about 9 mm and 17 mm thick and
-143 mm deep. For the portrait prototype, the halves are about 196 mm deep: the A-frame is then
-about 295 mm deep on the table and the flat base about 225 mm.
+The keyboard half lies on the table with its pocket down. The tablet half swings the long way
+round the hinge, about 315°, and rises from the hinge at 45°. The outer faces of the two halves
+then face each other. The model is in `case/`. This layout is the working choice; the owner has
+not confirmed it.
 
-| | A-frame | Flat base |
-|---|---|---|
-| Shape | The hinge is at the top. The two halves stand on their free edges. | The keyboard half lies flat on the table. The tablet half rises from the hinge at 45°. |
-| Angle between the halves | 90° | 45° |
-| Arm length (refer to Hinge) | About 12 mm | About 31 mm |
-| Depth on the table | About 220 mm | About 175 mm |
-| Brace | Across the feet it is about 220 mm long. That is longer than a half, so it cannot stow flat as one flap. A shorter brace must sit higher. | A prop about 85 mm long between the base and the back of the tablet half. A tap on the screen presses the prop down. |
-| Sliding | The feet can slide apart or across the table. | The base lies flat. Nothing spreads. |
-| Tablet's weight | Rests on the edge away from the hinge | Rests on the hinge edge |
+- The keyboard half rests on the hinge knuckles at the front and on a lip along its free edge at
+  the back. When the case is closed, the same lip covers the open side of the tablet holder.
+- A bail holds the angle. It is a U-shaped prop that pivots in the side walls of the keyboard
+  half. Its cross bar sits in a groove in the back of the tablet half, square to it. A tap on the
+  screen presses the bail down onto its pivots. More grooves give steeper screen angles.
+- When the bail is stowed, it lies on the outside of the keyboard half, proud of the case.
+- To set up the stand takes two motions: swing the tablet half round, then lift the bail into a
+  groove.
+
+Estimates from the model: the landscape stand is about 180 mm deep on the table and 130 mm high;
+the portrait stand is about 235 mm deep and 170 mm high.
+
+A layout that was considered and not chosen: an A-frame, with the hinge at the top and the two
+halves standing on their free edges. At a 45° screen it is about 220 mm deep in landscape and
+295 mm in portrait, its feet can slide apart, and a brace across its feet is longer than a half.
 
 ## Hinge
 
 With one pin, the two halves end up inside the angle between them, outer face to outer face.
 Their thickness limits how small that angle can be. To reach a small angle, the bodies of the
-halves must start some distance from the pin, on arms. A hinge with two pins and a spine between
+halves must start some distance from the pin, on arms. In the model the arms are 32 mm, which lets
+the halves close to 43° of each other. A hinge with two pins and a spine between
 them needs no such arms, but it has two joints to hold. Rev 0.1 uses the one-pin hinge, because
 it has one joint.
 
 The brace carries the load, so the hinge can be a plain pin hinge. A ratchet in the hinge is
 optional: it would click toward the stand position and lock against the return until a tab
 releases it. `hinge-test/` is a test piece for the pin fit and for this ratchet. Its stop is at
-40° between the halves, which is near the flat-base angle.
+40° between the halves, which is near the stand angle.
 
 ## Tablet holder
 
 "Top", "bottom", "left" and "right" are for the tablet in landscape with the touch buttons on the
 right, as in `PARTS.md`.
 
-- One side is open. The tablet slides in and out there. It must be the upper side in the stand,
-  so that the tablet's weight keeps it in. In the landscape prototype it is a long side. In the
-  portrait prototype it is a short side. Which of the two depends on the stand layout.
+- The side away from the hinge is open. The tablet slides in and out there. It is the upper side
+  in the stand, so the tablet's weight keeps it in. In the landscape prototype it is a long side.
+  In the portrait prototype it is a short side.
 - A lip on the bottom or left edge can cover up to 6 mm.
 - A lip on the right short edge covers 1 to 2 mm only, because the touch buttons are 8 mm from
   that edge. Bevel this lip: the owner's finger touches it on the way to the buttons.
@@ -88,11 +94,11 @@ can be the same size. The folded keyboard is 13 mm thick.
 
 ## Open questions
 
-- The stand layout (refer to the section above).
+- The owner's review of the model in `case/`.
+- A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - Arm length. Compute it again when the two halves are designed.
 - The exact long side of the folded keyboard.
 - The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet is worth
   having.
-- The brace: its hinge, its hook, and where it meets the other half.
 - Feet that do not slide on a smooth table.

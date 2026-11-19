@@ -5,4 +5,4 @@ prototypes that test function. Rev 1.0 is the first one where the look matters.
 
 - Style: science fiction and 1980s cyberpunk. The owner wants this part to be fun.
 - Material: a green "silk" PLA is a candidate, for a look like a circuit board.
-- The brace of rev 0.1 sits proud of the case. It can stay proud, as a plain, functional feature.
+- The prop of rev 0.1 sits proud of the case. It can stay proud, as a plain, functional feature.
