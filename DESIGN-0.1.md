@@ -19,8 +19,6 @@ a cafe table. Part dimensions are in `PARTS.md`.
 
 ## Stand layout
 
-## Stand layout
-
 The case is a clamshell: one half carries the folded keyboard, the other half carries the tablet,
 and one hinge joins them along a long edge. To make the stand, the keyboard half swings about
 320° round the hinge. The hinge is then at the top and the two halves stand on their free edges
@@ -42,8 +40,6 @@ behind the tablet half. The open side of the tablet holder would then be at the 
 tablet's weight rests.
 
 ## Hinge
-
-## Hinge geometry
 
 With one pin, the two halves end up inside the angle between the legs, outer face to outer face.
 Their thickness limits how close the legs can come. To reach a small angle, the bodies of the
