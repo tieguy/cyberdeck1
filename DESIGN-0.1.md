@@ -16,17 +16,28 @@ good to use at a cafe table. Part dimensions are in `PARTS.md`.
   prototype. The owner charges the tablet at home, in the case, through its USB-C port.
 - No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
-## Not decided: screen orientation
+## Two prototypes
 
-The owner uses the tablet in portrait on the present stand and may prefer it. Rev 0.1 possibly
-needs to hold the tablet in landscape and in portrait. In landscape the screen is 138 mm tall; in
-portrait it is 191 mm tall and extends past the edge of its half by about 50 mm.
+Rev 0.1 is two cases, one for each screen orientation, so that the owner can compare them in use.
+The owner uses the tablet in portrait on the present stand and may prefer it.
+
+| | Landscape prototype | Portrait prototype |
+|---|---|---|
+| Hinge runs along | A long edge of the case | A short edge of the case |
+| Screen height | 138 mm | 191 mm |
+| Depth of a half, from the hinge side | About 143 mm | About 196 mm |
+
+The two halves have the same footprint in both prototypes, because the folded keyboard and the
+tablet have almost the same footprint. The prototypes differ in the edge that has the hinge and in
+the lips of the tablet holder.
 
 ## Not decided: stand layout
 
 Two layouts are candidates. In each, the keyboard half swings the long way round the hinge, so
 that the outer faces of the two halves face each other, and a brace sets the angle. The figures
-are estimates. They assume halves about 9 mm and 17 mm thick and 143 mm deep.
+are estimates for the landscape prototype. They assume halves about 9 mm and 17 mm thick and
+143 mm deep. For the portrait prototype, the halves are about 196 mm deep: the A-frame is then
+about 315 mm deep on the table and the flat base about 235 mm.
 
 | | A-frame | Flat base |
 |---|---|---|
@@ -36,7 +47,6 @@ are estimates. They assume halves about 9 mm and 17 mm thick and 143 mm deep.
 | Depth on the table | About 235 mm | About 180 mm |
 | Brace | Across the feet it is about 235 mm long. That is longer than a half, so it cannot stow flat as one flap. A shorter brace must sit higher. | A prop about 75 mm long between the base and the back of the tablet half. A tap on the screen presses the prop down. |
 | Sliding | The feet can slide apart or across the table. | The base lies flat. Nothing spreads. |
-| Tablet in portrait | The tablet extends past the hinge at the top. The hinge knuckles must be outside the tablet's width. | The tablet extends past the free edge at the top. Nothing is in the way. |
 | Tablet's weight | Rests on the edge away from the hinge | Rests on the hinge edge |
 
 ## Hinge
@@ -57,9 +67,9 @@ releases it. `hinge-test/` is a test piece for the pin fit and for this ratchet.
 "Top", "bottom", "left" and "right" are for the tablet in landscape with the touch buttons on the
 right, as in `PARTS.md`.
 
-- One long side is open. The tablet slides in and out there. It must be the upper side in the
-  stand, so that the tablet's weight keeps it in. Which side that is depends on the stand layout.
-- For portrait, the tablet stands on the lower lip and extends out of the open side.
+- One side is open. The tablet slides in and out there. It must be the upper side in the stand,
+  so that the tablet's weight keeps it in. In the landscape prototype it is a long side. In the
+  portrait prototype it is a short side. Which of the two depends on the stand layout.
 - A lip on the bottom or left edge can cover up to 6 mm.
 - A lip on the right short edge covers 1 to 2 mm only, because the touch buttons are 8 mm from
   that edge. Bevel this lip: the owner's finger touches it on the way to the buttons.
@@ -67,7 +77,7 @@ right, as in `PARTS.md`.
 - The USB-C port stays uncovered, so that the tablet charges while it is in the case.
 - When the case is closed, a lip on the keyboard half covers the open side, so that the tablet
   cannot slide out.
-- In landscape, the tablet's long edge near the power button is up.
+- In the landscape prototype, the tablet's long edge near the power button is up.
 
 ## Keyboard half
 
@@ -76,9 +86,9 @@ can be the same size. The folded keyboard is 13 mm thick.
 
 ## Open questions
 
-- The screen orientation and the stand layout (refer to the two sections above).
+- The stand layout (refer to the section above).
 - The screen angle, measured.
-- In portrait, which short edge is down: the edge with the touch buttons, or the other one? A lip
+- In the portrait prototype, which short edge is down: the edge with the touch buttons, or the other one? A lip
   on the touch-button edge can cover 1 to 2 mm only.
 - Arm length. Compute it again when the two halves are designed.
 - The exact long side of the folded keyboard.
