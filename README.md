@@ -14,8 +14,8 @@ A 3D-printed case for a portable writing setup made of three parts:
 3. Fold the case into a stand. The stand holds the tablet up at a fixed angle, as the screen,
    behind the keyboard. The battery stays in its holder in the case.
 
-The owner will sketch the case and its folds. Until the sketch is in this repo, the fold geometry
-is not decided.
+The fold geometry is not decided. Refer to the open questions. The owner's sketch of the case is
+in progress and is not in this repo.
 
 ## Parts
 
@@ -79,6 +79,13 @@ connector free to fold out, or the battery must leave the holder to charge.
 
 ## Open questions
 
-- Case folds: how does the case open, and how does it fold into the stand? (Sketch to come.)
+- Stand layout. The case is a clamshell: one half carries the folded keyboard, the other half
+  carries the tablet, and one hinge joins them along a long edge. Two layouts are candidates.
+  Compare them when the part measurements are known.
+  - Base flat: the keyboard half swings about 300 degrees round the hinge and lies flat on the
+    table behind the tablet half. A stop in the hinge sets the angle and carries the tablet's
+    weight.
+  - A-frame: the hinge is at the top and the two halves stand on their free edges. A stop or a
+    strap between the halves sets the angle.
 - Screen angle: what angle?
 - Battery: which model? The holder shape depends on it.
