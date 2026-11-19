@@ -36,7 +36,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | Touch buttons | Three, in the bezel along the right short edge. 8 mm from that edge. | [measured, 2026-11-19] |
 | Power button | On the left short edge, 9.5 mm from the top long edge | [measured, 2026-11-19] |
 | USB-C port | On the right short edge, 13.6 mm from the bottom long edge | [measured, 2026-11-19] |
-| Bezel, bottom long edge and left short edge | [unknown] | |
+| Bezel, bottom long edge and left short edge | 6 mm each | [measured, 2026-11-19] |
 | Bezel, right short edge (full width) | [unknown] | |
 
 "Top", "bottom", "left" and "right" are for the tablet in landscape with the touch buttons on the
@@ -44,10 +44,12 @@ right.
 
 Limits on the part that grips the tablet:
 
-- A lip on the top long edge can cover up to 6 mm.
-- The touch buttons need clear space. Do not cover the bezel on the right short edge.
-- The power button on the left short edge must stay reachable.
-- Rev 0.1 can cover the USB-C port (refer to Battery).
+- A lip on the top, bottom or left edge can cover up to 6 mm.
+- A lip on the right short edge covers 1 to 2 mm only, because the touch buttons are 8 mm from
+  that edge. Bevel this lip: the owner's finger touches it on the way to the buttons.
+- One side stays open, so that the tablet slides in and out. Which side is not decided.
+- The power button on the left short edge stays reachable.
+- The USB-C port stays uncovered, so that the tablet charges while it is in the case.
 
 ### Keyboard: Keychron B11 Pro
 
@@ -71,7 +73,7 @@ can be the same size.
 
 Rev 0.1 has no external battery and no battery holder. The tablet runs on its own battery. The
 owner reports that this battery drains fast when the keyboard is connected, and accepts that for
-the prototype. Thus rev 0.1 does not need access to the tablet's USB-C port in use.
+the prototype. The owner charges the tablet at home, in the case, through its USB-C port.
 
 A later revision adds a holder for an external battery. The battery is not chosen. A slim or
 unusually shaped battery is acceptable. The folded keyboard is 13 mm thick and fills the footprint
@@ -98,6 +100,7 @@ connector free to fold out, or the battery must leave the holder to charge.
 - The tablet travels inside the case.
 - The stand holds the tablet at one fixed angle.
 - The tablet is in landscape when it is the screen. The hinge runs along a long edge of the case.
+- In the stand, the tablet's long edge near the power button is up.
 - Rev 0.1 has no external battery. A later revision adds a battery holder.
 - No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
@@ -113,4 +116,4 @@ connector free to fold out, or the battery must leave the holder to charge.
     strap between the halves sets the angle.
 - Screen angle: what angle?
 - Battery for a later revision: which model? The holder shape depends on it.
-- Which long edge of the tablet is down in the stand?
+- Which side of the tablet holder is open, and what keeps the tablet in when the case is carried?
