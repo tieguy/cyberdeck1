@@ -104,6 +104,12 @@ connector free to fold out, or the battery must leave the holder to charge.
 - Rev 0.1 has no external battery. A later revision adds a battery holder.
 - No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
+## Ideas for rev 0.2
+
+- Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. Not known
+  yet: whether the tablet has magnets or steel that a case magnet can grip, and where.
+- A holder for an external battery (refer to Battery).
+
 ## Hinge geometry
 
 With one pin, the two halves end up inside the angle between the legs, outer face to outer face.
