@@ -25,4 +25,5 @@ Rev 0.1 is in design. No case part is printed yet. The first print is the hinge 
 | `PARTS.md` | Dimensions and other facts about the tablet, the keyboard and the battery candidates |
 | `DESIGN-0.1.md` | The design of rev 0.1: layout, hinge, tablet holder, decisions and open questions |
 | `DESIGN-0.2.md` | Ideas that wait for rev 0.2 |
+| `DESIGN-1.0.md` | Ideas that wait for rev 1.0, where the look matters |
 | `hinge-test/` | A ratchet hinge test piece, with its own README |
