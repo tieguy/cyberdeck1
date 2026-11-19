@@ -113,7 +113,11 @@ connector free to fold out, or the battery must leave the holder to charge.
     table behind the tablet half. A stop in the hinge sets the angle and carries the tablet's
     weight.
   - A-frame: the hinge is at the top and the two halves stand on their free edges. A stop or a
-    strap between the halves sets the angle.
+    strap between the halves sets the angle. This layout lets the open side of the tablet holder
+    be the hinge side. When the case is closed, the other half blocks that side, so the tablet
+    is fully enclosed with no latch. When the case stands as an A-frame, that side is at the top:
+    the tablet lifts out upward, and its weight keeps it in.
 - Screen angle: what angle?
 - Battery for a later revision: which model? The holder shape depends on it.
-- Which side of the tablet holder is open, and what keeps the tablet in when the case is carried?
+- Which side of the tablet holder is open? In the A-frame layout, the hinge side. In the base-flat
+  layout, not decided: the hinge side is then at the bottom, where the tablet's weight rests.
