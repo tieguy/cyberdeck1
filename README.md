@@ -8,9 +8,11 @@ A 3D-printed case for a portable writing setup made of three parts:
 
 ## How it is used
 
-1. Carry the closed case, for example to a cafe. The folded keyboard is inside it.
+1. Carry the closed case, for example to a cafe. The folded keyboard, the tablet and the battery
+   are inside it.
 2. Open the case and take out the keyboard. Unfold the keyboard and put it on the table.
-3. Fold the case into a stand. The stand holds the tablet up as the screen, behind the keyboard.
+3. Fold the case into a stand. The stand holds the tablet up at a fixed angle, as the screen,
+   behind the keyboard. The battery stays in its holder in the case.
 
 The owner will sketch the case and its folds. Until the sketch is in this repo, the fold geometry
 is not decided.
@@ -50,13 +52,33 @@ The case carries the keyboard folded only. The folded size is the one that the c
 
 ### Battery
 
-Not chosen. Open points: capacity, output (USB-C PD or plain 5 V), and whether the tablet, the
-keyboard, or both charge from it.
+Not chosen. The case has a holder for it, so the holder design waits on the choice. A slim or
+unusually shaped battery is acceptable. Open points: capacity, output (USB-C PD or plain 5 V), and
+whether the tablet, the keyboard, or both charge from it.
+
+One candidate:
+
+| Item | Value | Source |
+|---|---|---|
+| Model | Anker Nano Power Bank, built-in USB-C connector (A1653) | [spec: [Anker product page](https://www.anker.com/products/a1653-usb-c-portable-charger-5000mah)] |
+| Size | 3.03 × 1.45 × 0.98 in (about 77 × 37 × 25 mm) | [spec: Anker product page] |
+| Weight | 100 g | [spec: Anker product page] |
+| Capacity | 5,000 mAh | [spec: Anker product page] |
+| Ports | 1 USB-C port, 1 built-in folding USB-C connector | [spec: Anker product page] |
+| Output | 18 W max (5 V 3 A / 9 V 2.22 A / 10 V 2.25 A). The product name says 22.5 W; the spec list says 18 W. | [spec: Anker product page] |
+
+The folding connector plugs straight into a device. A holder for this battery must leave the
+connector free to fold out, or the battery must leave the holder to charge.
+
+## Decisions
+
+- The tablet travels inside the case.
+- The stand holds the tablet at one fixed angle.
+- The case has a holder for the battery.
 
 ## Open questions
 
 - Case folds: how does the case open, and how does it fold into the stand? (Sketch to come.)
-- Does the tablet travel inside the case, or separately?
-- Screen angle in the stand: fixed, or adjustable?
+- Screen angle: what angle?
 - Does the tablet stay removable for use as a notebook with the stylus?
-- Battery: which model, and does the case carry it?
+- Battery: which model? The holder shape depends on it.
