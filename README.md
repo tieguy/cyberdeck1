@@ -98,7 +98,12 @@ connector free to fold out, or the battery must leave the holder to charge.
 ## Decisions
 
 - The tablet travels inside the case.
-- The stand holds the tablet at one fixed angle.
+- Rev 0.1 is an A-frame with a one-pin hinge on arms. A hinge with two pins and a spine is a
+  candidate for a later revision, if the extra depth of the arms is a problem in use.
+- Rev 0.1 assumes legs 40° apart, so the tablet leans back 20°. This is a working figure, to
+  confirm with the hinge test piece.
+- With arms, the closed case leaves the tablet holder's open side facing the gap by the pin. A lip
+  on the keyboard half covers that side when the case is closed.
 - The tablet is in landscape when it is the screen. The hinge runs along a long edge of the case.
 - In the stand, the tablet's long edge near the power button is up.
 - Rev 0.1 has no external battery. A later revision adds a battery holder.
@@ -111,34 +116,36 @@ connector free to fold out, or the battery must leave the holder to charge.
   polarity are [unknown]. Find them with a small magnet before the magnet pockets are designed.
 - A holder for an external battery (refer to Battery).
 
+## Stand layout
+
+The case is a clamshell: one half carries the folded keyboard, the other half carries the tablet,
+and one hinge joins them along a long edge. To make the stand, the keyboard half swings about
+320° round the hinge. The hinge is then at the top and the two halves stand on their free edges
+as an A-frame.
+
+- The weight pushes the feet apart, back along the path that the half took when it opened. A
+  fixed stop cannot block that path. A ratchet in the hinge holds the angle: it clicks toward the
+  stand position and locks against the return until a tab releases it. `hinge-test/` is a test
+  piece for this ratchet.
+- The open side of the tablet holder is the hinge side. In the stand, that side is at the top: the
+  tablet lifts out upward, and its weight keeps it in.
+
+A layout that was considered and not chosen for rev 0.1: the keyboard half lies flat on the table
+behind the tablet half. The open side of the tablet holder would then be at the bottom, where the
+tablet's weight rests.
+
 ## Hinge geometry
 
 With one pin, the two halves end up inside the angle between the legs, outer face to outer face.
 Their thickness limits how close the legs can come. To reach a small angle, the bodies of the
 halves must start some distance from the pin, on arms. For halves about 9 mm and 17 mm thick
 (estimates: tablet and folded keyboard, each with walls) and legs 40° apart, that distance is
-about 37 mm. A hinge with two pins and a spine between them needs no such arms. This choice is
-open.
+about 37 mm. A hinge with two pins and a spine between them needs no such arms, but it has two
+joints to hold.
 
 ## Open questions
 
-- Hinge: one pin with arms about 37 mm long, or two pins with a spine?
-
-- Stand layout. The case is a clamshell: one half carries the folded keyboard, the other half
-  carries the tablet, and one hinge joins them along a long edge. Two layouts are candidates.
-  Compare them when the part measurements are known.
-  - Base flat: the keyboard half swings about 300 degrees round the hinge and lies flat on the
-    table behind the tablet half. A stop in the hinge sets the angle and carries the tablet's
-    weight.
-  - A-frame: the hinge is at the top and the two halves stand on their free edges. The weight
-    pushes the feet apart, back along the path that the half took when it opened. A fixed stop
-    cannot block that path. A ratchet in the hinge holds the angle: it clicks toward the stand
-    position and locks against the return until a tab releases it. `hinge-test/` is a test piece
-    for this ratchet. This layout lets the open side of the tablet holder
-    be the hinge side. When the case is closed, the other half blocks that side, so the tablet
-    is fully enclosed with no latch. When the case stands as an A-frame, that side is at the top:
-    the tablet lifts out upward, and its weight keeps it in.
-- Screen angle: what angle?
+- Arm length. About 37 mm is an estimate from guessed half thicknesses. Compute it again when the
+  two halves are designed.
 - Battery for a later revision: which model? The holder shape depends on it.
-- Which side of the tablet holder is open? In the A-frame layout, the hinge side. In the base-flat
-  layout, not decided: the hinge side is then at the bottom, where the tablet's weight rests.
+- The exact long side of the folded keyboard.
