@@ -78,6 +78,7 @@ connector free to fold out, or the battery must leave the holder to charge.
 
 - The tablet travels inside the case.
 - The stand holds the tablet at one fixed angle.
+- The tablet is in landscape when it is the screen. The hinge runs along a long edge of the case.
 - The case has a holder for the battery.
 - No stylus. The case needs no stylus holder, and the tablet need not come out for handwriting.
 
