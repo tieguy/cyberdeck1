@@ -47,7 +47,7 @@ Keychron 2026-07-31.
 | Weight | 258 g ± 10 g | [spec: Keychron product page] |
 | Size folded, long side | Less than 10 mm longer than the tablet's long side (191 mm). Too long for the owner's calipers; no exact figure yet. | [measured, approximate, 2026-11-19] |
 | Size folded, short side | Almost the same as the tablet's short side (138 mm) | [measured, approximate, 2026-11-19] |
-| Thickness folded | [unknown] | |
+| Thickness folded | 13 mm | [measured, 2026-11-19] |
 | Port, switch and foot positions when folded | [unknown] | |
 
 The case carries the keyboard folded only. The folded size is the one that the case design needs.
