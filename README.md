@@ -27,4 +27,4 @@ Rev 0.1 is in design. It holds the tablet in portrait. No case part is printed y
 | `DESIGN-0.2.md` | Ideas that wait for rev 0.2 |
 | `DESIGN-1.0.md` | Ideas that wait for rev 1.0, where the look matters |
 | `case/` | The OpenSCAD model of rev 0.1, with 3D views |
-| `hinge-test/` | A ratchet hinge test piece, with its own README |
+| `hinge-test/` | A test piece for the hinge, with its own README |

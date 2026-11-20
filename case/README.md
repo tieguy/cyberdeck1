@@ -60,7 +60,7 @@ done
   2.5 mm.
 - Nothing holds the case shut, and nothing holds the bail when it is stowed.
 - The tapers are solid, and they need supports on the print bed.
-- The grip of the ribs on the pin is not tested. Print the pin and one knuckle first.
+- The grip of the ribs on the pin is not tested. Print `../hinge-test/` first.
 - The folded keyboard's long side is an estimate (196.3 mm).
 - The model was checked for collisions in the closed pose and in the stand pose only. To run the
   check, make the views `x_stand`, `x_closed` and `x_bail`: each must be empty, or a film of no

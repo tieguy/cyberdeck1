@@ -85,8 +85,7 @@ side of the USB-C port.
   stands 6 mm proud of the closed case.
 - One pin with square tabs, or with narrow arms, in place of the tapers. They need no supports.
   The owner prefers the look of the tapers.
-- A ratchet in the hinge. The tapers and the bail hold the angle. `hinge-test/` is a test piece
-  for a pin fit and for a ratchet.
+- A ratchet in the hinge. The tapers and the bail hold the angle.
 
 `case/case.scad` can still draw the spine, the tabs and the arms.
 
@@ -115,10 +114,9 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- Whether the crush ribs grip the pin. Test with a print of the pin and one knuckle.
+- Whether the crush ribs grip the pin, and how the tapers print on supports. `hinge-test/` is a
+  test piece for both.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - The exact long side of the folded keyboard.
-- The results of the hinge test piece: pin fit, tooth pitch, and whether the ratchet is worth
-  having.
 - Feet that do not slide on a smooth table.
