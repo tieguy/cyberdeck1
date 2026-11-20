@@ -4,7 +4,9 @@ Rev 1.0 is not in design. This file collects the ideas that wait for it. The ear
 prototypes that test function. Rev 1.0 is the first one where the look matters.
 
 - Style: science fiction and 1980s cyberpunk. The owner wants this part to be fun.
-- Material: a green "silk" PLA is a candidate, for a look like a circuit board.
+- Material: green "silk" PLA. The owner is set on it (2026-11-20).
+- Motif: circuit boards, plants, or both together in a hopepunk mix. One way to mix them: circuit
+  traces that grow into vines and leaves. Ways to print a motif are in `DESIGN-0.2.md`.
 - The prop of rev 0.1 sits proud of the case. It can stay proud, as a plain, functional feature.
 - Smooth tapers at the hinge. In rev 0.1 the tapers print on supports, and the supports leave
   visible lines. Candidates: a support interface in a second material; a taper that is a separate
