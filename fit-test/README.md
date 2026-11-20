@@ -6,7 +6,9 @@ whether the tablet and the folded keyboard go in and out easily. The shapes come
 
 ## Parts
 
-`fit_test_plate.stl` holds both pieces. The smaller L lies inside the corner of the larger one.
+`fit_test_plate.stl` holds both pieces. The smaller L lies inside the corner of the larger one. `t_fit.stl` is the
+T piece alone, for a quick check of the lips and the USB-C cut-out: about 40 minutes and 27 g
+by the same estimate.
 
 | Piece | What it is |
 |---|---|
@@ -68,6 +70,12 @@ Printed 2026-11-20. The print used supports under the lips.
 The plate in this directory is a later version than the one that was printed. The cut-out for the
 USB-C port is 6 mm farther from the corner and 4 mm wider, and the lip at the tablet's lower edge
 covers 2.5 mm, not 1.5 mm.
+
+## Not tested yet
+
+The lips have not printed without supports. They are flat overhangs of 2.5 mm, and the pocket
+has only 0.3 mm of room above the tablet, so a lip that sags can make the tablet bind. Print
+`t_fit.stl` with supports on the build plate only (which gives this piece none) to find out.
 
 ## Limits of this test
 
