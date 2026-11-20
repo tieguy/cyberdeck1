@@ -22,7 +22,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | USB-C port | On the right short edge. Its opening is from about 15 mm to about 24 mm from the bottom long edge, so its middle is at about 19.5 mm. | [estimated from a photo of the fit test, 2026-11-20, and confirmed by a second fit test. The owner measured 13.6 mm to the near end of the port, 2026-11-19.] |
 | Bezel, bottom long edge and left short edge | 6 mm each | [measured, 2026-11-19] |
 | Bezel, right short edge (full width) | [unknown] | |
-| Edge of the case | Eased, not circular, about 1 mm deep. A lip must reach past this to hold the tablet. A flat lip that covers 2.5 mm holds it snugly. | [fit tests, 2026-11-20] |
+| Edge of the case | Rounded over almost the full thickness, like a flattened half circle, with no sharp corner. The flat part of the front face starts about 2 mm in from the edge. A flat lip that covers 2.5 mm holds the tablet snugly. | [fit tests and a side-on photo, 2026-11-20. The 2 mm is an estimate from the photo.] |
 
 "Top", "bottom", "left" and "right" are for the tablet in landscape with the touch buttons on the
 right.
