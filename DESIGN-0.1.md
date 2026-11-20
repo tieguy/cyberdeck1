@@ -51,12 +51,17 @@ Both must do the same thing. When the case is closed, the tablet half lies on th
 the keyboard half. In the stand, it is on the other side, 45° from the keyboard half's back. Near
 the hinge there is no room for the thickness of both halves inside that 45°.
 
-- **Tabs**: one pin, like a door hinge, in the plane where the two halves meet. The owner
-  sketched this. The bodies of the halves start 32 mm from the pin. Each half reaches the pin
-  with two tabs, and has notches where the other half's tabs are, so the tabs fill the whole
-  width. The tabs are part of the halves: the hinge adds no printed part, and nothing stands
-  proud of the case. Its cost is length: the closed case is 37 mm longer than its halves, and the
-  stand is about 235 mm deep on the table. A steeper screen needs shorter tabs: about 21 mm at 60°.
+- **Bevel**: one pin, like a door hinge, in the plane where the two halves meet. The owner
+  sketched this. Each half tapers to the pin over its whole width, so the closed case comes to a
+  point at the hinge. The two tapers together must fill the 45° of the stand. The owner proposed
+  22.5° each. The model uses 27° on the keyboard half and 18° on the tablet half: the thicker half
+  has the steeper taper, so both tapers end at the same distance from the pin, 30 mm. With 22.5°
+  each, the taper of the keyboard half is 37 mm long.
+  In the stand, the taper of the tablet half lies on the taper of the keyboard half. That contact
+  holds the screen at 45° with no bail; the bail adds stiffness and gives the steeper angles.
+  The hinge adds no printed part, and nothing stands proud of the case. Its costs: the closed
+  case is 34 mm longer than its halves, the stand is about 235 mm deep on the table, and each
+  taper is an overhang on the print bed that needs supports. The owner accepts supports there.
 - **Spine**: two pins and a plate about 26 mm long between them, like the spine of a book. The
   plate is 2.4 mm thick, with a barrel 5.5 mm across at each edge. Each pin is a piece of 1.75 mm
   filament. When the case is closed, the spine stands in front of the hinge-side walls. In the
@@ -67,9 +72,8 @@ the hinge there is no room for the thickness of both halves inside that 45°.
   onto dovetail rails on the hinge-side wall, with no glue. The hinge stands 6 mm proud of the
   closed case.
 
-In the owner's sketch the two halves taper toward the pin. A taper that lets the halves reach 45°
-must be shallow, and it is on the faces that lie on the print bed, where it is an overhang. The
-model uses square tabs.
+A one-pin hinge with square tabs in place of the tapers was also drawn. It needs no supports,
+but the owner prefers the look of the tapers.
 
 Another way to make the spine hinge, not chosen for now: print the keyboard half with its pocket
 down, on supports, so that the lugs are part of it. The owner has no support filament for PLA

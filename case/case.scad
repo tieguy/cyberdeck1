@@ -16,6 +16,8 @@
 // Two hinges are drawn, for comparison:
 //   arms:  one pin in the plane of the inner faces. The bodies of the halves start E from
 //          the pin, on arms, so that they fit back to back in the stand.
+//   bevel: the same pin as "arms". Each half tapers to the pin over its whole width, like
+//          a door hinge on two wedges. In the stand the two tapers lie on each other.
 //   tabs:  the same pin as "arms", but the arms are wide tabs that fill the whole width
 //          of the case. Each half has tabs where the other has notches.
 //   spine: two pins and a spine between them, like the spine of a book. Closed, the spine
@@ -23,7 +25,7 @@
 //          In this variant the edge of each body on the hinge side is at y = 0.
 
 orient = "portrait";    // portrait | landscape. Rev 0.1 is the portrait case.
-hinge  = "spine";       // spine | tabs | arms
+hinge  = "bevel";       // bevel | spine | tabs | arms
 view   = "stand";       // stand | closed | k_half | t_half | bail | spine | k_lug
 
 $fn = 48;
@@ -43,10 +45,9 @@ kd = landscape ? KB_S : KB_L;
 WALL    = 2.4;
 SCREEN  = 45;      // angle between the halves in the stand = screen angle from the table
 spine   = hinge == "spine";
-E       = 32;      // arms hinge: distance from the pin to the bodies of the halves
-EB      = spine ? 0 : E;   // where the bodies start
-RK      = 5;       // knuckle radius. The knuckles are also the front feet of the stand.
-PIN_D   = 5.2;
+bevel   = hinge == "bevel";
+RK      = bevel ? 4 : 5;   // knuckle radius. The knuckles are also the front feet of the stand.
+PIN_D   = bevel ? 3.3 : 5.2;
 KN      = 12;      // knuckle length
 
 // K half
@@ -73,14 +74,22 @@ px0     = (W - tpw) / 2;
 OV      = 2.5;     // how far a normal lip covers the bezel
 OV_BTN  = 1.5;     // how far the lip on the touch-button edge covers the bezel
 
+// One-pin hinges: distance from the pin to the bodies of the halves. For the bevel hinge
+// it is the length at which the two tapers together fill the angle of the stand.
+BEV_C   = (T_K + T_T) / tan(SCREEN - 0.3);
+E       = bevel ? (BEV_C + sqrt(BEV_C * BEV_C + 4 * T_K * T_T)) / 2 : 32;
+EB      = spine ? 0 : E;   // where the bodies start
+NECK    = 8;       // bevel hinge: how far from the pin a knuckle joins its taper
+
 // Hinge: two sets of knuckles. In portrait they stay clear of the USB-C port.
 HX    = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
 // One-pin hinges: the bands along the hinge, as [start, length], that each half fills
 // between its body and the pin.
 QW = W / 4;
-K_BANDS = spine ? [] : hinge == "tabs" ? [[QW + 0.2, QW - 0.4], [3 * QW + 0.2, QW - 0.2]]
+// The bevel hinge has three knuckles and leaves the USB-C port's side free of them.
+K_BANDS = spine ? [] : bevel ? [[0.28 * W + 0.2, 0.26 * W - 0.4]] : hinge == "tabs" ? [[QW + 0.2, QW - 0.4], [3 * QW + 0.2, QW - 0.2]]
                                        : [[HX[0], KN], [HX[1], KN]];
-T_BANDS = spine ? [] : hinge == "tabs" ? [[0, QW - 0.2], [2 * QW + 0.2, QW - 0.4]]
+T_BANDS = spine ? [] : bevel ? [[0, 0.28 * W - 0.2], [0.54 * W + 0.2, 0.24 * W - 0.4]] : hinge == "tabs" ? [[0, QW - 0.2], [2 * QW + 0.2, QW - 0.4]]
                                        : [[HX[0] + KN + 0.4, KN], [HX[1] + KN + 0.4, KN]];
 
 // Spine hinge. Pin 1 joins the spine to the K half. It is outside the K half's outer face,
@@ -124,7 +133,7 @@ echo(hinge = hinge, BAIL_L = BAIL_L, PIV_Y = PIV_Y, LS = LS);
 if (!spine) echo(arms_stop_angle = atan(T_T / E) + atan(T_K / E));
 
 module pin_holes() {
-    if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = W + 2);
+    if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = bevel ? 0.78 * W + 1 : W + 2);
 }
 
 module x_cyl(p, r, x0, x1) {   // cylinder along X at [y, z] = p
@@ -188,6 +197,22 @@ module spine_at(folded) {
     else spine_part();
 }
 
+// Bevel hinge, drawn for the K half (+Y side). The T half uses a mirror image.
+module nose(thick) {      // the taper: full thickness at E, nothing at the pin
+    // The tip stops 2 mm from the pin's axis, so that it is not a knife edge.
+    rotate([90, 0, 90]) linear_extrude(W)
+        polygon([[2, 0], [E + 1, 0], [E + 1, -thick], [E, -thick], [2, -2 * thick / E]]);
+}
+module bevel_knuckle(b, thick) {
+    hull() {
+        translate([b[0], 0, 0]) rotate([0, 90, 0]) cylinder(r = RK, h = b[1]);
+        translate([b[0], NECK, -NECK * thick / E + 0.05]) cube([b[1], 0.5, NECK * thick / E - 0.1]);
+    }
+}
+module bevel_notch(b) {   // room for a knuckle of the other half
+    translate([b[0] - 0.2, -RK - 1, -40]) cube([b[1] + 0.4, RK + 1 + NECK + 0.4, 80]);
+}
+
 module knuckle(x0, thick, len = KN) {
     translate([x0, 0, 0]) {
         rotate([0, 90, 0]) cylinder(r = RK, h = len);
@@ -206,12 +231,14 @@ module k_half() {
                 // front feet of the stand. The T half has notches for them.
                 for (x = [0, W - 4]) translate([x, 0, -0.01]) cube([4, 5, FOOT + 0.01]);
             }
-            for (b = K_BANDS) {
+            if (bevel) { nose(T_K); for (b = K_BANDS) bevel_knuckle(b, T_K); }
+            if (!bevel) for (b = K_BANDS) {
                 translate([b[0], 0, -T_K]) cube([b[1], E + 0.01, T_K]);           // arm or tab
                 knuckle(b[0], T_K, b[1]);
             }
         }
         translate([WALL, EB + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);             // pocket
+        if (bevel) for (b = T_BANDS) bevel_notch(b);
         pin_holes();
         // finger notch in the free edge, to lift the keyboard out
         translate([W / 2, EB + D_K - WALL - 1, 0]) rotate([-90, 0, 0]) cylinder(r = 12, h = WALL + 2);
@@ -238,7 +265,8 @@ module t_half() {
             if (spine) for (x0 = [SX0, SX1]) mirror([0, 1, 0]) lug([-P2L[0], P2L[1]], -T_T, x0);
             // Arms and knuckles. The corner next to the pin is cut at the angle of the
             // table, so that it is a flat foot in the stand and prints with no support.
-            intersection() {
+            if (bevel) mirror([0, 1, 0]) { nose(T_T); for (b = T_BANDS) bevel_knuckle(b, T_T); }
+            if (!bevel) intersection() {
                 for (b = T_BANDS) {
                     translate([b[0], -E - 0.01, -T_T]) cube([b[1], E + 0.01, T_T]);
                     knuckle(b[0], T_T, b[1]);
@@ -268,11 +296,15 @@ module t_half() {
             // The power button is on the top edge, which is open.
             translate([px0 + tpw - 0.3 - 13.6 - 9, y_low - OV_BTN - 0.01, z_floor])
                 cube([18, wb + OV_BTN + 1, T_T]);
+            // bevel hinge: a slot through the taper, for the plug and its cable
+            if (bevel) translate([px0 + tpw - 0.3 - 13.6 - 9, -E - 0.5, -T_T - 1])
+                cube([18, E + RK + 1, T_T + 2]);
         }
         // grooves for the bail's cross bar, in the outer face
         for (k = [-1 : 2])
             translate([-1, -(S0 + k * GSTEP), -T_T - (BAIL_R - GROOVE)])
                 rotate([0, 90, 0]) cylinder(r = BAIL_R + 0.2, h = W + 2);
+        if (bevel) mirror([0, 1, 0]) for (b = K_BANDS) bevel_notch(b);
         pin_holes();
         if (spine) {
             x_cyl(P2L, SP_HOLE / 2, 0, W);
@@ -348,3 +380,7 @@ else if (view == "check_t0") posed(360) t_half();
 else if (view == "check_s") spine_at(true);
 else if (view == "check_s0") spine_at(false);
 else if (view == "check_bail") bail_at(C0);
+// Collision checks: each of these must be empty.
+if (view == "x_stand") intersection() { k_half(); posed(SCREEN) t_half(); }
+if (view == "x_closed") intersection() { k_half(); posed(360) t_half(); }
+if (view == "x_bail") intersection() { union() { k_half(); posed(SCREEN) t_half(); } bail_at(C0); }
