@@ -80,6 +80,8 @@ BEV_C   = (T_K + T_T) / tan(SCREEN - 0.3);
 E       = bevel ? (BEV_C + sqrt(BEV_C * BEV_C + 4 * T_K * T_T)) / 2 : 32;
 EB      = spine ? 0 : E;   // where the bodies start
 NECK    = 8;       // bevel hinge: how far from the pin a knuckle joins its taper
+NOTCH   = NECK + 3;   // bevel hinge: depth of the notch for a knuckle of the other half.
+                      // The 3 mm keeps the other half's taper clear of the knuckle's neck.
 
 // Hinge: two sets of knuckles. In portrait they stay clear of the USB-C port.
 HX    = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
@@ -237,7 +239,7 @@ module bevel_knuckle(b, thick) {
     }
 }
 module bevel_notch(b) {   // room for a knuckle of the other half
-    translate([b[0] - 0.2, -RK - 1, -40]) cube([b[1] + 0.4, RK + 1 + NECK + 0.4, 80]);
+    translate([b[0] - 0.2, -RK - 1, -40]) cube([b[1] + 0.4, RK + 1 + NOTCH, 80]);
 }
 
 module knuckle(x0, thick, len = KN) {

@@ -55,6 +55,8 @@ Add the results to `../../PRINTER.md`, in the fits table.
 
 ## Limits of this test
 
+- In the stand position, the taper of each leaf passes 2 mm from the neck of the other leaf's
+  knuckle. Rough surfaces from the supports can use up part of that gap.
 - The real hinge is 116 mm wide. This slice is 40 mm wide, so it twists more easily.
 - The leaves were checked for collisions at 45°, 90°, 180°, 270° and closed. They were not
   checked for strength.
