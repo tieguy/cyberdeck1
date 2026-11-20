@@ -77,6 +77,27 @@ The lips have not printed without supports. They are flat overhangs of 2.5 mm, a
 has only 0.3 mm of room above the tablet, so a lip that sags can make the tablet bind. Print
 `t_fit.stl` with supports on the build plate only (which gives this piece none) to find out.
 
+## Edge gauge
+
+`edge_gauge_plate.stl` is five short clips, from `edge_gauge.scad`. Each has the cross-section of
+the tablet holder at a side lip. They differ in the shape under the lip, in the corner where the
+tablet's rounded edge leaves room. A fuller corner holds the tablet better, and a sloped corner
+prints without supports.
+
+| Notches on the back | Shape under the lip |
+|---|---|
+| 1 | Flat, as in the case model |
+| 2 | 45° slope, 1.0 mm |
+| 3 | 45° slope, 1.5 mm |
+| 4 | 45° slope, 2.0 mm |
+| 5 | Rounded, 1.5 mm radius |
+
+Print the plate as it lies, with no supports. The clips stand on end, so each profile is exact.
+The estimate is 11 minutes and 4 g.
+
+Slide each clip onto a long edge of the tablet, with the lip on the screen side. Report the
+highest-numbered slope (2, 3 or 4) that still slides on freely, and whether clip 5 does.
+
 ## Limits of this test
 
 - The pieces are open frames. They do not show how stiff the full halves are.
