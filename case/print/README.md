@@ -8,7 +8,7 @@ The four printed parts of the case, each in the pose in which it prints. They co
 | `k_half.stl` | Keyboard half | 149 × 237 × 20 mm | 1 |
 | `t_half.stl` | Tablet half | 149 × 234 × 14 mm | 1 |
 | `bail.stl` | Bail (the prop) | 157 × 122 × 6 mm | 1 |
-| `pin.stl` | Hinge pin, 2.9 mm | 108 × 3 × 3 mm | 1, and 1 spare |
+| `pin.stl` | Hinge pin, 2.9 mm, with four ears that hold it on the bed | 122 × 14 × 3 mm | 1, and 1 spare |
 
 ## Print
 
@@ -21,6 +21,10 @@ PLA, 0.2 mm layers, 0.4 mm nozzle.
 - The two halves fit on one plate, side by side: 307 × 240 mm. With the filament in the right
   nozzle, keep the plate inside X = 25 to 350 mm (refer to `../../../PRINTER.md`).
 - The bail and the pins go on a second plate, or beside the halves if there is room.
+- The pin has four round ears, one layer thick. They keep it on the bed: without them the pin
+  touches the bed on a strip less than 2 mm wide, and it came loose in the first print
+  (2026-11-20). Cut the ears off with a knife and scrape the flat side smooth. If the pin still
+  lifts, add a brim in the slicer.
 
 PrusaSlicer estimates from `../../../slicer/` (2026-11-20), with its own supports: the two halves
 take 5 hours 19 minutes and 213 g; the bail and two pins take 15 minutes and 10 g. These are not

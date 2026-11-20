@@ -166,7 +166,10 @@ module pin_part() {
     translate([0, 0, cut]) difference() {
         rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = len, $fn = 32);
         translate([-1, -PIN_DIA, -PIN_DIA - cut]) cube([len + 2, 2 * PIN_DIA, PIN_DIA]);
-    }
+    }    // Ears: discs one layer thick that hold the pin on the bed. The pin alone touches the
+    // bed on a strip less than 2 mm wide, and it came loose in the first print. Cut the
+    // ears off after printing.
+    for (x = [0, len / 3, 2 * len / 3, len]) translate([x, 0, 0]) cylinder(r = 7, h = 0.2, $fn = 32);
 }
 
 module pin_holes() {
