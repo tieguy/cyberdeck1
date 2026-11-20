@@ -48,6 +48,10 @@ spine   = hinge == "spine";
 bevel   = hinge == "bevel";
 RK      = bevel ? 4 : 5;   // knuckle radius. The knuckles are also the front feet of the stand.
 PIN_D   = bevel ? 3.3 : 5.2;
+// Bevel hinge: the pin's axis is HG outside the inner face of each half, so the closed
+// halves are 2 * HG apart at the hinge. On the test piece, with the axis in the plane of
+// the inner faces, the faces met at the hinge before they were parallel.
+HG      = bevel ? 0.25 : 0;
 KN      = 12;      // knuckle length
 
 // K half
@@ -58,7 +62,7 @@ kpw     = kw + 0.7;              // pocket size
 kpd     = kd + 1.0;
 W       = kpw + 2 * WALL;        // case size along the hinge
 D_K     = kpd + 2 * WALL;        // K half size away from the hinge
-FOOT    = RK;      // height of the lip on the K half's free edge. It closes the tablet
+FOOT    = RK + HG; // height of the lip on the K half's free edge. It closes the tablet
                    // holder when the case is shut, and it is the rear foot of the stand.
 
 // T half
@@ -76,8 +80,10 @@ OV_BTN  = 1.5;     // how far the lip on the touch-button edge covers the bezel
 
 // One-pin hinges: distance from the pin to the bodies of the halves. For the bevel hinge
 // it is the length at which the two tapers together fill the angle of the stand.
-BEV_C   = (T_K + T_T) / tan(SCREEN - 0.3);
-E       = bevel ? (BEV_C + sqrt(BEV_C * BEV_C + 4 * T_K * T_T)) / 2 : 32;
+// Each taper is a plane through the pin's axis.
+BEV_C   = (T_K + T_T + 2 * HG) / tan(SCREEN - 0.3);
+E       = bevel ? (BEV_C + sqrt(BEV_C * BEV_C + 4 * (T_K + HG) * (T_T + HG))) / 2 : 32;
+function taper_z(y, thick) = HG - y * (thick + HG) / E;   // outer surface of a taper
 EB      = spine ? 0 : E;   // where the bodies start
 NECK    = 8;       // bevel hinge: how far from the pin a knuckle joins its taper
 NOTCH   = NECK + 3;   // bevel hinge: depth of the notch for a knuckle of the other half.
@@ -110,7 +116,7 @@ SX0     = HX[0];
 SX1     = HX[1] + KN + 0.4;
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
 // Where the T half's frame goes when the halves are "wedge" degrees apart.
-function t_shift(wedge) = spine ? P2S - rot(P2L, 180 - wedge) : [0, 0];
+function t_shift(wedge) = spine ? P2S - rot(P2L, 180 - wedge) : [0, HG] - rot([0, HG], 180 - wedge);
 
 // ---- Bail ----
 BAIL_R  = 2.5;     // radius of the cross bar
@@ -145,6 +151,8 @@ module crush_ribs(b) {
     for (a = [90, 210, 330]) rotate([a, 0, 0])
         translate([b[0] + 2, -0.3, PIN_D / 2 - RIB]) cube([b[1] - 4, 0.6, RIB + 0.3]);
 }
+module crush_ribs_at(b) { translate([0, 0, HG]) crush_ribs(b); 
+}
 
 // The pin in its print frame: a flat side on the bed.
 module pin_part() {
@@ -160,8 +168,8 @@ module pin_holes() {
     if (bevel) {
         // The hole is closed at x = 0, so the pin cannot leave that way. A small hole
         // through the closed end lets a paper clip push the pin out.
-        translate([PIN_X0, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = PIN_X1 - PIN_X0 + 1);
-        translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
+        translate([PIN_X0, 0, HG]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = PIN_X1 - PIN_X0 + 1);
+        translate([-1, 0, HG]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
     } else if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = W + 2);
 }
 
@@ -230,12 +238,12 @@ module spine_at(folded) {
 module nose(thick) {      // the taper: full thickness at E, nothing at the pin
     // The tip stops 2 mm from the pin's axis, so that it is not a knife edge.
     rotate([90, 0, 90]) linear_extrude(W)
-        polygon([[2, 0], [E + 1, 0], [E + 1, -thick], [E, -thick], [2, -2 * thick / E]]);
+        polygon([[2, 0], [E + 1, 0], [E + 1, -thick], [E, -thick], [2, taper_z(2, thick)]]);
 }
 module bevel_knuckle(b, thick) {
     hull() {
-        translate([b[0], 0, 0]) rotate([0, 90, 0]) cylinder(r = RK, h = b[1]);
-        translate([b[0], NECK, -NECK * thick / E + 0.05]) cube([b[1], 0.5, NECK * thick / E - 0.1]);
+        translate([b[0], 0, HG]) rotate([0, 90, 0]) cylinder(r = RK, h = b[1]);
+        translate([b[0], NECK, taper_z(NECK, thick) + 0.05]) cube([b[1], 0.5, -taper_z(NECK, thick) - 0.1]);
     }
 }
 module bevel_notch(b) {   // room for a knuckle of the other half
@@ -251,7 +259,7 @@ module knuckle(x0, thick, len = KN) {
 
 // ---- K half: keyboard pocket, open at the inner face ----
 module k_half() {
-    if (bevel) for (b = K_BANDS) crush_ribs(b);
+    if (bevel) for (b = K_BANDS) crush_ribs_at(b);
     difference() {
         union() {
             translate([0, EB, -T_K]) cube([W, D_K, T_K]);
@@ -366,7 +374,7 @@ module keyboard_folded() {
 
 // Put the T half (and what it holds) with the halves "wedge" degrees apart. 360 = closed.
 module posed(wedge) {
-    s = wedge == 360 ? [0, 0] : t_shift(wedge);
+    s = spine && wedge == 360 ? [0, 0] : t_shift(wedge);
     translate([0, s[0], s[1]]) rotate([180 - wedge, 0, 0]) children();
 }
 

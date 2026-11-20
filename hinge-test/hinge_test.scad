@@ -18,15 +18,15 @@ BODY = 15;           // length of full-thickness body behind each taper
 // Knuckle bands, as in the case: T, K, T.
 TB = [[0, 13], [27, 13]];
 KB = [[13.4, 13.2]];
-PINS = [[2.9, 34], [3.0, 37], [3.1, 40]];   // [diameter, length]: the longest is the thickest
+PINS = [[2.8, 34], [2.9, 37], [3.0, 40]];   // [diameter, length]: the longest is the thickest
 
 module t_holes() {
-    translate([PIN_X0, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = WT);
-    translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
+    translate([PIN_X0, 0, HG]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = WT);
+    translate([-1, 0, HG]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
 }
 
 module k_leaf() {
-    for (b = KB) crush_ribs(b);
+    for (b = KB) crush_ribs_at(b);
     difference() {
         union() {
             intersection() {
@@ -74,8 +74,8 @@ if (tpart == "plate") {
 else if (tpart == "k_leaf") translate([0, 0, T_K]) k_leaf();
 else if (tpart == "t_leaf") translate([0, 0, T_T]) t_leaf();
 else if (tpart == "pins") pins();
-else if (tpart == "assembly") { k_leaf(); rotate([180 - ttheta, 0, 0]) t_leaf(); }
-else if (tpart == "x") intersection() { k_leaf(); rotate([180 - ttheta, 0, 0]) t_leaf(); }
+else if (tpart == "assembly") { k_leaf(); posed(ttheta) t_leaf(); }
+else if (tpart == "x") intersection() { k_leaf(); posed(ttheta) t_leaf(); }
 // Plate check: this must be empty. The pins must not touch the leaves.
 if (tpart == "x_plate") intersection() {
     union() { translate([0, 8, T_K]) k_leaf(); translate([0, -8, T_T]) t_leaf(); }

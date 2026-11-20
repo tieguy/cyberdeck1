@@ -19,7 +19,7 @@ It answers these questions:
 |---|---|
 | K leaf | The keyboard half's side: 15.5 mm thick, tapered at 27°, with the centre knuckle and its three crush ribs |
 | T leaf | The tablet half's side: 9.7 mm thick, tapered at 18°, with the two outer knuckles. The pin's hole is closed at one end, with a 1.6 mm hole through the closed end. |
-| Pins | Three pins. The shortest is 2.9 mm across, the middle one 3.0 mm, the longest 3.1 mm. The case design uses 2.9 mm. |
+| Pins | Three pins. The shortest is 2.8 mm across, the middle one 2.9 mm, the longest 3.0 mm. The case design uses 2.9 mm. |
 
 ## Print
 
@@ -50,13 +50,24 @@ Printed 2026-11-19, from the plate that had one pin fused to a leaf. The owner c
 - Tapers: they come together well at the stand position.
 - Taper surfaces: the supports leave visible lines on them. Ironing cannot reach these faces,
   because they face the bed.
-- Closed: the two flat faces do not quite align. The cause is not known yet.
+- Closed: the two flat faces touch near the hinge and stand less than 1 mm apart at the far end.
+  The probable cause, not confirmed: the knuckles print on supports and sag a little, so each pin
+  hole is slightly low and the faces meet at the hinge before they are parallel.
 - Stiffness: this piece does not show it. Its leaves are solid, and the real halves are hollow
   trays.
+
+The plate in this directory is a later version than the one that was printed. It differs in three
+ways:
+
+- The pin's axis is 0.25 mm outside each flat face, so the closed faces are 0.5 mm apart at the
+  hinge and can lie parallel.
+- The notch for each knuckle is 3 mm deeper.
+- The pins lie clear of the leaves, and their sizes are 2.8, 2.9 and 3.0 mm.
 
 ## What to report
 
 - The surface of the tapers after the supports come off.
+- Closed: do the two flat faces lie parallel now, with an even gap of about 0.5 mm?
 - For each pin: how hard it goes in, whether the K leaf's knuckle grips it, and whether the T
   leaf turns freely.
 - Fold the leaves back until the tapers touch. Does the hinge stop firmly? Push on the T leaf as

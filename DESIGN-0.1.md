@@ -63,6 +63,10 @@ whole width, and the closed case comes to a point at the hinge.
 - Its costs: the closed case is 34 mm longer than its halves, the stand is about 235 mm deep on
   the table, and each taper is an overhang on the print bed that needs supports. The owner
   accepts supports there.
+- The pin's axis is 0.25 mm outside the inner face of each half, so the closed halves are 0.5 mm
+  apart at the hinge. On the first test piece the axis was in the plane of the inner faces, and
+  the closed faces touched near the hinge and stood up to 1 mm apart at the far end. The probable
+  cause is that the knuckles sag a little on their supports; this is not confirmed.
 - The hinge has three knuckles, 8 mm across. They stop short of the corner with the USB-C port,
   and a slot through the tablet half's taper leaves room for the plug.
 
@@ -117,8 +121,7 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- When the test piece is closed, its two flat faces do not quite align. Find the cause before
-  the halves are printed.
+- Whether the closed halves lie parallel. A reprint of the test piece shows it.
 - The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
   accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
 - Stiffness of the hollow halves. The solid test piece does not show it.
