@@ -22,6 +22,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | USB-C port | On the right short edge, 13.6 mm from the bottom long edge | [measured, 2026-11-19] |
 | Bezel, bottom long edge and left short edge | 6 mm each | [measured, 2026-11-19] |
 | Bezel, right short edge (full width) | [unknown] | |
+| Edge of the case | Rounded, about 1 mm deep. A lip must reach past this to hold the tablet. | [measured, approximate: fit test, 2026-11-20] |
 
 "Top", "bottom", "left" and "right" are for the tablet in landscape with the touch buttons on the
 right.
@@ -42,6 +43,7 @@ Keychron 2026-07-31.
 | Size folded, short side | Almost the same as the tablet's short side (138 mm) | [measured, approximate, 2026-11-19] |
 | Thickness folded | 13 mm | [measured, 2026-11-19] |
 | Port, switch and foot positions when folded | [unknown] | |
+| Outline when folded | Not a rectangle, because of the Alice layout. A pocket of 197 × 144 mm holds it very well and has empty space. The shape of that space is [unknown]. | [measured: fit test, 2026-11-20] |
 
 The case carries the keyboard folded only. The folded size is the one that the case design needs.
 The folded keyboard and the tablet have almost the same footprint.

@@ -51,6 +51,17 @@ meets the lower wall.
 
 Add the results to `../PARTS.md` (measured sizes) and to `../../PRINTER.md` (the lips).
 
+## Results
+
+Printed 2026-11-20. The print used supports under the lips.
+
+- Tablet: it slides in well. The supports under the side lip did not come off cleanly.
+- Lower lip: it hardly touches the bezel. The tablet's edge is rounded, about 1 mm deep, and the
+  lip covers little more than that.
+- USB-C cut-out: it is in the wrong place. The owner will send a photo.
+- Keyboard: it fits very well. The folded keyboard is not a rectangle, because of its Alice
+  layout, so part of the pocket stays empty.
+
 ## Limits of this test
 
 - The pieces are open frames. They do not show how stiff the full halves are.
