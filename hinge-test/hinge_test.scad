@@ -67,10 +67,18 @@ module pins() { for (i = [0 : len(PINS) - 1]) translate([0, 8 * i, 0]) test_pin(
 if (tpart == "plate") {
     translate([0, 8, T_K]) k_leaf();
     translate([0, -8, T_T]) t_leaf();
-    translate([WT + 10, 0, 0]) rotate([0, 0, 90]) pins();
+    // The pins lie beside the leaves, along Y. Each is clear of the leaves and of the others.
+    for (i = [0 : len(PINS) - 1])
+        translate([WT + 8 + 8 * i, -20, 0]) rotate([0, 0, 90]) test_pin(PINS[i][0], PINS[i][1]);
 }
 else if (tpart == "k_leaf") translate([0, 0, T_K]) k_leaf();
 else if (tpart == "t_leaf") translate([0, 0, T_T]) t_leaf();
 else if (tpart == "pins") pins();
 else if (tpart == "assembly") { k_leaf(); rotate([180 - ttheta, 0, 0]) t_leaf(); }
 else if (tpart == "x") intersection() { k_leaf(); rotate([180 - ttheta, 0, 0]) t_leaf(); }
+// Plate check: this must be empty. The pins must not touch the leaves.
+if (tpart == "x_plate") intersection() {
+    union() { translate([0, 8, T_K]) k_leaf(); translate([0, -8, T_T]) t_leaf(); }
+    for (i = [0 : len(PINS) - 1])
+        translate([WT + 8 + 8 * i, -20, 0]) rotate([0, 0, 90]) test_pin(PINS[i][0] + 2, PINS[i][1]);
+}

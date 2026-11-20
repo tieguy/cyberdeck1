@@ -26,7 +26,7 @@ It answers these questions:
 Print the plate as it lies, in PLA, at 0.2 mm layers, **with supports on the build plate**. The
 tapers are overhangs. The pins and the holes need no supports.
 
-The PrusaSlicer estimate from `../../slicer/` (2026-11-19) is 48 minutes and 21 g, with
+The PrusaSlicer estimate from `../../slicer/` (2026-11-19) is 46 minutes and 21 g, with
 PrusaSlicer's own supports. That estimate is not a Bambu Studio time.
 
 To make the plate again after a change:
