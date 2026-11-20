@@ -26,7 +26,7 @@ In the stand views, the user sits on the keyboard's side and the table is at z =
   at the hinge. In the stand, the taper of the T half lies on the taper of the K half, and that
   contact holds the screen at 45° even with the bail down. A slot through the T half's taper
   leaves room for a USB-C plug.
-- **Pin**: 2.9 mm across and 114 mm long, printed. Its hole is closed at one end. Three ribs in
+- **Pin**: 2.9 mm across and 108 mm long, printed. Its hole is closed at one end. Three ribs in
   the K half's knuckle grip it. A 1.6 mm hole through the closed end lets a paper clip push it
   out.
 - **Bail**: a U-shaped prop. It pivots in the side walls of the K half, and its cross bar sits in

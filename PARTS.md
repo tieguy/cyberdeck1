@@ -19,7 +19,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | Bezel, top long edge | 6 mm | [measured, 2026-11-19] |
 | Touch buttons | Three, in the bezel along the right short edge. 8 mm from that edge. | [measured, 2026-11-19] |
 | Power button | On the left short edge, 9.5 mm from the top long edge | [measured, 2026-11-19] |
-| USB-C port | On the right short edge, 13.6 mm from the bottom long edge | [measured, 2026-11-19] |
+| USB-C port | On the right short edge. Its opening is from about 15 mm to about 24 mm from the bottom long edge, so its middle is at about 19.5 mm. | [estimated from a photo of the fit test, 2026-11-20. An earlier caliper figure of 13.6 mm put a cut-out about 6 mm off.] |
 | Bezel, bottom long edge and left short edge | 6 mm each | [measured, 2026-11-19] |
 | Bezel, right short edge (full width) | [unknown] | |
 | Edge of the case | Rounded, about 1 mm deep. A lip must reach past this to hold the tablet. | [measured, approximate: fit test, 2026-11-20] |
@@ -43,7 +43,7 @@ Keychron 2026-07-31.
 | Size folded, short side | Almost the same as the tablet's short side (138 mm) | [measured, approximate, 2026-11-19] |
 | Thickness folded | 13 mm | [measured, 2026-11-19] |
 | Port, switch and foot positions when folded | [unknown] | |
-| Outline when folded | Not a rectangle, because of the Alice layout. A pocket of 197 × 144 mm holds it very well and has empty space. The shape of that space is [unknown]. | [measured: fit test, 2026-11-20] |
+| Outline when folded | Not a rectangle, because of the Alice layout: both long sides lean the same way, in a curve. A pocket of 197 × 144 mm holds it very well. Two wedges of the pocket stay empty, at opposite corners. Each is about 23 mm wide at its wide end and about 150 mm long. | [fit test, 2026-11-20. The wedge sizes are estimates from a photo.] |
 
 The case carries the keyboard folded only. The folded size is the one that the case design needs.
 The folded keyboard and the tablet have almost the same footprint.

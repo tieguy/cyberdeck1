@@ -15,7 +15,8 @@ whether the tablet and the folded keyboard go in and out easily. The shapes come
 
 ## Print
 
-Print the plate as it lies, in PLA, at 0.2 mm layers, with no supports. The halves of the case
+Print the plate as it lies, in PLA, at 0.2 mm layers, with no supports. If the slicer adds
+supports by itself, turn them off. The halves of the case
 will print the same way, except for supports under the tapers. The lips over the tablet overhang
 by up to 2.5 mm with nothing under them; this print shows whether they come out clean.
 
@@ -36,7 +37,8 @@ meets the lower wall.
 
 - Does it slide easily under the lips? Is it loose, or does it bind?
 - Do the lips look clean, or do they sag?
-- Does the lip at the lower edge leave the touch buttons clear, and can your finger reach them?
+- Does the lip at the lower edge hold the tablet's edge, leave the touch buttons clear, and let
+  your finger reach them?
 - Does the cut-out in the lower wall line up with the USB-C port? Does a plug go in?
 - Does the tablet's upper edge end a little short of the end of the long strip? The model
   expects about 0.6 mm.
@@ -58,9 +60,14 @@ Printed 2026-11-20. The print used supports under the lips.
 - Tablet: it slides in well. The supports under the side lip did not come off cleanly.
 - Lower lip: it hardly touches the bezel. The tablet's edge is rounded, about 1 mm deep, and the
   lip covers little more than that.
-- USB-C cut-out: it is in the wrong place. The owner will send a photo.
+- USB-C cut-out: it is about 6 mm too near the corner. The port's opening starts in the middle
+  of the cut-out and continues behind the wall.
 - Keyboard: it fits very well. The folded keyboard is not a rectangle, because of its Alice
-  layout, so part of the pocket stays empty.
+  layout. Two wedges of the pocket stay empty, at opposite corners.
+
+The plate in this directory is a later version than the one that was printed. The cut-out for the
+USB-C port is 6 mm farther from the corner and 4 mm wider, and the lip at the tablet's lower edge
+covers 2.5 mm, not 1.5 mm.
 
 ## Limits of this test
 

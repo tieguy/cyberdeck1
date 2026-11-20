@@ -67,12 +67,13 @@ whole width, and the closed case comes to a point at the hinge.
   apart at the hinge. On the first test piece the axis was in the plane of the inner faces, and
   the closed faces touched near the hinge and stood up to 1 mm apart at the far end. The probable
   cause is that the knuckles sag a little on their supports; this is not confirmed.
-- The hinge has three knuckles, 8 mm across. They stop short of the corner with the USB-C port,
+- The hinge has three knuckles, 8 mm across, over 110 mm of the width. They stop short of the
+  corner with the USB-C port,
   and a slot through the tablet half's taper leaves room for the plug.
 
 ### Pin
 
-The pin is 2.9 mm across and 114 mm long, printed with a flat side on the bed. On the test piece
+The pin is 2.9 mm across and 108 mm long, printed with a flat side on the bed. On the test piece
 a 2.9 mm pin fits well and a 3.0 mm pin is too big (2026-11-19). It goes in from the
 side of the USB-C port.
 
@@ -103,13 +104,13 @@ the user sees them.
 
 - The side away from the hinge is open. The tablet slides in and out there. It is the upper side
   in the stand, so the tablet's weight keeps it in.
-- The lower edge carries the tablet's weight. The lip in front of it covers 1.5 mm only, because
-  the touch buttons are 8 mm from that edge. This lip has a bevel: the owner's finger touches it
+- The lower edge carries the tablet's weight. The lip in front of it covers 2.5 mm. The tablet's
+  rounded edge takes about 1 mm of that, and the touch buttons are 8 mm from the edge. This lip has a bevel: the owner's finger touches it
   on the way to the buttons.
 - The lips on the left and right edges cover 2.5 mm. The bezel there is 6 mm.
 - The power button is on the upper edge, which is open.
-- The USB-C port is on the lower edge, 13.6 mm from the left corner. A cut-out in the lower wall
-  keeps it uncovered, so that the tablet charges while it is in the closed case.
+- The USB-C port is on the lower edge, with its middle about 19.5 mm from the left corner. A
+  cut-out 22 mm wide in the lower wall keeps it uncovered, so that the tablet charges while it is in the closed case.
 - When the case is closed, a lip on the keyboard half covers the open side, so that the tablet
   cannot slide out.
 
@@ -124,10 +125,8 @@ can be the same size. The folded keyboard is 13 mm thick.
 - Whether the closed halves lie parallel. A reprint of the test piece shows it.
 - The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
   accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
-- The lip at the tablet's lower edge covers 1.5 mm, and the tablet's rounded edge takes about
-  1 mm of that. Decide whether to widen it.
-- The cut-out for the USB-C port is in the wrong place (fit test, 2026-11-20). Correct it from
-  the owner's photo.
+- The position of the USB-C cut-out is an estimate from a photo. Confirm it with a caliper or a
+  reprint of the fit test's tablet piece.
 - Whether the lips over the tablet print clean without supports. The fit test printed them with
   supports, which did not come off cleanly.
 - Stiffness of the hollow halves. The solid test piece does not show it.

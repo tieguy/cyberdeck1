@@ -76,7 +76,11 @@ D_T     = D_K - WALL - 0.4;      // T half size away from the hinge
 wb      = D_T - tpd;             // border on the hinge side, under the tablet's lower edge
 px0     = (W - tpw) / 2;
 OV      = 2.5;     // how far a normal lip covers the bezel
-OV_BTN  = 1.5;     // how far the lip on the touch-button edge covers the bezel
+OV_BTN  = 2.5;     // how far the lip on the touch-button edge covers the bezel. The tablet's
+                   // rounded edge takes about 1 mm of this.
+USB_C   = 19.5;    // USB-C port: from the tablet's corner to the middle of the port.
+                   // Estimated from a photo of the fit test, 2026-11-20.
+USB_HW  = 11;      // half the width of the cut-out for the port
 
 // One-pin hinges: distance from the pin to the bodies of the halves. For the bevel hinge
 // it is the length at which the two tapers together fill the angle of the stand.
@@ -95,9 +99,9 @@ HX    = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
 // between its body and the pin.
 QW = W / 4;
 // The bevel hinge has three knuckles and leaves the USB-C port's side free of them.
-K_BANDS = spine ? [] : bevel ? [[0.28 * W + 0.2, 0.26 * W - 0.4]] : hinge == "tabs" ? [[QW + 0.2, QW - 0.4], [3 * QW + 0.2, QW - 0.2]]
+K_BANDS = spine ? [] : bevel ? [[0.27 * W + 0.2, 0.25 * W - 0.4]] : hinge == "tabs" ? [[QW + 0.2, QW - 0.4], [3 * QW + 0.2, QW - 0.2]]
                                        : [[HX[0], KN], [HX[1], KN]];
-T_BANDS = spine ? [] : bevel ? [[0, 0.28 * W - 0.2], [0.54 * W + 0.2, 0.24 * W - 0.4]] : hinge == "tabs" ? [[0, QW - 0.2], [2 * QW + 0.2, QW - 0.4]]
+T_BANDS = spine ? [] : bevel ? [[0, 0.27 * W - 0.2], [0.52 * W + 0.2, 0.22 * W - 0.4]] : hinge == "tabs" ? [[0, QW - 0.2], [2 * QW + 0.2, QW - 0.4]]
                                        : [[HX[0] + KN + 0.4, KN], [HX[1] + KN + 0.4, KN]];
 
 // Spine hinge. Pin 1 joins the spine to the K half. It is outside the K half's outer face,
@@ -142,7 +146,7 @@ if (!spine) echo(arms_stop_angle = atan(T_T / E) + atan(T_K / E));
 
 // Bevel hinge: the pin. It goes in from the side of the USB-C port.
 PIN_X0   = 1.6;                 // closed end of the hole
-PIN_X1   = 0.78 * W - 0.2;      // open end: the end of the last knuckle
+PIN_X1   = 0.74 * W - 0.2;      // open end: the end of the last knuckle
 PIN_DIA  = 2.9;                // measured on the test piece: 2.9 fits, 3.0 is too big
 RIB      = 0.25;                // how far each crush rib stands into the hole
 
@@ -327,16 +331,16 @@ module t_half() {
         if (landscape) {
             // power button: left edge (high x), near the top (free edge)
             translate([px0 + tpw - OV - 0.01, y_free - 1, z_floor]) cube([W, 25, T_T]);
-            // USB-C port: right edge (low x), 13.6 mm from the bottom
-            translate([-1, y_low - 0.3 - 13.6 - 9, z_floor]) cube([px0 + 1.1, 18, T_T]);
+            // USB-C port: right edge (low x), near the bottom
+            translate([-1, y_low - 0.3 - USB_C - USB_HW, z_floor]) cube([px0 + 1.1, 2 * USB_HW, T_T]);
         } else {
-            // USB-C port: bottom edge, 13.6 mm from the left corner (high x).
+            // USB-C port: bottom edge, near the left corner (high x).
             // The power button is on the top edge, which is open.
-            translate([px0 + tpw - 0.3 - 13.6 - 9, y_low - OV_BTN - 0.01, z_floor])
-                cube([18, wb + OV_BTN + 1, T_T]);
+            translate([px0 + tpw - 0.3 - USB_C - USB_HW, y_low - OV_BTN - 0.01, z_floor])
+                cube([2 * USB_HW, wb + OV_BTN + 1, T_T]);
             // bevel hinge: a slot through the taper, for the plug and its cable
-            if (bevel) translate([px0 + tpw - 0.3 - 13.6 - 9, -E - 0.5, -T_T - 1])
-                cube([18, E + RK + 1, T_T + 2]);
+            if (bevel) translate([px0 + tpw - 0.3 - USB_C - USB_HW, -E - 0.5, -T_T - 1])
+                cube([2 * USB_HW, E + RK + 1, T_T + 2]);
         }
         // grooves for the bail's cross bar, in the outer face
         for (k = [-1 : 2])
