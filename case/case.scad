@@ -26,7 +26,7 @@
 
 orient = "portrait";    // portrait | landscape. Rev 0.1 is the portrait case.
 hinge  = "bevel";       // bevel | spine | tabs | arms
-view   = "stand";       // stand | closed | k_half | t_half | bail | spine | k_lug
+view   = "stand";       // stand | closed | k_half | t_half | bail | pin
 
 $fn = 48;
 
@@ -132,8 +132,35 @@ echo(orient = orient, W = W, D_K = D_K, D_T = D_T, T_K = T_K, T_T = T_T, wb = wb
 echo(hinge = hinge, BAIL_L = BAIL_L, PIV_Y = PIV_Y, LS = LS);
 if (!spine) echo(arms_stop_angle = atan(T_T / E) + atan(T_K / E));
 
+// Bevel hinge: the pin. It goes in from the side of the USB-C port.
+PIN_X0   = 1.6;                 // closed end of the hole
+PIN_X1   = 0.78 * W - 0.2;      // open end: the end of the last knuckle
+PIN_DIA  = 3.0;
+RIB      = 0.25;                // how far each crush rib stands into the hole
+
+// Three ribs in the K half's knuckle grip the pin. The T half's knuckles turn on it.
+module crush_ribs(b) {
+    for (a = [90, 210, 330]) rotate([a, 0, 0])
+        translate([b[0] + 2, -0.3, PIN_D / 2 - RIB]) cube([b[1] - 4, 0.6, RIB + 0.3]);
+}
+
+// The pin in its print frame: a flat side on the bed.
+module pin_part() {
+    len = PIN_X1 - PIN_X0 - 0.5;
+    cut = PIN_DIA / 2 - 0.3;
+    translate([0, 0, cut]) difference() {
+        rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = len, $fn = 32);
+        translate([-1, -PIN_DIA, -PIN_DIA - cut]) cube([len + 2, 2 * PIN_DIA, PIN_DIA]);
+    }
+}
+
 module pin_holes() {
-    if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = bevel ? 0.78 * W + 1 : W + 2);
+    if (bevel) {
+        // The hole is closed at x = 0, so the pin cannot leave that way. A small hole
+        // through the closed end lets a paper clip push the pin out.
+        translate([PIN_X0, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = PIN_X1 - PIN_X0 + 1);
+        translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
+    } else if (!spine) translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = PIN_D, h = W + 2);
 }
 
 module x_cyl(p, r, x0, x1) {   // cylinder along X at [y, z] = p
@@ -222,6 +249,7 @@ module knuckle(x0, thick, len = KN) {
 
 // ---- K half: keyboard pocket, open at the inner face ----
 module k_half() {
+    if (bevel) for (b = K_BANDS) crush_ribs(b);
     difference() {
         union() {
             translate([0, EB, -T_K]) cube([W, D_K, T_K]);
@@ -373,6 +401,7 @@ else if (view == "t_half") translate([0, 0, T_T]) t_half();
 else if (view == "bail") bail();
 else if (view == "check_k") k_half();
 else if (view == "spine") spine_part();
+else if (view == "pin") pin_part();
 else if (view == "k_lug") k_lug(0);
 else if (view == "check_l") k_lugs();
 else if (view == "check_t") posed(SCREEN) t_half();

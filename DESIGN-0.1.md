@@ -29,7 +29,8 @@ The keyboard half lies on the table with its pocket down. The tablet half swings
 round the hinge and rises at 45°. The outer faces of the two halves
 then face each other. The model is in `case/`.
 
-- The keyboard half rests on feet at the front and on a lip along its free edge at the back. When the case is closed, the same lip covers the open side of the tablet holder.
+- The keyboard half rests on the hinge knuckles at the front and on a lip along its free edge at
+  the back. When the case is closed, the same lip covers the open side of the tablet holder.
 - A bail holds the angle. It is a U-shaped prop that pivots in the side walls of the keyboard
   half. Its cross bar sits in a groove in the back of the tablet half, square to it, as on a
   beach chair. A tap on the
@@ -38,49 +39,56 @@ then face each other. The model is in `case/`.
 - To set up the stand takes two motions: swing the tablet half round, then lift the bail into a
   groove.
 
-The stand is about 170 mm high. Its depth on the table depends on the hinge.
+The stand is about 165 mm high and 235 mm deep on the table.
 
 A layout that was considered and not chosen: an A-frame, with the hinge at the top and the two
 halves standing on their free edges. At a 45° screen it is about 295 mm deep, its feet can slide apart, and a brace across its feet is longer than a half.
 
 ## Hinge
 
-Not decided. The model in `case/` draws two candidates.
+The hinge has one pin, like a door hinge, in the plane where the two halves meet. The owner
+sketched it.
 
-Both must do the same thing. When the case is closed, the tablet half lies on the pocket side of
-the keyboard half. In the stand, it is on the other side, 45° from the keyboard half's back. Near
-the hinge there is no room for the thickness of both halves inside that 45°.
+When the case is closed, the tablet half lies on the pocket side of the keyboard half. In the
+stand, it is on the other side, 45° from the keyboard half's back. Near the pin there is no room
+for the full thickness of both halves inside that 45°. So each half tapers to the pin over its
+whole width, and the closed case comes to a point at the hinge.
 
-- **Bevel**: one pin, like a door hinge, in the plane where the two halves meet. The owner
-  sketched this. Each half tapers to the pin over its whole width, so the closed case comes to a
-  point at the hinge. The two tapers together must fill the 45° of the stand. The owner proposed
-  22.5° each. The model uses 27° on the keyboard half and 18° on the tablet half: the thicker half
-  has the steeper taper, so both tapers end at the same distance from the pin, 30 mm. With 22.5°
-  each, the taper of the keyboard half is 37 mm long.
-  In the stand, the taper of the tablet half lies on the taper of the keyboard half. That contact
-  holds the screen at 45° with no bail; the bail adds stiffness and gives the steeper angles.
-  The hinge adds no printed part, and nothing stands proud of the case. Its costs: the closed
-  case is 34 mm longer than its halves, the stand is about 235 mm deep on the table, and each
-  taper is an overhang on the print bed that needs supports. The owner accepts supports there.
-- **Spine**: two pins and a plate about 26 mm long between them, like the spine of a book. The
-  plate is 2.4 mm thick, with a barrel 5.5 mm across at each edge. Each pin is a piece of 1.75 mm
-  filament. When the case is closed, the spine stands in front of the hinge-side walls. In the
-  stand, it lies flat on the back of the keyboard half, and the tablet half rises from its far
-  edge. The closed case is 6 mm longer than its halves, and the stand is about 200 mm deep.
-  Its cost is parts: the first pin is outside the keyboard half's outer face, and that half
-  prints with its outer face on the bed. The lugs for that pin are two separate parts that slide
-  onto dovetail rails on the hinge-side wall, with no glue. The hinge stands 6 mm proud of the
-  closed case.
+- The two tapers together fill the 45°. The keyboard half tapers at 27° and the tablet half at
+  18°: the thicker half has the steeper taper, so both tapers end 30 mm from the pin. The owner
+  prefers this to equal tapers of 22.5°, which make the keyboard half's taper 37 mm long.
+- In the stand, the taper of the tablet half lies on the taper of the keyboard half. That contact
+  holds the screen at 45° with no bail. The bail adds stiffness and gives the steeper angles.
+- The hinge adds no printed part except the pin, and nothing stands proud of the case.
+- Its costs: the closed case is 34 mm longer than its halves, the stand is about 235 mm deep on
+  the table, and each taper is an overhang on the print bed that needs supports. The owner
+  accepts supports there.
+- The hinge has three knuckles, 8 mm across. They stop short of the corner with the USB-C port,
+  and a slot through the tablet half's taper leaves room for the plug.
 
-A one-pin hinge with square tabs in place of the tapers was also drawn. It needs no supports,
-but the owner prefers the look of the tapers.
+### Pin
 
-Another way to make the spine hinge, not chosen for now: print the keyboard half with its pocket
-down, on supports, so that the lugs are part of it. The owner has no support filament for PLA
-(2026-11-19).
+The pin is 3 mm across and 114 mm long, printed with a flat side on the bed. It goes in from the
+side of the USB-C port.
 
-A ratchet in the hinge is not planned: the bail holds the angle. `hinge-test/` is a test piece for
-the pin fit and for a ratchet.
+- Its hole is closed at the far end, so the pin cannot leave that way.
+- Three crush ribs in the keyboard half's knuckle grip the pin. The tablet half's two knuckles
+  turn on it, in holes of 3.3 mm.
+- A 1.6 mm hole through the closed end lets a paper clip push the pin out.
+- A 3 mm rod of another material, such as a bamboo skewer, fits the same holes.
+
+### Hinges that were considered and not chosen
+
+- A spine: two pins and a plate about 26 mm long between them, like the spine of a book. The
+  closed case is only 6 mm longer than its halves. But the first pin is outside the keyboard
+  half's outer face, so its lugs are separate parts that slide onto dovetail rails, and the hinge
+  stands 6 mm proud of the closed case.
+- One pin with square tabs, or with narrow arms, in place of the tapers. They need no supports.
+  The owner prefers the look of the tapers.
+- A ratchet in the hinge. The tapers and the bail hold the angle. `hinge-test/` is a test piece
+  for a pin fit and for a ratchet.
+
+`case/case.scad` can still draw the spine, the tabs and the arms.
 
 ## Tablet holder
 
@@ -107,8 +115,7 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- The choice of hinge.
-- For the spine hinge: a catch that keeps each lug on its rail when the case is closed.
+- Whether the crush ribs grip the pin. Test with a print of the pin and one knuckle.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - The exact long side of the folded keyboard.
