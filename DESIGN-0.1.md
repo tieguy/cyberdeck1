@@ -124,6 +124,8 @@ can be the same size. The folded keyboard is 13 mm thick.
 - Whether the closed halves lie parallel. A reprint of the test piece shows it.
 - The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
   accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
+- Whether the tablet and the keyboard go in and out of their pockets easily, and whether the
+  lips over the tablet print clean without supports. `fit-test/` is a test piece for this.
 - Stiffness of the hollow halves. The solid test piece does not show it.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.

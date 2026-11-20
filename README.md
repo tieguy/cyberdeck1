@@ -15,8 +15,8 @@ A 3D-printed case for a portable writing setup made of three parts:
 
 ## Status
 
-Rev 0.1 is in design. It holds the tablet in portrait. No case part is printed yet. The first print is the hinge test piece in
-`hinge-test/`.
+Rev 0.1 is in design. It holds the tablet in portrait. No case part is printed yet. The hinge test piece in `hinge-test/` is printed. The next
+print is the fit test in `fit-test/`.
 
 ## Files
 
@@ -27,4 +27,5 @@ Rev 0.1 is in design. It holds the tablet in portrait. No case part is printed y
 | `DESIGN-0.2.md` | Ideas that wait for rev 0.2 |
 | `DESIGN-1.0.md` | Ideas that wait for rev 1.0, where the look matters |
 | `case/` | The OpenSCAD model of rev 0.1, with 3D views |
+| `fit-test/` | Test pieces for the fit of the tablet and the keyboard in their pockets |
 | `hinge-test/` | A test piece for the hinge, with its own README |

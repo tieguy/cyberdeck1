@@ -1,0 +1,57 @@
+# Fit test pieces
+
+Two L-shaped pieces cut from the rev 0.1 halves, to print before the full halves. They show
+whether the tablet and the folded keyboard go in and out easily. The shapes come from
+`../case/case.scad`, so the pockets, walls and lips are those of the real halves.
+
+## Parts
+
+`fit_test_plate.stl` holds both pieces. The smaller L lies inside the corner of the larger one.
+
+| Piece | What it is |
+|---|---|
+| K piece, 19.8 mm high | A corner of the keyboard tray: the whole hinge-side wall, one whole side wall, and the ends of the other two walls. It checks the folded keyboard's length, width and depth. |
+| T piece, 9.7 mm high | A corner of the tablet holder: the lower wall with its lip and the cut-out for the USB-C port, one whole side lip, and the start of the other side lip. It checks the tablet's width, its thickness under the lips, and how it slides. |
+
+## Print
+
+Print the plate as it lies, in PLA, at 0.2 mm layers, with no supports. The halves of the case
+will print the same way, except for supports under the tapers. The lips over the tablet overhang
+by up to 2.5 mm with nothing under them; this print shows whether they come out clean.
+
+The PrusaSlicer estimate from `../../slicer/` (2026-11-19) is 1 hour 20 minutes and 57 g. That
+estimate is not a Bambu Studio time.
+
+To make the plate again after a change:
+
+```
+openscad-nightly -o fit_test_plate.stl fit_test.scad
+```
+
+## Test
+
+**Tablet.** Hold the T piece with the long strip on your left and the short strip toward you.
+Slide the tablet in from the far end, screen up, with the touch buttons toward you, until it
+meets the lower wall.
+
+- Does it slide easily under the lips? Is it loose, or does it bind?
+- Do the lips look clean, or do they sag?
+- Does the lip at the lower edge leave the touch buttons clear, and can your finger reach them?
+- Does the cut-out in the lower wall line up with the USB-C port? Does a plug go in?
+- Does the tablet's upper edge end a little short of the end of the long strip? The model
+  expects about 0.6 mm.
+
+**Keyboard.** Lay the folded keyboard into the corner of the K piece.
+
+- Does it fit between the two side walls, and between the hinge-side wall and the wall at the
+  far end? How much play is there each way? The model allows 0.7 mm across and 1.0 mm along.
+- Is its top below the top of the walls? The model expects 0.5 mm.
+- The keyboard's long side in the model, 196.3 mm, is an estimate. This is the first real check
+  of it.
+
+Add the results to `../PARTS.md` (measured sizes) and to `../../PRINTER.md` (the lips).
+
+## Limits of this test
+
+- The pieces are open frames. They do not show how stiff the full halves are.
+- The K piece has no finger notch, so it does not show how easily the keyboard lifts out.
