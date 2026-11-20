@@ -38,30 +38,38 @@ then face each other. The model is in `case/`.
 - To set up the stand takes two motions: swing the tablet half round, then lift the bail into a
   groove.
 
-Estimates from the model: the stand is about 200 mm deep on the table and 175 mm high.
+The stand is about 170 mm high. Its depth on the table depends on the hinge.
 
 A layout that was considered and not chosen: an A-frame, with the hinge at the top and the two
 halves standing on their free edges. At a 45° screen it is about 295 mm deep, its feet can slide apart, and a brace across its feet is longer than a half.
 
 ## Hinge
 
-The hinge is a spine: two pins and a plate about 26 mm long between them, like the spine of a
-book. The plate is 2.4 mm thick, with a barrel 5.5 mm across at each edge. Each pin is a piece of
-1.75 mm filament. When the case is closed, the spine stands in front of the hinge-side walls. In the stand,
-it lies flat on the back of the keyboard half, and the tablet half rises from its far edge. The
-weight of the tablet half presses the spine down, and the push from the bail presses it
-lengthways, so it needs no catch. The closed case is 6 mm longer than its halves.
+Not decided. The model in `case/` draws two candidates.
 
-The spine's first pin is outside the keyboard half's outer face. That half prints with its outer
-face on the bed, so the lugs for the pin are two separate parts. Each lug slides onto a dovetail
-rail on the hinge-side wall, from the outer-face side, and a shoulder hooks over the edge of the
-outer face. No glue. In the stand the keyboard half is upside down: each lug sits on it like a
-saddle, the load presses it on, and the dovetail holds it against the pull of the spine.
+Both must do the same thing. When the case is closed, the tablet half lies on the pocket side of
+the keyboard half. In the stand, it is on the other side, 45° from the keyboard half's back. Near
+the hinge there is no room for the thickness of both halves inside that 45°.
 
-A hinge that was considered and not chosen: one pin in the plane of the inner faces. The two
-halves end up back to back, 45° apart, and near the pin there is no room for their thickness, so
-their bodies must start 32 mm from the pin, on arms. It prints as two halves and a pin, but the
-closed case is 37 mm longer than its halves.
+- **Tabs**: one pin, like a door hinge, in the plane where the two halves meet. The owner
+  sketched this. The bodies of the halves start 32 mm from the pin. Each half reaches the pin
+  with two tabs, and has notches where the other half's tabs are, so the tabs fill the whole
+  width. The tabs are part of the halves: the hinge adds no printed part, and nothing stands
+  proud of the case. Its cost is length: the closed case is 37 mm longer than its halves, and the
+  stand is about 235 mm deep on the table. A steeper screen needs shorter tabs: about 21 mm at 60°.
+- **Spine**: two pins and a plate about 26 mm long between them, like the spine of a book. The
+  plate is 2.4 mm thick, with a barrel 5.5 mm across at each edge. Each pin is a piece of 1.75 mm
+  filament. When the case is closed, the spine stands in front of the hinge-side walls. In the
+  stand, it lies flat on the back of the keyboard half, and the tablet half rises from its far
+  edge. The closed case is 6 mm longer than its halves, and the stand is about 200 mm deep.
+  Its cost is parts: the first pin is outside the keyboard half's outer face, and that half
+  prints with its outer face on the bed. The lugs for that pin are two separate parts that slide
+  onto dovetail rails on the hinge-side wall, with no glue. The hinge stands 6 mm proud of the
+  closed case.
+
+In the owner's sketch the two halves taper toward the pin. A taper that lets the halves reach 45°
+must be shallow, and it is on the faces that lie on the print bed, where it is an overhang. The
+model uses square tabs.
 
 Another way to make the spine hinge, not chosen for now: print the keyboard half with its pocket
 down, on supports, so that the lugs are part of it. The owner has no support filament for PLA
@@ -95,7 +103,8 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- A catch that keeps each lug on its rail when the case is closed.
+- The choice of hinge.
+- For the spine hinge: a catch that keeps each lug on its rail when the case is closed.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - The exact long side of the folded keyboard.

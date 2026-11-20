@@ -16,12 +16,14 @@
 // Two hinges are drawn, for comparison:
 //   arms:  one pin in the plane of the inner faces. The bodies of the halves start E from
 //          the pin, on arms, so that they fit back to back in the stand.
+//   tabs:  the same pin as "arms", but the arms are wide tabs that fill the whole width
+//          of the case. Each half has tabs where the other has notches.
 //   spine: two pins and a spine between them, like the spine of a book. Closed, the spine
 //          covers the hinge side. In the stand it lies flat on the back of the K half.
 //          In this variant the edge of each body on the hinge side is at y = 0.
 
 orient = "portrait";    // portrait | landscape. Rev 0.1 is the portrait case.
-hinge  = "spine";       // arms | spine
+hinge  = "spine";       // spine | tabs | arms
 view   = "stand";       // stand | closed | k_half | t_half | bail | spine | k_lug
 
 $fn = 48;
@@ -73,7 +75,13 @@ OV_BTN  = 1.5;     // how far the lip on the touch-button edge covers the bezel
 
 // Hinge: two sets of knuckles. In portrait they stay clear of the USB-C port.
 HX    = landscape ? [10, W - 10 - 2 * KN - 0.4] : [10, W - 40 - 2 * KN - 0.4];
-HSETS = spine ? [] : HX;
+// One-pin hinges: the bands along the hinge, as [start, length], that each half fills
+// between its body and the pin.
+QW = W / 4;
+K_BANDS = spine ? [] : hinge == "tabs" ? [[QW + 0.2, QW - 0.4], [3 * QW + 0.2, QW - 0.2]]
+                                       : [[HX[0], KN], [HX[1], KN]];
+T_BANDS = spine ? [] : hinge == "tabs" ? [[0, QW - 0.2], [2 * QW + 0.2, QW - 0.4]]
+                                       : [[HX[0] + KN + 0.4, KN], [HX[1] + KN + 0.4, KN]];
 
 // Spine hinge. Pin 1 joins the spine to the K half. It is outside the K half's outer face,
 // so that the spine can lie on that face. Pin 2 joins the spine to the T half.
@@ -180,10 +188,10 @@ module spine_at(folded) {
     else spine_part();
 }
 
-module knuckle(x0, thick) {
+module knuckle(x0, thick, len = KN) {
     translate([x0, 0, 0]) {
-        rotate([0, 90, 0]) cylinder(r = RK, h = KN);
-        translate([0, -RK, -thick]) cube([KN, 2 * RK, thick]);
+        rotate([0, 90, 0]) cylinder(r = RK, h = len);
+        translate([0, -RK, -thick]) cube([len, 2 * RK, thick]);
     }
 }
 
@@ -198,9 +206,9 @@ module k_half() {
                 // front feet of the stand. The T half has notches for them.
                 for (x = [0, W - 4]) translate([x, 0, -0.01]) cube([4, 5, FOOT + 0.01]);
             }
-            for (x0 = HSETS) {
-                translate([x0, 0, -T_K]) cube([KN, E + 0.01, T_K]);               // arm
-                knuckle(x0, T_K);
+            for (b = K_BANDS) {
+                translate([b[0], 0, -T_K]) cube([b[1], E + 0.01, T_K]);           // arm or tab
+                knuckle(b[0], T_K, b[1]);
             }
         }
         translate([WALL, EB + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);             // pocket
@@ -231,9 +239,9 @@ module t_half() {
             // Arms and knuckles. The corner next to the pin is cut at the angle of the
             // table, so that it is a flat foot in the stand and prints with no support.
             intersection() {
-                for (x0 = HSETS) {
-                    translate([x0 + KN + 0.4, -E - 0.01, -T_T]) cube([KN, E + 0.01, T_T]);
-                    knuckle(x0 + KN + 0.4, T_T);
+                for (b = T_BANDS) {
+                    translate([b[0], -E - 0.01, -T_T]) cube([b[1], E + 0.01, T_T]);
+                    knuckle(b[0], T_T, b[1]);
                 }
                 rotate([SCREEN - 90, 0, 0]) translate([-1, -300, -300]) cube([W + 2, 300 + RK, 600]);
             }
