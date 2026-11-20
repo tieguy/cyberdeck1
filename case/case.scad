@@ -78,8 +78,6 @@ px0     = (W - tpw) / 2;
 OV      = 2.5;     // how far a normal lip covers the bezel
 OV_BTN  = 2.5;     // how far the lip on the touch-button edge covers the bezel. The tablet's
                    // rounded edge takes about 1 mm of this.
-BEV     = 0.6;     // bevel on the lip next to the touch buttons. It leaves the tip of the
-                   // lip 0.6 mm thick. A bevel of 1.1 mm left a knife edge that printed as strings.
 USB_C   = 19.5;    // USB-C port: from the tablet's corner to the middle of the port.
                    // Estimated from a photo of the fit test, 2026-11-20. A second fit test
                    // confirms it.
@@ -324,13 +322,6 @@ module t_half() {
         // opening over the screen
         translate([px0 + ov_lo, y_free - 1, -LIP - 0.01])
             cube([tpw - ov_lo - ov_hi, tpd + 1 - ov_bot, LIP + 1]);
-        // bevel on the lip next to the touch buttons
-        if (landscape)
-            translate([px0 + ov_lo, y_low, 0]) rotate([90, 0, 0])
-                linear_extrude(tpd + 1) polygon([[-BEV, 0.01], [0.01, 0.01], [0.01, -BEV]]);
-        else
-            translate([px0, y_low - ov_bot, 0]) rotate([90, 0, 90])
-                linear_extrude(tpw) polygon([[-0.01, 0.01], [BEV, 0.01], [-0.01, -BEV]]);
         if (landscape) {
             // power button: left edge (high x), near the top (free edge)
             translate([px0 + tpw - OV - 0.01, y_free - 1, z_floor]) cube([W, 25, T_T]);

@@ -105,8 +105,8 @@ the user sees them.
 - The side away from the hinge is open. The tablet slides in and out there. It is the upper side
   in the stand, so the tablet's weight keeps it in.
 - The lower edge carries the tablet's weight. The lip in front of it covers 2.5 mm. The tablet's
-  rounded edge takes about 1 mm of that, and the touch buttons are 8 mm from the edge. This lip has a bevel: the owner's finger touches it
-  on the way to the buttons.
+  rounded edge takes most of that, and the touch buttons are 8 mm from the edge. The lip has a
+  square edge with no bevel: the owner finds enough room between it and the buttons.
 - The lips on the left and right edges cover 2.5 mm. The bezel there is 6 mm.
 - The power button is on the upper edge, which is open.
 - The USB-C port is on the lower edge, with its middle about 19.5 mm from the left corner. A
@@ -125,7 +125,7 @@ can be the same size. The folded keyboard is 13 mm thick.
 - Whether the closed halves lie parallel. A reprint of the test piece shows it.
 - The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
   accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
-- Whether the lower lip prints clean with its smaller bevel. The side lips print clean with no
+- Whether the lower lip prints clean now that it has no bevel. The side lips print clean with no
   supports (fit test, 2026-11-20).
 - Stiffness of the hollow halves. The solid test piece does not show it.
 - A catch that holds the case shut, and one that holds the stowed bail.

@@ -78,7 +78,8 @@ Printed 2026-11-20 from `t_fit.stl`, with no supports.
 - USB-C cut-out: the corrected position is good.
 - Side lip: it printed clean with no supports, and the tablet is held very snugly.
 - Lower lip: its thin edge printed as strings. The bevel on that lip was 1.1 mm on a lip 1.2 mm
-  thick, which left a knife edge. The bevel is now 0.6 mm.
+  thick, which left a knife edge. The bevel also cut a small notch into each side lip at the
+  corner. The lip now has no bevel.
 - The tablet's edges are eased, not circular. The flat lip suits them, so the edge gauge is not
   necessary.
 
