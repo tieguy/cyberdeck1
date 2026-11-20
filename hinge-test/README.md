@@ -19,7 +19,7 @@ It answers these questions:
 |---|---|
 | K leaf | The keyboard half's side: 15.5 mm thick, tapered at 27°, with the centre knuckle and its three crush ribs |
 | T leaf | The tablet half's side: 9.7 mm thick, tapered at 18°, with the two outer knuckles. The pin's hole is closed at one end, with a 1.6 mm hole through the closed end. |
-| Pins | Three pins. The shortest is 2.9 mm across, the middle one 3.0 mm, the longest 3.1 mm. The case design uses 3.0 mm. |
+| Pins | Three pins. The shortest is 2.9 mm across, the middle one 3.0 mm, the longest 3.1 mm. The case design uses 2.9 mm. |
 
 ## Print
 
@@ -38,7 +38,11 @@ openscad-nightly -o hinge_test_plate.stl hinge_test.scad
 ## Assemble
 
 1. Lay the two leaves flat, tapered faces down, with the knuckles together.
-2. Push a pin in from the open end of the hole. Start with the 3.0 mm pin.
+2. Push a pin in from the open end of the hole. Start with the 2.9 mm pin.
+
+## Results
+
+- 2026-11-19: the 2.9 mm pin fits well. The 3.0 mm pin is too big.
 
 ## What to report
 

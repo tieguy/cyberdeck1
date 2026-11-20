@@ -137,7 +137,7 @@ if (!spine) echo(arms_stop_angle = atan(T_T / E) + atan(T_K / E));
 // Bevel hinge: the pin. It goes in from the side of the USB-C port.
 PIN_X0   = 1.6;                 // closed end of the hole
 PIN_X1   = 0.78 * W - 0.2;      // open end: the end of the last knuckle
-PIN_DIA  = 3.0;
+PIN_DIA  = 2.9;                // measured on the test piece: 2.9 fits, 3.0 is too big
 RIB      = 0.25;                // how far each crush rib stands into the hole
 
 // Three ribs in the K half's knuckle grip the pin. The T half's knuckles turn on it.

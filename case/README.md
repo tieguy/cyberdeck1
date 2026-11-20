@@ -26,7 +26,7 @@ In the stand views, the user sits on the keyboard's side and the table is at z =
   at the hinge. In the stand, the taper of the T half lies on the taper of the K half, and that
   contact holds the screen at 45° even with the bail down. A slot through the T half's taper
   leaves room for a USB-C plug.
-- **Pin**: 3 mm across and 114 mm long, printed. Its hole is closed at one end. Three ribs in
+- **Pin**: 2.9 mm across and 114 mm long, printed. Its hole is closed at one end. Three ribs in
   the K half's knuckle grip it. A 1.6 mm hole through the closed end lets a paper clip push it
   out.
 - **Bail**: a U-shaped prop. It pivots in the side walls of the K half, and its cross bar sits in
@@ -60,7 +60,8 @@ done
   2.5 mm.
 - Nothing holds the case shut, and nothing holds the bail when it is stowed.
 - The tapers are solid, and they need supports on the print bed.
-- The grip of the ribs on the pin is not tested. Print `../hinge-test/` first.
+- The hinge test piece shows that a 2.9 mm pin fits. Whether the ribs hold it in place is not
+  reported yet.
 - The folded keyboard's long side is an estimate (196.3 mm).
 - The model was checked for collisions in the closed pose and in the stand pose only. To run the
   check, make the views `x_stand`, `x_closed` and `x_bail`: each must be empty, or a film of no

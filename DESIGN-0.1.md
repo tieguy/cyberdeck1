@@ -68,14 +68,15 @@ whole width, and the closed case comes to a point at the hinge.
 
 ### Pin
 
-The pin is 3 mm across and 114 mm long, printed with a flat side on the bed. It goes in from the
+The pin is 2.9 mm across and 114 mm long, printed with a flat side on the bed. On the test piece
+a 2.9 mm pin fits well and a 3.0 mm pin is too big (2026-11-19). It goes in from the
 side of the USB-C port.
 
 - Its hole is closed at the far end, so the pin cannot leave that way.
 - Three crush ribs in the keyboard half's knuckle grip the pin. The tablet half's two knuckles
   turn on it, in holes of 3.3 mm.
 - A 1.6 mm hole through the closed end lets a paper clip push the pin out.
-- A 3 mm rod of another material, such as a bamboo skewer, fits the same holes.
+- A rod of another material must also be about 2.9 mm. A 3 mm rod is probably too big.
 
 ### Hinges that were considered and not chosen
 
@@ -114,8 +115,8 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- Whether the crush ribs grip the pin, and how the tapers print on supports. `hinge-test/` is a
-  test piece for both.
+- From the hinge test piece, not reported yet: whether the ribs hold the 2.9 mm pin in place,
+  how the tapers print on supports, and whether the tapers seat at 45°.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - The exact long side of the folded keyboard.
