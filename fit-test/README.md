@@ -79,24 +79,26 @@ has only 0.3 mm of room above the tablet, so a lip that sags can make the tablet
 
 ## Edge gauge
 
-`edge_gauge_plate.stl` is five short clips, from `edge_gauge.scad`. Each has the cross-section of
-the tablet holder at a side lip. They differ in the shape under the lip, in the corner where the
-tablet's rounded edge leaves room. A fuller corner holds the tablet better, and a sloped corner
-prints without supports.
+`edge_gauge_plate.stl` is eight short clips, from `edge_gauge.scad`. Each has the cross-section
+of the tablet holder at a side lip. They differ in the shape under the lip, in the corner where
+the tablet's rounded edge leaves room.
 
-| Notches on the back | Shape under the lip |
+- A **rounded** corner follows a rounded edge, so it holds the tablet best. It shows the radius
+  of the tablet's edge.
+- A **45° slope** prints without supports and does not sag. A rounded corner does not: near the
+  tip of the lip it is almost flat.
+
+| Mark | Shape under the lip |
 |---|---|
-| 1 | Flat, as in the case model |
-| 2 | 45° slope, 1.0 mm |
-| 3 | 45° slope, 1.5 mm |
-| 4 | 45° slope, 2.0 mm |
-| 5 | Rounded, 1.5 mm radius |
+| No notch | Flat, as in the case model |
+| 1 to 4 notches on the back of the wall | Rounded, radius 0.5, 1.0, 1.5, 2.0 mm |
+| 1 to 3 notches under the floor | 45° slope, 1.0, 1.5, 2.0 mm |
 
 Print the plate as it lies, with no supports. The clips stand on end, so each profile is exact.
-The estimate is 11 minutes and 4 g.
+The print is about 15 minutes.
 
 Slide each clip onto a long edge of the tablet, with the lip on the screen side. Report the
-highest-numbered slope (2, 3 or 4) that still slides on freely, and whether clip 5 does.
+largest round that still slides on freely, and the largest slope that does.
 
 ## Limits of this test
 
