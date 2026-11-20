@@ -63,6 +63,5 @@ To take the pin out, push a paper clip through the small hole in the closed end.
 
 - The STL files have points that differ by less than 0.001 mm where a taper joins its half. A
   slicer joins them. If a slicer reports errors in a file, let it repair the file.
-- The position of the USB-C cut-out is an estimate from a photo.
 - The model was checked for collisions closed, as a stand, with the bail up and with the bail
   stowed. It was not checked for strength.

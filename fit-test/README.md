@@ -71,13 +71,21 @@ The plate in this directory is a later version than the one that was printed. Th
 USB-C port is 6 mm farther from the corner and 4 mm wider, and the lip at the tablet's lower edge
 covers 2.5 mm, not 1.5 mm.
 
-## Not tested yet
+### Second print of the T piece
 
-The lips have not printed without supports. They are flat overhangs of 2.5 mm, and the pocket
-has only 0.3 mm of room above the tablet, so a lip that sags can make the tablet bind. Print
-`t_fit.stl` with supports on the build plate only (which gives this piece none) to find out.
+Printed 2026-11-20 from `t_fit.stl`, with no supports.
+
+- USB-C cut-out: the corrected position is good.
+- Side lip: it printed clean with no supports, and the tablet is held very snugly.
+- Lower lip: its thin edge printed as strings. The bevel on that lip was 1.1 mm on a lip 1.2 mm
+  thick, which left a knife edge. The bevel is now 0.6 mm.
+- The tablet's edges are eased, not circular. The flat lip suits them, so the edge gauge is not
+  necessary.
 
 ## Edge gauge
+
+Not printed. The second print of the T piece showed that the flat lip holds the tablet well.
+
 
 `edge_gauge_plate.stl` is eight short clips, from `edge_gauge.scad`. Each has the cross-section
 of the tablet holder at a side lip. They differ in the shape under the lip, in the corner where

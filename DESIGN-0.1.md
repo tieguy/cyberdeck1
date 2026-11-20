@@ -125,10 +125,8 @@ can be the same size. The folded keyboard is 13 mm thick.
 - Whether the closed halves lie parallel. A reprint of the test piece shows it.
 - The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
   accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
-- The position of the USB-C cut-out is an estimate from a photo. Confirm it with a caliper or a
-  reprint of the fit test's tablet piece.
-- Whether the lips over the tablet print clean without supports. The fit test printed them with
-  supports, which did not come off cleanly.
+- Whether the lower lip prints clean with its smaller bevel. The side lips print clean with no
+  supports (fit test, 2026-11-20).
 - Stiffness of the hollow halves. The solid test piece does not show it.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
