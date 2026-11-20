@@ -15,8 +15,9 @@ A 3D-printed case for a portable writing setup made of three parts:
 
 ## Status
 
-Rev 0.1 is in design. It holds the tablet in portrait. No case part is printed yet. The hinge test piece in `hinge-test/` is printed. The next
-print is the fit test in `fit-test/`.
+Rev 0.1 is ready for its first print. It holds the tablet in portrait. The print files and the
+instructions are in `case/print/`. The hinge test piece (`hinge-test/`) and the fit test (`fit-test/`) are printed; their results
+are in their READMEs.
 
 ## Files
 

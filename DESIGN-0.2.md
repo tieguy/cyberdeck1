@@ -19,6 +19,6 @@ Rev 0.2 is not in design. This file collects the ideas that wait for it. Part di
   button is on the left edge, 9.5 mm from the top, and the USB-C port is on the right edge,
   13.6 mm from the bottom; both need cut-outs. `case/case.scad` can draw this case.
 - Use the empty space in the keyboard pocket. The folded keyboard is not a rectangle, because of
-  its Alice layout. The space could hold the battery, a cable or the spare hinge pin. The space is
+  its Alice layout. The owner's choice is a place for a cable. The space is
   two wedges at opposite corners, each about 23 mm wide at its wide end, 150 mm long and 13 mm
   deep (estimates from a photo; refer to `PARTS.md`).

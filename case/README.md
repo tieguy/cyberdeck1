@@ -53,16 +53,14 @@ for v in stand closed; do
 done
 ```
 
+## Print files
+
+`print/` holds the four parts as they print, with the print settings and the assembly steps.
+
 ## Not done yet
 
-- No printable part files. `case.scad` can draw each part alone (`view="k_half"`, `"t_half"`,
-  `"bail"`, `"pin"`), but they are not checked for printing. The lips over the tablet overhang by up to
-  2.5 mm.
 - Nothing holds the case shut, and nothing holds the bail when it is stowed.
 - The tapers are solid, and they need supports on the print bed.
-- The hinge test piece shows that a 2.9 mm pin fits. Whether the ribs hold it in place is not
-  reported yet.
-- The folded keyboard's long side is an estimate (196.3 mm).
-- The model was checked for collisions in the closed pose and in the stand pose only. To run the
-  check, make the views `x_stand`, `x_closed` and `x_bail`: each must be empty, or a film of no
-  thickness where two faces touch.
+- The model was checked for collisions closed, as a stand, with the bail up and with the bail
+  stowed. To run the check, make the views `x_stand`, `x_closed`, `x_bail` and `x_stow`: each must
+  be empty.

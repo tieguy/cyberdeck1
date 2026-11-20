@@ -19,7 +19,7 @@ Ordered from Viwoods 2026-05-12, delivered 2026-05-15.
 | Bezel, top long edge | 6 mm | [measured, 2026-11-19] |
 | Touch buttons | Three, in the bezel along the right short edge. 8 mm from that edge. | [measured, 2026-11-19] |
 | Power button | On the left short edge, 9.5 mm from the top long edge | [measured, 2026-11-19] |
-| USB-C port | On the right short edge. Its opening is from about 15 mm to about 24 mm from the bottom long edge, so its middle is at about 19.5 mm. | [estimated from a photo of the fit test, 2026-11-20. An earlier caliper figure of 13.6 mm put a cut-out about 6 mm off.] |
+| USB-C port | On the right short edge. Its opening is from about 15 mm to about 24 mm from the bottom long edge, so its middle is at about 19.5 mm. | [estimated from a photo of the fit test, 2026-11-20. The owner measured 13.6 mm to the near end of the port, 2026-11-19.] |
 | Bezel, bottom long edge and left short edge | 6 mm each | [measured, 2026-11-19] |
 | Bezel, right short edge (full width) | [unknown] | |
 | Edge of the case | Rounded, about 1 mm deep. A lip must reach past this to hold the tablet. | [measured, approximate: fit test, 2026-11-20] |

@@ -242,7 +242,7 @@ module spine_at(folded) {
 module nose(thick) {      // the taper: full thickness at E, nothing at the pin
     // The tip stops 2 mm from the pin's axis, so that it is not a knife edge.
     rotate([90, 0, 90]) linear_extrude(W)
-        polygon([[2, 0], [E + 1, 0], [E + 1, -thick], [E, -thick], [2, taper_z(2, thick)]]);
+        polygon([[2, 0], [E, 0], [E, -thick], [2, taper_z(2, thick)]]);
 }
 module bevel_knuckle(b, thick) {
     hull() {
@@ -360,9 +360,14 @@ module t_half() {
 module bail() {
     for (x = [-0.4 - BT, W + 0.4]) translate([x, -4, -3]) cube([BT, BAIL_L + 4 + BAIL_R, 6]);
     translate([-0.4 - BT, BAIL_L, 0]) rotate([0, 90, 0]) cylinder(r = BAIL_R, h = W + 2 * BT + 0.8);
+    // a flat under the cross bar, level with the arms, so that the bail prints on the bed
+    translate([-0.4 - BT, BAIL_L - 2.5, -3]) cube([W + 2 * BT + 0.8, 3.3, 3]);
     translate([-0.5, 0, 0]) rotate([0, 90, 0]) cylinder(d = 4, h = WALL + 0.3);
     translate([W + 0.5 - WALL - 0.3, 0, 0]) rotate([0, 90, 0]) cylinder(d = 4, h = WALL + 0.3);
 }
+
+STOW_Z = -T_K - 3.2;   // stowed: the cross bar lies on the K half's outer face
+STOW   = [PIV_Y - sqrt(BAIL_L * BAIL_L - pow(PIV_Z - STOW_Z, 2)), STOW_Z];
 
 module bail_at(target) {   // target = [y, z] of the cross bar's centre
     translate([0, PIV_Y, PIV_Z]) rotate([atan2(target[1] - PIV_Z, target[0] - PIV_Y), 0, 0]) bail();
@@ -390,8 +395,7 @@ module view_closed() {
         keyboard_folded();
         posed(360) { t_half(); tablet(); }
         if (spine) spine_at(false);
-        stow_z = -T_K - BAIL_R - 0.2;
-        bail_at([PIV_Y - sqrt(BAIL_L * BAIL_L - pow(PIV_Z - stow_z, 2)), stow_z]);
+        bail_at(STOW);
     }
 }
 
@@ -412,7 +416,7 @@ if (view == "stand") view_stand();
 else if (view == "closed") view_closed();
 else if (view == "k_half") translate([0, 0, T_K]) k_half();
 else if (view == "t_half") translate([0, 0, T_T]) t_half();
-else if (view == "bail") bail();
+else if (view == "bail") translate([0.4 + BT, 4, 3]) bail();
 else if (view == "check_k") k_half();
 else if (view == "spine") spine_part();
 else if (view == "pin") pin_part();
@@ -427,3 +431,4 @@ else if (view == "check_bail") bail_at(C0);
 if (view == "x_stand") intersection() { k_half(); posed(SCREEN) t_half(); }
 if (view == "x_closed") intersection() { k_half(); posed(360) t_half(); }
 if (view == "x_bail") intersection() { union() { k_half(); posed(SCREEN) t_half(); } bail_at(C0); }
+if (view == "x_stow") intersection() { union() { k_half(); posed(360) t_half(); } bail_at(STOW); }
