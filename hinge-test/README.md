@@ -42,7 +42,17 @@ openscad-nightly -o hinge_test_plate.stl hinge_test.scad
 
 ## Results
 
-- 2026-11-19: the 2.9 mm pin fits well. The 3.0 mm pin is too big.
+Printed 2026-11-19, from the plate that had one pin fused to a leaf. The owner cut that pin off.
+
+- Pin: the 2.9 mm pin fits well. The 3.0 mm pin is too big.
+- Ribs: the centre knuckle holds the 2.9 mm pin firmly. The outer knuckles turn freely on it.
+- Push-out hole: a paper clip pushes the pin out.
+- Tapers: they come together well at the stand position.
+- Taper surfaces: the supports leave visible lines on them. Ironing cannot reach these faces,
+  because they face the bed.
+- Closed: the two flat faces do not quite align. The cause is not known yet.
+- Stiffness: this piece does not show it. Its leaves are solid, and the real halves are hollow
+  trays.
 
 ## What to report
 

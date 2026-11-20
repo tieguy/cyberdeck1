@@ -74,8 +74,10 @@ side of the USB-C port.
 
 - Its hole is closed at the far end, so the pin cannot leave that way.
 - Three crush ribs in the keyboard half's knuckle grip the pin. The tablet half's two knuckles
-  turn on it, in holes of 3.3 mm.
-- A 1.6 mm hole through the closed end lets a paper clip push the pin out.
+  turn on it, in holes of 3.3 mm. On the test piece the ribs hold the pin firmly and the outer
+  knuckles turn freely.
+- A 1.6 mm hole through the closed end lets a paper clip push the pin out. This works on the test
+  piece.
 - A rod of another material must also be about 2.9 mm. A 3 mm rod is probably too big.
 
 ### Hinges that were considered and not chosen
@@ -115,8 +117,11 @@ can be the same size. The folded keyboard is 13 mm thick.
 ## Open questions
 
 - The owner's review of the model in `case/`.
-- From the hinge test piece, not reported yet: whether the ribs hold the 2.9 mm pin in place,
-  how the tapers print on supports, and whether the tapers seat at 45°.
+- When the test piece is closed, its two flat faces do not quite align. Find the cause before
+  the halves are printed.
+- The supports leave visible lines on the tapers (refer to `hinge-test/README.md`). Rev 0.1
+  accepts this. Ways to a smooth taper are in `DESIGN-1.0.md`.
+- Stiffness of the hollow halves. The solid test piece does not show it.
 - A catch that holds the case shut, and one that holds the stowed bail.
 - The screen angle, measured.
 - The exact long side of the folded keyboard.
