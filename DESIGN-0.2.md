@@ -19,26 +19,75 @@ From the owner's use of rev 0.1 (2026-11-20):
 Not a problem to fix now: all three lips over the tablet print with some strings. The owner
 accepts it.
 
-## Proposals, not decided
+## Decisions
+
+From the owner, 2026-11-20:
+
+- **Hinge**: a barrel whose diameter is close to the thickness of the whole closed case.
+- **Prop**: a U-shaped frame on an axle in the tablet half, stowed in its back, with the position
+  notches in the keyboard half.
+- **Back of the tablet half**: partly open, as a web.
+- **The angle**: the stop between the halves sets 45°. The prop only steadies the screen against
+  flex.
+- **Charging**: only with the case closed. A battery waits; battery life is fine with the
+  keyboard on Bluetooth, and was bad with it on USB.
+- **Closing**: a printed snap, if a simple one is possible.
+- **Edges**: comfortable to hold. This is in rev 0.2.
+- **The lower lip stays.** The owner will look into the strings.
+- **Pin**: printed. A bought rod is a nuisance.
+- **Supports**: the owner found the supports of rev 0.1 hard to remove. Rev 0.2 avoids them.
+
+## The design
+
+The model is in `case02/`. It follows the decisions as below. The owner has not reviewed it.
 
 ### Hinge
 
-- Knuckles on both sides of the slot for the plug, so that both edges of the tablet half are
-  tied to a pin. The far side has a short pin of its own, because a pin across the slot is in
-  the way of the cable.
-- A larger hinge everywhere: thicker knuckles and a pin of about 5 mm. A thicker pin is stiffer
-  and lies better on the print bed than the 2.9 mm pin of rev 0.1, which came loose in printing.
+- The barrel is 22 mm across; the closed case is 25 mm thick. Its pin is 6 mm, over the whole
+  width, in a hole that is closed at one end, with crush ribs in the keyboard half's segments.
+  A 6 mm pin lies on the print bed on a wider flat than the 2.9 mm pin of rev 0.1.
+- The barrel has five segments: three on the tablet half, at both ends and in the middle, and
+  two on the keyboard half. One band, 22 mm wide, has no barrel. The USB-C plug goes there, and
+  the cable leaves over the pin.
+- Rev 0.1 had tapers so that the halves could lie back to back at 45°. Rev 0.2 has none. Each
+  half reaches its barrel segments with tabs of its full thickness, and the other half has a
+  notch at each tab. At every place along the hinge only one half has material, so nothing
+  collides, and no surface slopes over the print bed. Rev 0.2 needs no supports.
+- The stop: in the stand, the flat back of the tablet half rests on a 45° chamfer on the
+  hinge-side edge of the keyboard half. A 45° chamfer on a bed-side edge prints with no supports.
+- The barrel is the front foot of the stand. The lip on the keyboard half's free edge is as high
+  as the barrel's radius, and it is the rear foot.
 
 ### Prop
 
-- The prop is a U-shaped frame that turns on an axle through the solid borders of the tablet
-  half, at the back.
-- The back of the tablet half is an open frame, not a solid floor. When the prop is stowed, it
-  lies in that frame, flush with the back.
-- The position notches move to the keyboard half: slots through its floor, which take the feet
-  of the prop. In the stand the keyboard half is upside down and empty, so the slots are free.
-  The slots print without supports, because they are holes in the face on the bed.
-- With the notches gone from the tablet half, its back needs no 3 mm floor.
+- The prop is 3 mm thick, the thickness of the tablet half's floor. Stowed, it lies in a slot
+  in that floor, flush with the back, with its feet toward the hinge.
+- It prints in place in the tablet half. Its axle is two cone pivots that reach into the tablet
+  half, 150 mm from the hinge. Print-in-place needs no second material: the parts print in one
+  job with a small gap between them, and the cones need no supports.
+- Its two feet go into slots through the floor of the keyboard half. There are slots for screen
+  angles of 45°, 55° and 65°.
+- The main hinge cannot print in place: the two halves, laid open, are about 470 mm long, and the
+  bed is 325 mm.
+
+### Back, snap and edges
+
+- The floor behind the tablet is a grid of 4 mm bars with 15 mm openings, between the arms of
+  the prop.
+- The snap is a tongue cut into the lip on the keyboard half's free edge, with a bump that hooks
+  over the edge of the tablet half's back.
+- The long outer edges of both halves have 1.5 mm chamfers.
+
+## Open questions
+
+- The owner's review of the model in `case02/`.
+- Do the cone pivots of the prop print free? A small test piece can show it.
+- Does the snap hold, and does it release without too much force?
+- Something to hold the stowed prop in its slot.
+- Rounded corners, and how far to take the chamfers.
+- The cause of the sag in rev 0.1. The owner pinched the corner with the USB-C slot and it did
+  not help, so the missing knuckle is not confirmed as the cause. Rev 0.2 has barrel segments on
+  both sides of the plug in any case.
 
 ## Other ideas for this revision or later
 

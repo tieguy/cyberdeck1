@@ -27,6 +27,7 @@ are in their READMEs.
 | `DESIGN-0.1.md` | The design of rev 0.1: layout, hinge, tablet holder, decisions and open questions |
 | `DESIGN-0.2.md` | The design of rev 0.2, in progress: what it must fix, proposals and ideas |
 | `DESIGN-1.0.md` | Ideas that wait for rev 1.0, where the look matters |
-| `case/` | The OpenSCAD model of rev 0.1, with 3D views |
+| `case/` | The OpenSCAD model of rev 0.1, with 3D views and print files |
+| `case02/` | The OpenSCAD model of rev 0.2, with 3D views |
 | `fit-test/` | Test pieces for the fit of the tablet and the keyboard in their pockets |
 | `hinge-test/` | A test piece for the hinge, with its own README |

@@ -136,6 +136,16 @@ Printed and assembled 2026-11-20. The owner's first notes:
   and the bail's cross bar sits in its groove with clearance, on thin arms and short stubs, so it
   takes no load until the tablet half has already moved.
 
+More notes from the owner, 2026-11-20:
+
+- The halves are very stiff.
+- The closed halves lie basically flat.
+- The supports on the tapers were much harder to remove than the owner expected.
+- The stand firmed up when the owner pressed the bail into place. Pinching the corner with the
+  USB-C slot did not stop the sag.
+- The keyboard comes out easily.
+- The stand slides a little on the table.
+
 ## Open questions
 
 - The owner's review of the model in `case/`.

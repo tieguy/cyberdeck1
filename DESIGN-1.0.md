@@ -12,3 +12,5 @@ prototypes that test function. Rev 1.0 is the first one where the look matters.
   visible lines. Candidates: a support interface in a second material; a taper that is a separate
   part, printed with its sloped face on the bed; or steps or ribs in place of a flat slope, so
   that the lines are part of the look.
+- Feet that do not slide: laser-cut pleather on the faces that touch the table. Rev 0.1 slides a
+  little.
