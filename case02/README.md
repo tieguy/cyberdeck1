@@ -82,7 +82,7 @@ slot and 0.2 mm at each side of it; 0.05 mm drawn between the two faces of the s
 - The hinge is not tested: the 13 mm pins and their crush ribs, the links, the play of the stop
   (each pin has 0.2 mm of clearance, and the stop works on a lever of about 8 mm), and whether
   the slots hold the closed halves in line well enough for the snap.
-- The snap tongue is not tested. Its bump stands 1.2 mm above the lip, so in the stand the bump
-  touches the table before the lip does.
+- The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
+  tablet half's free edge leads it over the bump.
 - Nothing holds the stowed prop in its slot.
 - The chamfers are on the long outer edges only. The corners are square.

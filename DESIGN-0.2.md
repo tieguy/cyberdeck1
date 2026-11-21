@@ -24,7 +24,12 @@ accepts it.
 
 From the owner, 2026-11-20:
 
-- **Hinge**: a barrel whose diameter is close to the thickness of the whole closed case.
+- **Hinge**: two pins and two links (refer to "The design"). It replaces the first decision, a
+  barrel whose diameter is close to the thickness of the whole closed case.
+- **A plug that stands out of the closed case is acceptable.** The case is plugged in only when
+  it does not move.
+- **The lip on the keyboard half's free edge, and the snap, can change or go** if that makes the
+  stand more steady.
 - **Prop**: a U-shaped frame on an axle in the tablet half, stowed in its back, with the position
   notches in the keyboard half.
 - **Back of the tablet half**: partly open, as a web.
@@ -44,9 +49,8 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 
 ### Hinge
 
-The owner's decision was a barrel. The barrel hinge was drawn; the owner then asked for a hinge
-that is more compact and more elegant (2026-11-20). The hinge below is the answer to that
-request. It is not a barrel, and the owner has not reviewed it.
+The owner accepted this hinge in place of the barrel on 2026-11-20, from its description. The
+barrel "was the best idea we had at the time".
 
 - The hinge has two pins. Each half ends in a nose as thick as the half, with its pin at the
   middle of its thickness. Two links, each in a slot near an edge of the case, join the pins.
@@ -85,10 +89,9 @@ request. It is not a barrel, and the owner has not reviewed it.
 
 ## Open questions
 
-- The owner's review of the link hinge: the look of the closed profile, and the points below.
+- The owner's review of the look of the closed profile, in the 3D views.
 - The slope of the stand. Ways to remove it: feet at the front corners of the keyboard half,
   which need notches in the corners of the tablet half; or a closure that needs no high lip.
-- The plug that stands 10 mm out of the closed case.
 
 - Do the cone pivots of the prop print free? A small test piece can show it.
 - Does the snap hold, and does it release without too much force?
@@ -97,10 +100,9 @@ request. It is not a barrel, and the owner has not reviewed it.
 
 ## Next step
 
-The owner reviews the link hinge in `case02/views/`. If the owner accepts it, cut a test piece
-from the model: a slice at one edge with both noses, one link and two pins. It must show the fit
-of the pins and the link, the play of the 45° stop, and whether the slot walls hold the closed
-halves in line.
+The owner accepted the link hinge in place of the barrel (2026-11-20). Print the test piece in
+`hinge-test-02/` and record the results in its README. It shows the fit of the pins and the
+link, the play of the 45° stop, and whether the slot walls hold the closed halves in line.
 
 Before you change the hinge, read `HINGE.md`.
 

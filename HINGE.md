@@ -84,7 +84,7 @@ pin moves round the keyboard half. Two forms are in the list below.
 | One pin, square tabs | Drawn (`hinge="tabs"`) | No supports. The owner preferred the look of tapers. |
 | One pin, tapers of 27° and 18°, knuckles 8 mm | Printed: rev 0.1 (`hinge="bevel"`) | The owner sketched it and liked the asymmetric look. The tapers meet face to face and hold 45° without a prop. But the tapers print on supports, which are hard to remove and leave lines, and the keyboard half's one knuckle was in the middle, so the stand sagged toward a corner. |
 | One pin, barrel 22 mm, full-thickness tabs, stop on a 45° chamfer | Drawn: rev 0.2 (git commit `a4ebb1b`) | No supports. Barrel segments of the keyboard half at both edges. Not printed. The owner wants a more elegant hinge than this. |
-| Two pins at mid-thickness, two links, noses with 45° chamfers | Drawn: rev 0.2 (`case02/case02.scad`) | No supports. The closed case is 26 mm shorter than with the barrel. Nothing stands proud. The keyboard half slopes 3.1° in the stand. A plug in the closed case stands 10 mm out. Not printed; the owner has not reviewed it. |
+| Two pins at mid-thickness, two links, noses with 45° chamfers | Drawn: rev 0.2 (`case02/case02.scad`) | No supports. The closed case is 26 mm shorter than with the barrel. Nothing stands proud. The keyboard half slopes 3.1° in the stand. A plug in the closed case stands 10 mm out. The owner accepted it in place of the barrel. Not printed. |
 | A ratchet in the hinge | Test piece drawn, never printed | Dropped when a prop took over the job of holding the angle. |
 
 ## What the owner has said about the look

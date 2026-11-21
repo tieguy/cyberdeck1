@@ -17,6 +17,7 @@ design, and its section "Next step"), and `HINGE.md` (what is known about the hi
 | `HINGE.md` | The geometry that every hinge for this case must obey, and the hinges tried so far. |
 | `case/` | Rev 0.1 model (`case.scad`), views and print files. Do not change it. |
 | `case02/` | Rev 0.2 model (`case02.scad`) and views. |
+| `hinge-test-02/` | Test piece for the rev 0.2 hinge. It includes `case02/case02.scad`. |
 | `hinge-test/`, `fit-test/` | Test pieces for rev 0.1, with their results. They include `case/case.scad`. |
 
 ## Documents

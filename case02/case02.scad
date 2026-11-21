@@ -151,6 +151,7 @@ module chamfer_x(y0, dir, x0, x1, z0, c = EDGE) {   // edge along X at y = y0
 
 // ---- K half: keyboard tray ----
 SNAP_W = 20;  SNAP_T = 1.2;  SNAP_B = 1.2;     // snap tongue: width, thickness, bump
+SNAP_TOP = LIP_H - (T_T + 2 * HG + 0.15);      // the bump ends at the top of the lip; the chamfer on the T half's edge leads it in
 module k_half() {
     y_end = E0 + D_K;
     crush_ribs(A_K);
@@ -161,7 +162,7 @@ module k_half() {
             translate([0, y_end - WALL, -0.01]) cube([W, WALL, LIP_H + 0.01]);       // lip, rear foot
             // snap bump on the tongue: it hooks over the edge of the T half's back
             translate([W / 2 - SNAP_W / 2 + 0.6, y_end - WALL, T_T + 2 * HG + 0.15]) rotate([90, 0, 90])
-                linear_extrude(SNAP_W - 1.2) polygon([[0.01, 0], [-SNAP_B, 0.6], [-SNAP_B, 0.9], [0.01, 0.9 + SNAP_B]]);
+                linear_extrude(SNAP_W - 1.2) polygon([[0.01, 0], [-SNAP_B, 0.6], [-SNAP_B, SNAP_TOP], [0.01, SNAP_TOP]]);
         }
         translate([WALL, E0 + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);                // pocket
         pin_holes(A_K);
