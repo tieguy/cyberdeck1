@@ -33,6 +33,9 @@ are for looking at, not for printing. GitHub shows each one in 3D.
   the tablet half's pin; at the pivot, two ears reach the side walls. Two feet, 5 mm long, stand
   out of its edge and go into slots through the floor of the keyboard half. There are slots for
   screen angles of 45°, 52° and 59°. A notch in its edge, 20 mm wide, is for a finger.
+- **Click**: a bump on the outer side of each foot, 0.7 mm high, sits in a dimple in the wall of
+  the opening and holds the stowed prop. A slit beside each bump makes that side of the foot a
+  spring, 1.2 mm thick and 7 mm long. The bump must pass 0.3 mm of wall to come out.
 - **Ledges**: 10 mm of floor stays under each long edge of the tablet and 12 mm under its lower
   edge, so the tablet has support on all sides when the prop is out.
 - **Web**: the back of the tablet half between the prop's pivot and the free edge is a grid of
@@ -91,4 +94,5 @@ slot and 0.2 mm at each side of it; 0.05 mm drawn between the two faces of the s
   the slots hold the closed halves in line well enough for the snap.
 - The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
   tablet half's free edge leads it over the bump.
-- Nothing holds the stowed prop in its opening.
+- The click that holds the stowed prop is not tested: it can be too weak or too stiff, and the
+  bump prints with a gap of 0.3 mm round it, so it can fuse to its dimple.

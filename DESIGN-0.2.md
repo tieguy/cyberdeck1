@@ -84,6 +84,9 @@ barrel "was the best idea we had at the time".
 - Two feet, 5 mm long, stand out of the panel's edge and go into slots through the floor of the
   keyboard half. There are slots for screen angles of 45°, 52° and 59°.
 - A notch in the panel's edge, 20 mm wide, lets a finger pull the panel out.
+- A click holds the stowed panel: a bump on the outer side of each foot, in a dimple in the wall
+  of the opening. A slit beside each bump makes that side of the foot a spring. The cone pivots
+  cannot hold the panel, because they print with clearance and turn freely.
 
 ### Back, snap and edges
 
@@ -103,7 +106,7 @@ barrel "was the best idea we had at the time".
 
 - Do the cone pivots of the prop print free? A small test piece can show it.
 - Does the snap hold, and does it release without too much force?
-- Something to hold the stowed prop in its opening.
+- Does the click hold the stowed prop, and does it release without too much force?
 - Is the finger notch enough to pull the stowed prop out?
 
 ## Next step

@@ -83,6 +83,11 @@ EAR_X = [px0 + 0.4, W - px0 - 0.4];            // at the pivot, ears reach the s
 EAR_L = 8;
 ARM_X = [PX[0], PX[1] - AW];                   // the feet
 NOTCH_R = 10;     // finger notch in the panel's edge
+// Click that holds the stowed prop: a bump on the outer side of each foot, in a dimple in the
+// wall of the opening. A slit makes the side of the foot a spring.
+CLK_B = 0.7;  CLK_D = 1.0;    // radius of the bump, and of the dimple (same centre)
+CLK_Y = -TIP_S - 1.5;         // where the bump is
+CLK_W = 1.2;  CLK_S = 0.8;  CLK_L = 7;   // spring: thickness, width of the slit, length
 ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
@@ -215,7 +220,7 @@ module k_raw() {
         translate([W / 2 - SNAP_W / 2, y_end - WALL + SNAP_T, -6]) cube([SNAP_W, WALL, LIP_H + 7]);
         // slots through the floor for the prop's feet
         for (a = ANGLES, x = ARM_X)
-            translate([x - 0.5, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 1, 8, K_FLOOR + 2]);
+            translate([x - 1.1, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 2.2, 8, K_FLOOR + 2]);   // wide enough for the click bumps
     }
 }
 
@@ -275,7 +280,9 @@ module prop() {
     translate([0, 0, -T_T]) linear_extrude(T_FLOOR) difference() {
         prop_2d(0);
         translate([W / 2, -TIP_S - FOOT_L]) circle(NOTCH_R);                                       // finger notch
+        for (x = [PX[0] + CLK_W, PX[1] - CLK_W - CLK_S]) translate([x, -TIP_S - CLK_L]) square([CLK_S, CLK_L + 1]);   // slits
     }
+    for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_B, $fn = 20);       // click bumps
     x_cyl([-SP, PZ], T_FLOOR / 2, EAR_X[0], EAR_X[1]);                    // round end at the pivot
     // cone pivots, pointing outward into the T half
     translate([EAR_X[0], -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
@@ -285,6 +292,7 @@ module prop_slot() {
     z1 = T_FLOOR + GAPP;   // the opening is a little higher than the prop
     translate([0, 0, -T_T - 1]) linear_extrude(z1 + 1) prop_2d(GAPP);
     translate([EAR_X[0] - GAPP, -SP - T_FLOOR / 2 - GAPP, -T_T - 1]) cube([EAR_X[1] - EAR_X[0] + 2 * GAPP, T_FLOOR, z1 + 1]);
+    for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_D, $fn = 20);       // dimples for the click
     // sockets for the cone pivots
     translate([EAR_X[0] - GAPP + 0.01, -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
     translate([EAR_X[1] + GAPP - 0.01, -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
