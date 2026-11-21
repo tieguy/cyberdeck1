@@ -38,4 +38,24 @@ the cone pivots and the click bumps. The plate is not checked in a slicer.
 
 ## Results
 
-Not printed yet.
+Printed 2026-11-21, on the plate in `../test-plate-02/`. The numbers are the items of "What to
+look for".
+
+1. **Free or fused**: the prop is very free. Nothing fused.
+2. **Pivots**: the prop turns freely, but it comes out of its pivots very easily. The owner saw
+   that the sockets are open at the back face. This is in the model: the axis is 1.5 mm above
+   the back face and a socket has a radius of 1.6 mm, so each socket breaks through the back as
+   a slit about 1 mm wide. A floor of 3 mm is too thin for a cone that holds.
+3. **Click**: a very small click. The prop stays in when the piece is shaken, but only just: one
+   bump lets go while the other holds. It is easy to push out. Each bump goes 0.3 mm into its
+   dimple, and the prop has 0.4 mm of play to each side, so the prop can move until one bump is
+   out of its dimple.
+4. **Springs**: no cracks after about ten clicks.
+5. **The back**: the stowed prop is about 0.25 mm below the back face of the frame. The cause is
+   not known. The gap round the prop is even everywhere.
+
+Changes that follow, for the model and the next test plate:
+
+- An axle in place of the cone pivots: a 2 mm hole through each side wall into the ear of the
+  prop, for a piece of 1.75 mm filament.
+- Higher click bumps, which go about 0.5 mm into their dimples.

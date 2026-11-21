@@ -111,19 +111,17 @@ barrel "was the best idea we had at the time".
 
 ## Next step
 
-The owner accepted the link hinge in place of the barrel (2026-11-20). Print the test piece in
-`hinge-test-02/` and record the results in its README. It shows the fit of the pins and the
-link, the play of the 45° stop, and whether the slot walls hold the closed halves in line.
+The first test plate is printed (2026-11-21). The results, and the changes that follow from
+them, are in `hinge-test-02/README.md` and `prop-test-02/README.md`. In short: the link hinge
+prints clean, moves well and has a firm stop, but its pins need one fixed position, its links
+are too loose, and the stop leaves a gap. The prop prints free, but its cone pivots do not hold
+it, and its click is weak.
+
+Make those changes in `case02/case02.scad`, then print a second test plate.
 
 Before you change the hinge, read `HINGE.md`.
 
-Both test pieces are on one print plate, `test-plate-02/test_plate.stl`.
-
-The test piece in `prop-test-02/` is the second one. It shows whether the cone pivots and the click
-bumps of the prop print free, and whether the click holds the stowed prop.
-
-Not printed or tested in rev 0.2: the link hinge, the cone pivots and the click of the prop, the
-snap tongue, the web. No test piece covers the snap tongue.
+Not printed or tested in rev 0.2: the snap tongue, the web. No test piece covers the snap tongue.
 
 ## Other ideas for this revision or later
 
