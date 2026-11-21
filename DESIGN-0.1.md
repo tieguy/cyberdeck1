@@ -119,6 +119,20 @@ the user sees them.
 The folded keyboard and the tablet have almost the same footprint, so the two halves of the case
 can be the same size. The folded keyboard is 13 mm thick.
 
+## Results of the first print
+
+Printed and assembled 2026-11-20. The owner's first notes:
+
+- A lip over the tablet still prints as strings, with no bevel on it. The bevel was not the
+  cause, or not the only cause.
+- The stand is not stable. When the owner presses the screen, the tablet half sags toward the
+  corner with the slot for the USB-C plug. Probable cause, not confirmed: the hinge has no
+  knuckle on that side of the slot, and the slot cuts the tablet half's taper, so that corner of
+  the tablet half is not held to the pin.
+- The bail does very little. Probable cause, not confirmed: the tapers already hold the angle,
+  and the bail's cross bar sits in its groove with clearance, on thin arms and short stubs, so it
+  takes no load until the tablet half has already moved.
+
 ## Open questions
 
 - The owner's review of the model in `case/`.
