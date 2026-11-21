@@ -28,7 +28,11 @@ module corners() {
     }
 }
 
-translate([0, -Y_PIV[0], T_T]) {
-    if (tpart != "prop") corners() t_half();
-    if (tpart != "frame") corners() prop();
+module prop_plate(part = "plate") {
+    translate([0, -Y_PIV[0], T_T]) {
+        if (part != "prop") corners() t_half();
+        if (part != "frame") corners() prop();
+    }
 }
+
+prop_plate(tpart);

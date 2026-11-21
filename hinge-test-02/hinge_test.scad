@@ -18,12 +18,15 @@ BODY_T = 20;         // length of the T half behind its pin: it ends before the 
 module k_piece() { intersection() { k_half(); translate([0, -RK - 1, -T_K - 1]) cube([WT, RK + 1 + BODY, T_K + 30]); } }
 module t_piece() { intersection() { t_half(); translate([0, -BODY_T, -T_T - 1]) cube([WT, BODY_T + RT + 1, T_T + 2]); } }
 
-if (tpart == "plate") {
+module hinge_plate() {
     translate([0, RK, T_K]) k_piece();
     translate([WT + 8, BODY_T, T_T]) t_piece();
     for (i = [0, 1, 2]) translate([2 * WT + 16 + LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link();   // one spare
     for (i = [0, 1, 2]) translate([2 * WT + 16 + HEAD_T, 3 * (2 * LINK_R + 6) + 3 + i * (HEAD_D + 6), 0]) pin_part();   // one spare
-} else {
+}
+
+if (tpart == "plate") hinge_plate();
+else {
     k_piece();
     posed(tw_, ta) t_piece();
     yz(LINK_X[0] + (SLOT_W - LINK_T) / 2, LINK_X[0] + (SLOT_W + LINK_T) / 2) stadium(A_K, b_k(ta), LINK_R);

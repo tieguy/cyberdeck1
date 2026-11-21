@@ -117,7 +117,9 @@ link, the play of the 45° stop, and whether the slot walls hold the closed halv
 
 Before you change the hinge, read `HINGE.md`.
 
-Print the test piece in `prop-test-02/` too. It shows whether the cone pivots and the click
+Both test pieces are on one print plate, `test-plate-02/test_plate.stl`.
+
+The test piece in `prop-test-02/` is the second one. It shows whether the cone pivots and the click
 bumps of the prop print free, and whether the click holds the stowed prop.
 
 Not printed or tested in rev 0.2: the link hinge, the cone pivots and the click of the prop, the
