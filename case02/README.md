@@ -89,9 +89,10 @@ slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the s
 
 - No print files. No part is checked in a slicer.
 - The filament axle of the prop is not tested.
-- The hinge is not tested: the 13 mm pins and their crush ribs, the links, the play of the stop
-  (each pin has 0.2 mm of clearance, and the stop works on a lever of about 8 mm), and whether
-  the slots hold the closed halves in line well enough for the snap.
+- The hinge is tested on one test plate (`../hinge-test-02/README.md`): it prints clean, moves
+  well and has a firm stop. Not tested yet: the recess with a flat for the pin head, the links
+  with 3.1 mm holes, whether they close the gap that the first plate showed on the 45° stop, and
+  whether the slots hold the closed halves in line well enough for the snap.
 - The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
   tablet half's free edge leads it over the bump.
 - The click that holds the stowed prop was weak with bumps 0.7 mm high. With bumps 0.9 mm high
