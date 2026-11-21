@@ -44,33 +44,36 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 
 ### Hinge
 
-- The barrel is 22 mm across; the closed case is 25 mm thick. Its pin is 6 mm, over the whole
-  width, in a hole that is closed at one end, with crush ribs in the keyboard half's segments.
-  A 6 mm pin lies on the print bed on a wider flat than the 2.9 mm pin of rev 0.1.
-- The barrel has five segments: three on the keyboard half, at both edges and in the middle, and
-  two on the tablet half between them. The keyboard half lies on the table in the stand, and its
-  segments are its front feet, so it stands on its corners. One band, 22 mm wide, has no barrel. The USB-C plug goes there, and
-  the cable leaves over the pin.
-- Rev 0.1 had tapers so that the halves could lie back to back at 45°. Rev 0.2 has none. Each
-  half reaches its barrel segments with tabs of its full thickness, and the other half has a
-  notch at each tab. At every place along the hinge only one half has material, so nothing
-  collides, and no surface slopes over the print bed. Rev 0.2 needs no supports.
-- The stop: in the stand, the flat back of the tablet half rests on a 45° chamfer on the
-  hinge-side edge of the keyboard half. A 45° chamfer on a bed-side edge prints with no supports.
-- The barrel is the front foot of the stand. The lip on the keyboard half's free edge is as high
-  as the barrel's radius, and it is the rear foot.
+The owner's decision was a barrel. The barrel hinge was drawn; the owner then asked for a hinge
+that is more compact and more elegant (2026-11-20). The hinge below is the answer to that
+request. It is not a barrel, and the owner has not reviewed it.
+
+- The hinge has two pins. Each half ends in a nose as thick as the half, with its pin at the
+  middle of its thickness. Two links, each in a slot near an edge of the case, join the pins.
+  `HINGE.md` gives the geometry.
+- The halves start 3.5 mm behind the pins. The closed case is 213 mm long, 26 mm less than
+  the model with the barrel hinge.
+- The bed side of each nose is a 45° chamfer, so no part needs supports. The closed profile has a
+  chamfer of 11 mm on the keyboard half and one of 7 mm on the tablet half, with two rounds
+  between them.
+- The stop: in the stand, the flat back of the tablet half lies on the chamfer of the keyboard
+  half's nose, and the links pull.
+- The pins are four printed pins, 2.9 mm across and 13 mm long, each with a head. The 2.9 mm pin
+  in a 3.3 mm hole with crush ribs is the fit that the rev 0.1 test piece proved.
+- The tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about 10 mm out
+  of the closed case.
+- In the stand the keyboard half lies on its nose and on its lip. The lip is 11 mm high, so the
+  keyboard half slopes 3.1° and the screen is at 48° from the table.
 
 ### Prop
 
 - The prop is 3 mm thick, the thickness of the tablet half's floor. Stowed, it lies in a slot
   in that floor, flush with the back, with its feet toward the hinge.
 - It prints in place in the tablet half. Its axle is two cone pivots that reach into the tablet
-  half, 150 mm from the hinge. Print-in-place needs no second material: the parts print in one
+  half, 127.5 mm from the tablet half's pin. Print-in-place needs no second material: the parts print in one
   job with a small gap between them, and the cones need no supports.
 - Its two feet go into slots through the floor of the keyboard half. There are slots for screen
   angles of 45°, 52° and 59°.
-- The main hinge cannot print in place: the two halves, laid open, are about 470 mm long, and the
-  bed is 325 mm.
 
 ### Back, snap and edges
 
@@ -82,7 +85,11 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 
 ## Open questions
 
-- The owner's review of the model in `case02/`.
+- The owner's review of the link hinge: the look of the closed profile, and the points below.
+- The slope of the stand. Ways to remove it: feet at the front corners of the keyboard half,
+  which need notches in the corners of the tablet half; or a closure that needs no high lip.
+- The plug that stands 10 mm out of the closed case.
+
 - Do the cone pivots of the prop print free? A small test piece can show it.
 - Does the snap hold, and does it release without too much force?
 - Something to hold the stowed prop in its slot.
@@ -90,25 +97,15 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 
 ## Next step
 
-Make the hinge more elegant. The owner asked for this on 2026-11-20, after the model in `case02/`
-had the barrel hinge with the keyboard half's segments at its edges. The owner has not said yet
-what is wrong with the look of that hinge; ask first.
+The owner reviews the link hinge in `case02/views/`. If the owner accepts it, cut a test piece
+from the model: a slice at one edge with both noses, one link and two pins. It must show the fit
+of the pins and the link, the play of the 45° stop, and whether the slot walls hold the closed
+halves in line.
 
-Before you draw a hinge, read `HINGE.md`. It holds the rule that makes every hinge about 26 mm
-long, the facts from the test prints, the hinges already tried, and what the owner has said about
-the look.
+Before you change the hinge, read `HINGE.md`.
 
-Things that are not settled and bear on the hinge:
-
-- The barrel's size. The model has 22 mm, as a reading of "similar to the thickness of the whole
-  work".
-- The tabs and notches. They replace the tapers of rev 0.1 so that no part needs supports. The
-  owner liked the pointed, tapered profile of rev 0.1 and disliked removing its supports.
-- The screen angle. 45° is the owner's estimate. A steeper screen shortens the hinge.
-
-Not printed or tested in rev 0.2: the 6 mm pin, the 45° chamfer stop, the cone pivots of the prop,
-the snap tongue, the web. A small test piece for the pivots and the snap is the planned print
-before any full print.
+Not printed or tested in rev 0.2: the link hinge, the cone pivots of the prop, the snap tongue,
+the web. A small test piece for the pivots and the snap is also planned before any full print.
 
 ## Other ideas for this revision or later
 
@@ -121,8 +118,6 @@ before any full print.
   Open points: capacity, output (USB-C PD or plain 5 V), and whether the tablet, the keyboard, or
   both charge from it. A holder for the Anker candidate in `PARTS.md` must leave its folding
   connector free to fold out, or the battery must leave the holder to charge.
-- A hinge with two pins and a spine between them, if the extra depth of the one-pin hinge's arms
-  is a problem in use. It needs no arms, but it has two joints to hold.
 - A landscape case. The hinge runs along a long edge and the screen is 138 mm tall. The touch
   buttons are then on the user's right, so the lip on that edge covers 1 to 2 mm only. The power
   button is on the left edge, 9.5 mm from the top, and the USB-C port is on the right edge,

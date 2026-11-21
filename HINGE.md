@@ -38,8 +38,24 @@ and w the screen angle:
 - Tabs, with the tablet half's flat back on a chamfer of size c on the keyboard half:
   `E0 = ((T_T + HG) + (T_K + HG)·cos w) / sin w - c`.
 
-A hinge with two pins and a spine between them avoids the rule, because the tablet half turns
-about its own outer edge. Its cost is in the list below.
+A hinge with two pins avoids the rule, because the tablet half turns about its own pin and that
+pin moves round the keyboard half. Two forms are in the list below.
+
+## Two pins at mid-thickness
+
+- Put each pin at the middle of the thickness of its half, and make the end of each half a nose
+  that stays inside the circle about its pin. With the pins `T_K/2 + T_T/2 + gap` apart, the
+  noses pass each other at any angle, and the bodies can start at the pins.
+- A round on the bed side of a nose needs supports. A 45° chamfer from the outer face to the tip
+  of the nose is the largest shape inside the circle that prints without them.
+- That chamfer on the keyboard half is also the 45° stop: the tablet half's flat back lies on it.
+  The links are then at 97° from their closed position, and they pull. The stop works on a lever
+  of about 8 mm (the distance from the links' line to the top of the chamfer), so play at the
+  pins shows as play in the screen angle. Not tested.
+- The hinge has two free angles, not one. The end walls of the slots for the links remove the
+  spare one: closed, each link lies against a wall in each half, so the halves cannot slide.
+- In the stand the keyboard half has no hinge part below its inner face, so it has no front
+  feet. It lies on its nose, and its lip lifts its rear.
 
 ## Other facts
 
@@ -67,7 +83,8 @@ about its own outer edge. Its cost is in the list below.
 | Two pins and a spine 26 mm long | Drawn (`hinge="spine"`) | Only 6 mm longer than the halves when closed. But the first pin is outside the keyboard half's outer face, so its lugs are separate parts on dovetail rails, and the hinge stands 6 mm proud. The owner found it bulky. |
 | One pin, square tabs | Drawn (`hinge="tabs"`) | No supports. The owner preferred the look of tapers. |
 | One pin, tapers of 27° and 18°, knuckles 8 mm | Printed: rev 0.1 (`hinge="bevel"`) | The owner sketched it and liked the asymmetric look. The tapers meet face to face and hold 45° without a prop. But the tapers print on supports, which are hard to remove and leave lines, and the keyboard half's one knuckle was in the middle, so the stand sagged toward a corner. |
-| One pin, barrel 22 mm, full-thickness tabs, stop on a 45° chamfer | Drawn: rev 0.2 (`case02/case02.scad`) | No supports. Barrel segments of the keyboard half at both edges. Not printed. The owner wants a more elegant hinge than this. |
+| One pin, barrel 22 mm, full-thickness tabs, stop on a 45° chamfer | Drawn: rev 0.2 (git commit `a4ebb1b`) | No supports. Barrel segments of the keyboard half at both edges. Not printed. The owner wants a more elegant hinge than this. |
+| Two pins at mid-thickness, two links, noses with 45° chamfers | Drawn: rev 0.2 (`case02/case02.scad`) | No supports. The closed case is 26 mm shorter than with the barrel. Nothing stands proud. The keyboard half slopes 3.1° in the stand. A plug in the closed case stands 10 mm out. Not printed; the owner has not reviewed it. |
 | A ratchet in the hinge | Test piece drawn, never printed | Dropped when a prop took over the job of holding the angle. |
 
 ## What the owner has said about the look

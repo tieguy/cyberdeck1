@@ -1,11 +1,11 @@
 // cyberdeck1 rev 0.2: first geometry, for review. Portrait only.
 //
 // Changes from rev 0.1 (refer to ../DESIGN-0.2.md):
-//   - The hinge is a barrel 22 mm across, close to the thickness of the closed case, on
-//     a 6 mm pin over the whole width. The K half has the segments at both edges.
-//   - No tapers. Each half reaches the barrel with full-thickness tabs, where the other
-//     half has notches. Nothing overhangs the print bed, so no part needs supports.
-//   - In the stand, the flat back of the T half rests on a 45 degree chamfer on the K half.
+//   - The hinge has two pins and two links. Each half ends in a nose as thick as the half,
+//     with its pin at the middle of its thickness. A link joins the two pins at each edge.
+//     The halves start 3.5 mm behind the pins: no arms, tabs or tapers.
+//   - The bed side of each nose is a 45 degree chamfer, so no part needs supports.
+//   - In the stand, the flat back of the T half rests on the chamfer of the K half's nose.
 //   - The prop is a U-shaped frame. It lies in a slot in the back of the T half and
 //     prints there, in place, on two cone pivots. Its feet go into slots through the
 //     floor of the K half.
@@ -14,12 +14,15 @@
 //   - The outer edges have chamfers.
 //
 // Frames: X is the hinge axis. K half: body at +Y, inner face at z = 0, material at
-// z < 0. T half, drawn flat: body at -Y, inner face at z = 0. The pin's axis is at
-// y = 0, z = HG in both. "wedge" is the angle between the halves; 360 is closed.
+// z < 0, nose toward -Y. T half, drawn flat: body at -Y, inner face at z = 0, nose toward
+// +Y. Each half has its pin at y = 0, at the middle of its thickness (A_K, B_T).
+// A pose has two angles. "a" is the link's angle about the K half's pin: 0 with the link
+// square to the K half (closed), A_ST in the stand. "wedge" is the angle between the
+// halves; 360 is closed.
 //
 // Make a view:  openscad-nightly -D 'view="stand"' -o view.stl case02.scad
 
-view = "stand";   // stand | closed | k_half | t_half | pin | x_* (checks)
+view = "stand";   // stand | closed | k_half | t_half | link | pin | x_* (checks)
 
 $fn = 48;
 
@@ -41,26 +44,33 @@ USB_C = 19.5;  USB_HW = 11;   // USB-C port: from the tablet's corner to its mid
 EDGE = 1.5;                   // chamfer on the outer edges
 
 // ---- Hinge ----
-HG  = 0.25;       // the pin's axis is this far outside each inner face
-RB  = 11;         // barrel radius
-PIN_D = 6.4;  PIN_DIA = 6.0;  RIB = 0.25;  PIN_X0 = 1.6;
-FOOT = RB + HG;   // the barrel is the front foot of the stand; the K half's lip is the rear foot
-CH  = 4;          // size of the chamfer on the K half that the T half's back rests on
-// Where the bodies start. The T half's back, at SCREEN degrees, lies on the K half's chamfer.
-WS  = SCREEN - 0.3;
-E0  = ((T_T + HG) + (T_K + HG) * cos(WS)) / sin(WS) - CH;
-NT  = E0 + wb;    // in the K half's bands the T half is cut back to here, to pass the K half
-// Bands along the hinge, [start, length].
-// The K half lies on the table in the stand, and its barrel segments are its front feet. They
-// are at both edges and in the middle, so that it stands on its corners. In rev 0.1 the K half's
-// one knuckle was in the middle, and the stand sagged toward a corner when the screen was pressed.
-K_BANDS = [[0, 28], [56.4, 27.6], [135.2, W - 135.2]];
-T_BANDS = [[28.4, 27.6], [84.4, 27.6]];
-GAP     = [112.4, 22.4];   // no barrel here: room for the USB-C plug and its cable
+HG  = 0.25;       // half the gap between the inner faces of the closed case
+RK  = T_K / 2;  RT = T_T / 2;          // nose radius of each half
+A_K = [0, -RK];  B_T = [0, -RT];       // the pin of each half, in its own frame
+LINK_L = RK + RT + 2 * HG;             // distance between the pins
+LINK_R = 4;  LINK_T = 4.6;             // link: end radius, thickness
+SLOT_W = 5;  SLOT_C = 0.25;            // slot for a link: width, clearance round the link
+LINK_X = [4.3, W - 4.3 - SLOT_W];      // where the slots start, along the hinge
+PIN_D = 3.3;  PIN_DIA = 2.9;  RIB = 0.25;
+PIN_IN = 4.5;     // how far a pin goes into the nose beyond the slot
+HEAD_D = 5;  HEAD_T = 1.4;  HEAD_IN = 0.8;   // pin head, and how deep it sits in the edge
+E0  = 3.5;        // the bodies start this far behind the pins
+LIP_H = 11.25;    // lip on the K half's free edge. It is the rear foot of the stand.
+SEAT_C = 0.05;    // gap drawn between the two faces of the stop
+// The stop: at SCREEN degrees, the T half's flat back lies on the chamfer of the K half's
+// nose. The chamfer runs from the outer face, under the pin, to the tip of the nose.
+SEAT_D = RK / sqrt(2) + RT + SEAT_C;   // from the K half's pin to the T half's mid-plane
+function dir_k(a) = [-sin(a), cos(a)];             // direction of the link, K frame
+function b_k(a) = A_K + LINK_L * dir_k(a);         // the T half's pin, K frame
+B_SEAT = A_K + SEAT_D * [-1, -1] / sqrt(2) + sqrt(LINK_L * LINK_L - SEAT_D * SEAT_D) * [-1, 1] / sqrt(2);
+A_ST = atan2(-(B_SEAT - A_K)[0], (B_SEAT - A_K)[1]);   // link angle in the stand
+B_ST = 360 - SCREEN - A_ST;                            // turn of the T half on the link, in the stand
+// Limits of the slots. The walls of the slots are the stops for the links.
+A_MAX = A_ST + 3;  B_MAX = B_ST + 3;
 
 // ---- Prop ----
-SP    = 150;      // pivot: distance from the hinge axis, along the T half
-TIP_S = 34.4;     // where the feet lie when the prop is stowed: inside the T half's cut-backs
+SP    = 127.5;    // pivot: distance from the T half's pin, along the T half
+TIP_S = 12;       // where the feet lie when the prop is stowed: behind the slots for the links
 PL    = SP - TIP_S;           // length from the pivot to the tips of the feet
 AW    = 8;        // width of each arm
 PZ    = -T_T + T_FLOOR / 2;   // height of the pivot axis, in the T half's frame
@@ -69,8 +79,8 @@ BAR_S = [TIP_S + 4.4, TIP_S + 12.4];   // the cross bar, behind the feet
 ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
-function t_shift(wedge) = [0, HG] - rot([0, HG], 180 - wedge);
-function to_k(p, wedge) = t_shift(wedge) + rot(p, 180 - wedge);   // T frame -> K frame
+function t_shift(wedge, a) = b_k(a) - rot(B_T, 180 - wedge);
+function to_k(p, wedge, a = A_ST) = t_shift(wedge, a) + rot(p, 180 - wedge);   // T frame -> K frame
 // Prop: direction of the arms in the K frame, with the feet 1.5 mm into the K half's floor.
 function pivot_k(wedge) = to_k([-SP, PZ], wedge);
 function prop_a(wedge) = asin(((-T_K + 1.5) - pivot_k(wedge)[1]) / PL);
@@ -78,11 +88,50 @@ function tip_k(wedge) = pivot_k(wedge) + PL * [cos(prop_a(wedge)), sin(prop_a(we
 // The same direction in the T half's frame, as a turn about the pivot from the stowed pose.
 function prop_turn(wedge) = prop_a(wedge) - (180 - wedge);
 
-echo(W = W, D_K = D_K, D_T = D_T, T_K = T_K, T_T = T_T, E0 = E0, NT = NT, PL = PL);
+echo(W = W, D_K = D_K, D_T = D_T, T_K = T_K, T_T = T_T, LINK_L = LINK_L, A_ST = A_ST, B_ST = B_ST, PL = PL);
 echo(feet_y = [for (a = ANGLES) tip_k(a)[0]], prop_turn = [for (a = ANGLES) prop_turn(a)]);
 
 module x_cyl(p, r, x0, x1) { translate([x0, p[0], p[1]]) rotate([0, 90, 0]) cylinder(r = r, h = x1 - x0); }
-module posed(wedge) { s = t_shift(wedge); translate([0, s[0], s[1]]) rotate([180 - wedge, 0, 0]) children(); }
+module posed(wedge, a = A_ST) { s = t_shift(wedge, a); translate([0, s[0], s[1]]) rotate([180 - wedge, 0, 0]) children(); }
+// A 2D shape in (y, z), made solid from x0 to x1.
+module yz(x0, x1) { translate([x0, 0, 0]) rotate([90, 0, 90]) linear_extrude(x1 - x0) children(); }
+function arc(c, r, a0, a1, n = 24) = [for (i = [0 : n]) c + r * [cos(a0 + (a1 - a0) * i / n), sin(a0 + (a1 - a0) * i / n)]];
+module stadium(p, q, r) { hull() { translate(p) circle(r); translate(q) circle(r); } }
+
+// Noses. The inner side is a quarter round about the pin. The bed side is a 45 degree
+// chamfer from the outer face, under the pin, to the tip. Both are inside the circle about
+// the pin, so the noses pass each other at any angle.
+module k_nose_2d() { polygon(concat([[0.01, 0]], arc(A_K, RK, 90, 180), [[0.01, -T_K]])); }
+module t_nose_2d() { polygon(concat([[-0.01, 0]], arc(B_T, RT, 90, 0), [[-0.01, -T_T]])); }
+// Slots: what a link sweeps, in each half's frame. Their end walls are the stops.
+module k_slot_2d() { for (a = [0 : 3 : A_MAX + 2.9]) stadium(A_K, b_k(min(a, A_MAX)), LINK_R + SLOT_C); }
+module t_slot_2d() { for (b = [0 : 3 : B_MAX + 2.9]) let (bb = min(b, B_MAX))
+    stadium(B_T, B_T + LINK_L * [sin(bb), cos(bb)], LINK_R + SLOT_C); }
+// Pin holes of one half, with the pin at c. Each pin goes in from its edge of the case.
+module pin_holes(c) {
+    for (i = [0, 1]) {
+        x0 = i == 0 ? -1 : LINK_X[1] - PIN_IN;  x1 = i == 0 ? LINK_X[0] + SLOT_W + PIN_IN : W + 1;
+        x_cyl(c, PIN_D / 2, x0, x1);
+        x_cyl(c, HEAD_D / 2 + 0.2, i == 0 ? -1 : W - HEAD_IN, i == 0 ? HEAD_IN : W + 1);
+    }
+}
+module crush_ribs(c) {
+    for (i = [0, 1], a = [90, 210, 330]) translate([0, c[0], c[1]]) rotate([a, 0, 0])
+        translate([i == 0 ? LINK_X[0] + SLOT_W + 0.8 : LINK_X[1] - PIN_IN + 0.2, -0.3, PIN_D / 2 - RIB])
+            cube([PIN_IN - 1, 0.6, RIB + 0.3]);
+}
+module link() {   // in its print frame: flat, pins along Z
+    linear_extrude(LINK_T) difference() {
+        stadium([0, 0], [LINK_L, 0], LINK_R);
+        circle(d = PIN_D);  translate([LINK_L, 0]) circle(d = PIN_D);
+    }
+}
+module links_at(a) {   // in the K half's frame
+    for (x = LINK_X) yz(x + (SLOT_W - LINK_T) / 2, x + (SLOT_W + LINK_T) / 2) difference() {
+        stadium(A_K, b_k(a), LINK_R);
+        translate(A_K) circle(d = PIN_D);  translate(b_k(a)) circle(d = PIN_D);
+    }
+}
 
 // A 45 degree chamfer on a bottom edge that runs along Y at x = x0 (dir = +1 cuts toward +x).
 module chamfer_y(x0, dir, y0, y1, z0, c = EDGE) {
@@ -100,46 +149,32 @@ module chamfer_x(y0, dir, x0, x1, z0, c = EDGE) {   // edge along X at y = y0
     }
 }
 
-module pin_holes() {
-    x_cyl([0, HG], PIN_D / 2, PIN_X0, W + 1);
-    translate([-1, 0, HG]) rotate([0, 90, 0]) cylinder(d = 1.6, h = PIN_X0 + 2, $fn = 16);
-}
-module crush_ribs(b) {
-    for (a = [90, 210, 330]) translate([0, 0, HG]) rotate([a, 0, 0])
-        translate([b[0] + 3, -0.3, PIN_D / 2 - RIB]) cube([b[1] - 6, 0.6, RIB + 0.3]);
-}
-
 // ---- K half: keyboard tray ----
 SNAP_W = 20;  SNAP_T = 1.2;  SNAP_B = 1.2;     // snap tongue: width, thickness, bump
 module k_half() {
     y_end = E0 + D_K;
-    for (b = K_BANDS) crush_ribs(b);
+    crush_ribs(A_K);
     difference() {
         union() {
-            translate([0, E0, -T_K]) cube([W, D_K, T_K]);
-            translate([0, y_end - WALL, -0.01]) cube([W, WALL, FOOT + 0.01]);        // lip, rear foot
-            for (b = K_BANDS) {
-                translate([b[0], -RB, -T_K]) cube([b[1], RB + E0 + 0.01, T_K]);      // tab, down to the bed
-                x_cyl([0, HG], RB, b[0], b[0] + b[1]);                               // barrel
-            }
-            translate([GAP[0], 0, -T_K]) cube([GAP[1], E0 + 0.01, T_K]);             // tab under the plug
+            translate([0, 0, -T_K]) cube([W, y_end, T_K]);
+            yz(0, W) k_nose_2d();
+            translate([0, y_end - WALL, -0.01]) cube([W, WALL, LIP_H + 0.01]);       // lip, rear foot
             // snap bump on the tongue: it hooks over the edge of the T half's back
             translate([W / 2 - SNAP_W / 2 + 0.6, y_end - WALL, T_T + 2 * HG + 0.15]) rotate([90, 0, 90])
                 linear_extrude(SNAP_W - 1.2) polygon([[0.01, 0], [-SNAP_B, 0.6], [-SNAP_B, 0.9], [0.01, 0.9 + SNAP_B]]);
         }
         translate([WALL, E0 + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);                // pocket
-        pin_holes();
-        // the chamfer that the T half's back rests on, in the T half's bands
-        for (b = T_BANDS) chamfer_x(E0, 1, b[0] - 0.2, b[0] + b[1] + 0.2, -T_K, CH);
+        pin_holes(A_K);
+        for (x = LINK_X) yz(x, x + SLOT_W) k_slot_2d();
         // comfortable edges
-        chamfer_y(0, 1, E0, y_end, -T_K);  chamfer_y(W, -1, E0, y_end, -T_K);
+        chamfer_y(0, 1, -RK, y_end, -T_K);  chamfer_y(W, -1, -RK, y_end, -T_K);
         chamfer_x(y_end, -1, 0, W, -T_K);
         // finger notches in the side walls, to lift the keyboard out
         for (x = [-1, W - WALL - 1]) translate([x, E0 + D_K / 2, 0]) rotate([0, 90, 0]) cylinder(r = 12, h = WALL + 2);
         // snap tongue: two slits, and the tongue is thinner than the lip
         for (x = [W / 2 - SNAP_W / 2 - 1, W / 2 + SNAP_W / 2])
-            translate([x, y_end - WALL - 1, -6]) cube([1, WALL + 2, FOOT + 7]);
-        translate([W / 2 - SNAP_W / 2, y_end - WALL + SNAP_T, -6]) cube([SNAP_W, WALL, FOOT + 7]);
+            translate([x, y_end - WALL - 1, -6]) cube([1, WALL + 2, LIP_H + 7]);
+        translate([W / 2 - SNAP_W / 2, y_end - WALL + SNAP_T, -6]) cube([SNAP_W, WALL, LIP_H + 7]);
         // slots through the floor for the prop's feet
         for (a = ANGLES, x = ARM_X)
             translate([x - 0.5, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 1, 8, K_FLOOR + 2]);
@@ -149,25 +184,19 @@ module k_half() {
 // ---- T half: tablet holder. Drawn flat, on the -Y side. ----
 WEB_BAR = 4;  WEB_CELL = 15;
 module t_half() {
+    crush_ribs(B_T);
     y_free = -E0 - D_T;  y_low = -E0 - wb;  z_floor = -T_T + T_FLOOR;
     usb_x0 = px0 + tpw - 0.3 - USB_C - USB_HW;
     difference() {
         union() {
-            translate([0, y_free, -T_T]) cube([W, D_T, T_T]);
-            for (b = T_BANDS) {
-                translate([b[0], -E0 - 0.01, -T_T]) cube([b[1], E0 + 0.01, T_T]);     // tab
-                intersection() {                                                      // barrel, flat on the bed
-                    x_cyl([0, HG], RB, b[0], b[0] + b[1]);
-                    translate([b[0], -RB - 1, -T_T]) cube([b[1], 2 * RB + 2, 2 * RB + 2]);
-                }
-            }
+            translate([0, y_free, -T_T]) cube([W, D_T + E0, T_T]);
+            yz(0, W) t_nose_2d();
         }
-        // cut back where the K half's tabs are, and at the plug
-        for (b = concat(K_BANDS, [GAP])) translate([b[0] - 0.2, -NT, -50]) cube([b[1] + 0.4, NT + 20, 100]);
+        for (x = LINK_X) yz(x, x + SLOT_W) t_slot_2d();
         translate([px0, y_free - 1, z_floor]) cube([tpw, tpd + 1, TPD]);              // pocket
         translate([px0 + OV, y_free - 1, -LIP - 0.01]) cube([tpw - 2 * OV, tpd + 1 - OV, LIP + 1]);
-        translate([usb_x0, y_low - OV - 0.01, z_floor]) cube([2 * USB_HW, wb + OV + 1, T_T]);
-        pin_holes();
+        translate([usb_x0, y_low - OV - 0.01, z_floor]) cube([2 * USB_HW, wb + OV + E0 + RT + 1, T_T]);   // plug: through the nose
+        pin_holes(B_T);
         prop_slot();
         // web: square holes in the floor, between the prop's arms
         wx0 = ARM_X[0] + AW + 7;  wx1 = ARM_X[1] - 7;  wy0 = y_free + 10;  wy1 = -BAR_S[1] - 7;
@@ -179,7 +208,7 @@ module t_half() {
             translate([wx0 + ox + i * (WEB_CELL + WEB_BAR), wy0 + oy + j * (WEB_CELL + WEB_BAR), -T_T - 1])
                 cube([WEB_CELL, WEB_CELL, T_FLOOR + 2]);
         // comfortable edges
-        chamfer_y(0, 1, y_free, 0, -T_T);  chamfer_y(W, -1, y_free, 0, -T_T);
+        chamfer_y(0, 1, y_free, RT, -T_T);  chamfer_y(W, -1, y_free, RT, -T_T);
         chamfer_x(y_free, 1, 0, W, -T_T);
     }
 }
@@ -208,40 +237,52 @@ module prop_slot() {
 }
 module prop_at(turn) { translate([0, -SP, PZ]) rotate([turn, 0, 0]) translate([0, SP, -PZ]) prop(); }
 
-// ---- Pin, in its print frame ----
+// ---- Pin, in its print frame. Four are needed. It lies on a flat. ----
+PIN_LEN = LINK_X[0] + SLOT_W + PIN_IN - 0.5;
 module pin_part() {
-    len = W - PIN_X0 - 0.5;  cut = PIN_DIA / 2 - 0.6;
+    cut = PIN_DIA / 2 - 0.6;
     translate([0, 0, cut]) difference() {
-        rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = len);
-        translate([-1, -PIN_DIA, -PIN_DIA - cut]) cube([len + 2, 2 * PIN_DIA, PIN_DIA]);
+        union() {
+            translate([-(HEAD_T - HEAD_IN), 0, 0]) rotate([0, 90, 0]) cylinder(d = HEAD_D, h = HEAD_T);
+            rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = PIN_LEN);
+        }
+        translate([-5, -HEAD_D, -HEAD_D - cut]) cube([PIN_LEN + 10, 2 * HEAD_D, HEAD_D]);
     }
-    for (x = [0, len]) translate([x, 0, 0]) cylinder(r = 7, h = 0.2);   // ears; cut them off
 }
 
 // ---- Stand-ins ----
 module tablet() { translate([px0 + 0.3, -E0 - wb - 0.3 - th, -T_T + T_FLOOR]) cube([tw, th, TAB_T]); }
 module keyboard_folded() { translate([WALL + 0.35, E0 + WALL + 0.5, -KPD]) cube([kw, kd, KB_T]); }
-module pin_in() { x_cyl([0, HG], PIN_DIA / 2, PIN_X0 + 0.3, W); }
+module pins_in(c) { x_cyl(c, PIN_DIA / 2, 0, PIN_LEN);  x_cyl(c, PIN_DIA / 2, W - PIN_LEN, W); }
 
 module view_closed() {
-    translate([0, 0, T_K]) { k_half(); keyboard_folded(); pin_in(); posed(360) { t_half(); tablet(); prop(); } }
-}
-module view_stand(wedge = SCREEN) {
-    translate([W, 0, FOOT]) rotate([0, 180, 0]) {
-        k_half(); pin_in();
-        posed(wedge) { t_half(); tablet(); prop_at(prop_turn(wedge)); }
+    translate([0, 0, T_K]) {
+        k_half(); keyboard_folded(); pins_in(A_K); links_at(0);
+        posed(360, 0) { t_half(); tablet(); prop(); pins_in(B_T); }
     }
-    translate([(W - KB_OPEN[0]) / 2, -25 - RB - KB_OPEN[1], 0]) cube(KB_OPEN);
+}
+// In the stand the K half lies on the tip of its nose and on its lip, so it slopes.
+TILT = atan(LIP_H / (E0 + D_K));
+module view_stand(wedge = SCREEN) {
+    rotate([TILT, 0, 0]) translate([W, 0, 0]) rotate([0, 180, 0]) {
+        k_half(); pins_in(A_K); links_at(A_ST);
+        posed(wedge) { t_half(); tablet(); prop_at(prop_turn(wedge)); pins_in(B_T); }
+    }
+    translate([(W - KB_OPEN[0]) / 2, -45 - KB_OPEN[1], 0]) cube(KB_OPEN);
 }
 
-chk = 45;   // angle for the x_swing check
+chk = 45;      // wedge for the checks
+chk_a = -1;    // link angle for the checks; -1 means A_ST
+ca = chk_a < 0 ? A_ST : chk_a;
 if (view == "stand") view_stand();
 else if (view == "closed") view_closed();
 else if (view == "k_half") translate([0, 0, T_K]) k_half();
 else if (view == "t_half") translate([0, 0, T_T]) { t_half(); prop(); }
+else if (view == "link") link();
 else if (view == "pin") pin_part();
 // Collision checks: each must be empty.
-else if (view == "x_swing") intersection() { k_half(); posed(chk) t_half(); }
+else if (view == "x_swing") intersection() { k_half(); posed(chk, ca) t_half(); }
+else if (view == "x_link") intersection() { union() { k_half(); posed(chk, ca) t_half(); } links_at(ca); }
 else if (view == "x_prop") intersection() { union() { k_half(); posed(chk) t_half(); } posed(chk) prop_at(prop_turn(chk)); }
 else if (view == "x_stow") intersection() { t_half(); prop(); }
-else if (view == "x_stowk") intersection() { k_half(); posed(360) prop(); }
+else if (view == "x_stowk") intersection() { k_half(); posed(360, 0) prop(); }
