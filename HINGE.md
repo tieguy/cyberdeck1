@@ -52,6 +52,9 @@ pin moves round the keyboard half. Two forms are in the list below.
   The links are then at 97° from their closed position, and they pull. The stop works on a lever
   of about 8 mm (the distance from the links' line to the top of the chamfer), so play at the
   pins shows as play in the screen angle. Not tested.
+- A link must not reach the far end wall of a slot before the tablet half is on the stop. Leave
+  several degrees: 3° was not enough on the first test plate (probable cause of a gap on the
+  stop, not confirmed).
 - The hinge has two free angles, not one. The end walls of the slots for the links remove the
   spare one: closed, each link lies against a wall in each half, so the halves cannot slide.
 - In the stand the keyboard half has no hinge part below its inner face, so it has no front

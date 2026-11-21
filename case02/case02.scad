@@ -69,8 +69,10 @@ function b_k(a) = A_K + LINK_L * dir_k(a);         // the T half's pin, K frame
 B_SEAT = A_K + SEAT_D * [-1, -1] / sqrt(2) + sqrt(LINK_L * LINK_L - SEAT_D * SEAT_D) * [-1, 1] / sqrt(2);
 A_ST = atan2(-(B_SEAT - A_K)[0], (B_SEAT - A_K)[1]);   // link angle in the stand
 B_ST = 360 - SCREEN - A_ST;                            // turn of the T half on the link, in the stand
-// Limits of the slots. The walls of the slots are the stops for the links.
-A_MAX = A_ST + 3;  B_MAX = B_ST + 3;
+// Limits of the slots. The walls of the slots are the stops for the links when the case is
+// closed. At the other end of its travel a link must not reach a wall before the T half is on
+// the 45 degree stop: on the first test plate, with 3 degrees to spare, it did.
+A_MAX = A_ST + 6;  B_MAX = B_ST + 8;
 
 // ---- Prop ----
 SP    = 127.5;    // pivot: distance from the T half's pin, along the T half

@@ -33,7 +33,8 @@ No part needs supports. The plate is not checked in a slicer.
 3. **Closed**: put the inner faces together. How far can one piece slide along the other? It
    was 1 mm at most on the first plate; the snap of the case needs less.
 4. **Stop**: with the keyboard-half piece flat on the table, inner face down, press the
-   tablet-half piece back onto the chamfer. Is the gap toward the tip of the nose gone?
+   tablet-half piece back onto the chamfer. Is the gap toward the tip of the nose gone? If it is
+   not, look into the slot of the tablet-half piece: does the link touch the slanted end wall?
 5. **Swing**: is it still smooth with the link that you chose?
 
 The piece has one link, so it twists more than the case, which has two.
@@ -64,9 +65,11 @@ pin head, and ribs at other angles. Its items were: print, pins, link, closed, s
    as drawn. The snap of the case has a hook of 1.2 mm, so 1 mm of slide is too much.
 5. **Swing**: smooth, and the owner found the motion obvious.
 6. **Stop**: firm when it is settled, with no flex. But the tablet-half piece does not lie flat
-   on the chamfer: there is a gap toward the tip of the nose. Possible cause, not confirmed:
-   the play of the link at its two pins (2.9 mm pins in 3.3 mm holes) lets the piece lean back
-   before the link pulls. The piece does not stay on the stop when it is let go; it is 20 mm
+   on the chamfer: there is a gap toward the tip of the nose. The owner checked the play of the link at its
+   pins: it is too small to cause the gap, and the gap is there with no load. Probable cause,
+   not confirmed: the link reaches the end wall of the slot in the tablet-half piece before the
+   piece is on the stop. In the model that wall was 3° to 4° beyond the stop, which is 0.3 to
+   0.4 mm at the link, and the wall is a slanted overhang that starts at the bed. The piece does not stay on the stop when it is let go; it is 20 mm
    long, and its weight is in front of the stop. The case has the prop for this.
 
 Changes made in the model for the second plate:
@@ -76,3 +79,5 @@ Changes made in the model for the second plate:
 - Links in three thicknesses (4.8, 4.9, 5.0 mm) with pin holes of 3.1 mm, for the owner to choose.
 - 0.1 mm less clearance between a link and the end walls of its slot, and a longer hook on the
   snap.
+- The far end walls of the slots are 8° (tablet half) and 6° (keyboard half) beyond the position
+  of the stop, not 3°. The link is free for 7.5° beyond the stop in the model.

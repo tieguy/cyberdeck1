@@ -119,8 +119,8 @@ head, tighter links in three thicknesses to choose from, a filament axle for the
 higher click bumps.
 
 One point from the first plate is open: the tablet-half piece left a gap on the 45° stop. The
-tighter holes in the links are meant to close it. If the gap stays, the geometry of the stop
-needs a change; read `HINGE.md` first.
+probable cause is that the link met the end wall of its slot too early; the slots are longer
+now. If the gap stays, the geometry of the stop needs a change; read `HINGE.md` first.
 
 When the owner has chosen a link thickness, set `LINK_T` in `case02/case02.scad` to it.
 
