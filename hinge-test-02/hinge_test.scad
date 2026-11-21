@@ -9,7 +9,7 @@
 include <../case02/case02.scad>
 view = "none";       // draw nothing from case02.scad itself
 
-tpart = "plate";     // plate | assembly
+tpart = "plate";     // plate | k_piece | assembly
 ta = 0;  tw_ = 360;  // assembly: link angle and angle between the halves (0, 360 = closed)
 
 TEST_T = [4.8, 4.9, 5.0];   // thickness of the three test links
@@ -28,6 +28,7 @@ module hinge_plate() {
 }
 
 if (tpart == "plate") hinge_plate();
+else if (tpart == "k_piece") translate([0, RK, T_K]) k_piece();   // the K-half piece alone, to print again
 else {
     k_piece();
     posed(tw_, ta) t_piece();

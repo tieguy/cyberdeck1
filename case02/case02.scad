@@ -50,7 +50,7 @@ HG  = 0.25;       // half the gap between the inner faces of the closed case
 RK  = T_K / 2;  RT = T_T / 2;          // nose radius of each half
 A_K = [0, -RK];  B_T = [0, -RT];       // the pin of each half, in its own frame
 LINK_L = RK + RT + 2 * HG;             // distance between the pins
-LINK_R = 4;  LINK_T = 4.8;             // link: end radius, thickness
+LINK_R = 4;  LINK_T = 4.9;             // link: end radius, thickness. The owner chose 4.9 from 4.8, 4.9, 5.0 (2026-11-21).
 LINK_HOLE = 3.1;                       // pin hole in a link. It is smaller than PIN_D: less play at the stop.
 SLOT_W = 5;  SLOT_C = 0.15;            // slot for a link: width, clearance round the link
 LINK_X = [4.3, W - 4.3 - SLOT_W];      // where the slots start, along the hinge
@@ -69,10 +69,13 @@ function b_k(a) = A_K + LINK_L * dir_k(a);         // the T half's pin, K frame
 B_SEAT = A_K + SEAT_D * [-1, -1] / sqrt(2) + sqrt(LINK_L * LINK_L - SEAT_D * SEAT_D) * [-1, 1] / sqrt(2);
 A_ST = atan2(-(B_SEAT - A_K)[0], (B_SEAT - A_K)[1]);   // link angle in the stand
 B_ST = 360 - SCREEN - A_ST;                            // turn of the T half on the link, in the stand
-// Limits of the slots. The walls of the slots are the stops for the links when the case is
-// closed. At the other end of its travel a link must not reach a wall before the T half is on
-// the 45 degree stop: on the first test plate, with 3 degrees to spare, it did.
-A_MAX = A_ST + 6;  B_MAX = B_ST + 8;
+// Limits of the slots. The walls of the slots are the stops for the links.
+// Closed: each link lies against a wall in each half, so the halves cannot slide.
+// Stand: the far wall of the slot in the K half is the second half of the 45 degree stop.
+// The T half on the corner of the chamfer can lean back further only if the links turn on
+// (1.7 degrees of link for each degree of lean). So that wall meets the link exactly at A_ST,
+// with no clearance. With 3 and 6 degrees to spare, the test pieces leaned back.
+A_MAX = A_ST;  STOP_C = 0.02;  B_MAX = B_ST + 8;
 
 // ---- Prop ----
 SP    = 127.5;    // pivot: distance from the T half's pin, along the T half
@@ -124,7 +127,10 @@ module stadium(p, q, r) { hull() { translate(p) circle(r); translate(q) circle(r
 module k_nose_2d() { polygon(concat([[0.01, 0]], arc(A_K, RK, 90, 180), [[0.01, -T_K]])); }
 module t_nose_2d() { polygon(concat([[-0.01, 0]], arc(B_T, RT, 90, 0), [[-0.01, -T_T]])); }
 // Slots: what a link sweeps, in each half's frame. Their end walls are the stops.
-module k_slot_2d() { for (a = [0 : 3 : A_MAX + 2.9]) stadium(A_K, b_k(min(a, A_MAX)), LINK_R + SLOT_C); }
+module k_slot_2d() {
+    for (a = [0 : 3 : A_MAX - 3]) stadium(A_K, b_k(a), LINK_R + SLOT_C);
+    stadium(A_K, b_k(A_MAX), LINK_R + STOP_C);   // the far wall: a stop
+}
 module t_slot_2d() { for (b = [0 : 3 : B_MAX + 2.9]) let (bb = min(b, B_MAX))
     stadium(B_T, B_T + LINK_L * [sin(bb), cos(bb)], LINK_R + SLOT_C); }
 // Pin holes of one half, with the pin at c. Each pin goes in from its edge of the case.

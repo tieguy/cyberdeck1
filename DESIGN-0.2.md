@@ -34,7 +34,8 @@ From the owner, 2026-11-20:
   notches in the keyboard half.
 - **Back of the tablet half**: partly open, as a web.
 - **The angle**: the stop between the halves sets 45°. The prop only steadies the screen against
-  flex.
+  flex. The tests show that the stop is rough (about 2° for 0.1 mm of print error), so in
+  practice the prop sets the angle.
 - **Charging**: only with the case closed. A battery waits; battery life is fine with the
   keyboard on Bluetooth, and was bad with it on USB.
 - **Closing**: a printed snap, if a simple one is possible.
@@ -118,11 +119,10 @@ first plate (2026-11-21) and the changes that came from them: a recess with a fl
 head, tighter links in three thicknesses to choose from, a filament axle for the prop, and
 higher click bumps.
 
-One point from the first plate is open: the tablet-half piece left a gap on the 45° stop. The
-probable cause is that the link met the end wall of its slot too early; the slots are longer
-now. If the gap stays, the geometry of the stop needs a change; read `HINGE.md` first.
-
-When the owner has chosen a link thickness, set `LINK_T` in `case02/case02.scad` to it.
+One point is open: on both plates the tablet-half piece could lean back past the 45° stop. The
+far wall of the slot in the keyboard half is the stop for that, and it is now exactly at the
+stop position (`HINGE.md` has the geometry). Print `hinge-test-02/hinge_test_k_piece.stl` to
+test it. The hinge sets the angle only roughly; the prop sets it exactly.
 
 Not printed or tested in rev 0.2: the snap tongue, the web. No test piece covers the snap tongue.
 

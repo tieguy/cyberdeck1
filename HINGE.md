@@ -49,12 +49,15 @@ pin moves round the keyboard half. Two forms are in the list below.
 - A round on the bed side of a nose needs supports. A 45° chamfer from the outer face to the tip
   of the nose is the largest shape inside the circle that prints without them.
 - That chamfer on the keyboard half is also the 45° stop: the tablet half's flat back lies on it.
-  The links are then at 97° from their closed position, and they pull. The stop works on a lever
-  of about 8 mm (the distance from the links' line to the top of the chamfer), so play at the
-  pins shows as play in the screen angle. Not tested.
-- A link must not reach the far end wall of a slot before the tablet half is on the stop. Leave
-  several degrees: 3° was not enough on the first test plate (probable cause of a gap on the
-  stop, not confirmed).
+  The links are then at 97° from their closed position.
+- The chamfer is only half of the stop. With its back on the top corner of the chamfer, the
+  tablet half can lean back further if the links turn on about the keyboard half's pin: 1.7° of
+  link for each degree of lean (computed). The tablet's weight pushes it that way. The far wall
+  of the slot in the keyboard half stops the links, so that wall must meet the link exactly
+  when the tablet half is flat on the chamfer. Two test plates had the wall 3° and 6° too far,
+  and both pieces leaned back and left a gap at the tip of the nose.
+- That wall touches the link over about 2 mm, close to the pin, so 0.1 mm of error in the print
+  is about 2° of lean. The hinge alone sets the angle only roughly. The prop sets it exactly.
 - The hinge has two free angles, not one. The end walls of the slots for the links remove the
   spare one: closed, each link lies against a wall in each half, so the halves cannot slide.
 - In the stand the keyboard half has no hinge part below its inner face, so it has no front

@@ -7,6 +7,7 @@ from `../case02/case02.scad`.
 |---|---|
 | `hinge_test.scad` | The model. `tpart="assembly"` shows the piece put together. |
 | `hinge_test_plate.stl` | The print plate, 97 × 70 mm |
+| `hinge_test_k_piece.stl` | The keyboard-half piece alone, 30 × 38 mm |
 
 ## The plate
 
@@ -43,7 +44,20 @@ The piece has one link, so it twists more than the case, which has two.
 
 ### Second plate
 
-Not printed yet. It has the changes that are listed at the end of the first plate's results.
+Printed 2026-11-21. It has the changes that are listed at the end of the first plate's results.
+
+1. **Pins**: pass. The head goes in in one position only, the ribs hold, the head comes out
+   with a fingernail, and the recess is clear of the chamfer.
+2. **Links**: the owner chose the link with two holes, 4.9 mm. `LINK_T` in the model is 4.9.
+3. **Closed**: no slide. The pieces are parallel, 0.3 to 0.5 mm apart.
+4. **Stop**: the tablet-half piece can lie flat on the chamfer, but it can also lean back as on
+   the first plate. The owner saw that the place where the link meets the keyboard-half piece
+   was not low enough. Cause, from the geometry: the tablet-half piece can lean back on the top
+   corner of the chamfer if the link turns on, and the far wall of the slot in the keyboard
+   half, which stops the link, was 6° too far (3° on the first plate). The explanations given
+   before (play at the pins; the slot wall in the tablet half) were wrong. The model now has
+   that wall exactly at the position of the stop. `hinge_test_k_piece.stl` is the keyboard-half
+   piece alone, to print again; the other parts of the second plate fit it.
 
 ### First plate
 
@@ -66,10 +80,8 @@ pin head, and ribs at other angles. Its items were: print, pins, link, closed, s
 5. **Swing**: smooth, and the owner found the motion obvious.
 6. **Stop**: firm when it is settled, with no flex. But the tablet-half piece does not lie flat
    on the chamfer: there is a gap toward the tip of the nose. The owner checked the play of the link at its
-   pins: it is too small to cause the gap, and the gap is there with no load. Probable cause,
-   not confirmed: the link reaches the end wall of the slot in the tablet-half piece before the
-   piece is on the stop. In the model that wall was 3° to 4° beyond the stop, which is 0.3 to
-   0.4 mm at the link, and the wall is a slanted overhang that starts at the bed. The piece does not stay on the stop when it is let go; it is 20 mm
+   pins: it is too small to cause the gap, and the gap is there with no load. Cause: refer to
+   the second plate, item 4. The piece does not stay on the stop when it is let go; it is 20 mm
    long, and its weight is in front of the stop. The case has the prop for this.
 
 Changes made in the model for the second plate:
@@ -79,5 +91,6 @@ Changes made in the model for the second plate:
 - Links in three thicknesses (4.8, 4.9, 5.0 mm) with pin holes of 3.1 mm, for the owner to choose.
 - 0.1 mm less clearance between a link and the end walls of its slot, and a longer hook on the
   snap.
-- The far end walls of the slots are 8° (tablet half) and 6° (keyboard half) beyond the position
-  of the stop, not 3°. The link is free for 7.5° beyond the stop in the model.
+- The far end walls of the slots were moved to 8° (tablet half) and 6° (keyboard half) beyond
+  the position of the stop. This was a mistake for the keyboard half; refer to the second
+  plate, item 4.
