@@ -117,8 +117,11 @@ link, the play of the 45° stop, and whether the slot walls hold the closed halv
 
 Before you change the hinge, read `HINGE.md`.
 
-Not printed or tested in rev 0.2: the link hinge, the cone pivots of the prop, the snap tongue,
-the web. A small test piece for the pivots and the snap is also planned before any full print.
+Print the test piece in `prop-test-02/` too. It shows whether the cone pivots and the click
+bumps of the prop print free, and whether the click holds the stowed prop.
+
+Not printed or tested in rev 0.2: the link hinge, the cone pivots and the click of the prop, the
+snap tongue, the web. No test piece covers the snap tongue.
 
 ## Other ideas for this revision or later
 
