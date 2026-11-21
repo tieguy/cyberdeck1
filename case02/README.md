@@ -28,14 +28,21 @@ are for looking at, not for printing. GitHub shows each one in 3D.
   hold each pin in the nose beyond its link.
 - **Plug**: the tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about
   10 mm out of the closed case.
-- **Prop**: a U-shaped frame, 3 mm thick. Stowed, it lies in a slot in the back of the tablet
-  half, flush. It turns on two cone pivots, 150 mm from the hinge. Its two feet go into slots
-  through the floor of the keyboard half. There are slots for screen angles of 45°, 52° and 59°.
-- **Web**: the back of the tablet half, between the arms of the prop, is a grid of 4 mm bars
-  with 15 mm openings.
+- **Prop**: a solid panel, 118 × 100 mm and 3 mm thick, for a sticker or art. Stowed, it lies
+  flush in an opening in the back of the tablet half. It turns on two cone pivots, 127.5 mm from
+  the tablet half's pin; at the pivot, two ears reach the side walls. Two feet, 5 mm long, stand
+  out of its edge and go into slots through the floor of the keyboard half. There are slots for
+  screen angles of 45°, 52° and 59°. A notch in its edge, 20 mm wide, is for a finger.
+- **Ledges**: 10 mm of floor stays under each long edge of the tablet and 12 mm under its lower
+  edge, so the tablet has support on all sides when the prop is out.
+- **Web**: the back of the tablet half between the prop's pivot and the free edge is a grid of
+  4 mm bars with 15 mm openings.
 - **Snap**: a tongue in the lip on the keyboard half's free edge, with a bump that hooks over the
   edge of the tablet half's back.
-- **Edges**: 1.5 mm chamfers on the outer edges of both halves.
+- **Edges**: the outer edges of both halves are round, with a 1 mm radius: the edges of the inner
+  faces, the lip, and the ends of the noses. The vertical corners are round: 4 mm at the free
+  end, 3 mm and 2 mm at the noses. An edge on the print bed has a 45° chamfer in place of a
+  round: 1.5 mm on the long edges, 1 mm on the corners. The edges of the openings are square.
 - **Feet**: in the stand, the keyboard half lies on the round of its nose at the front, over the
   whole width, and on its lip at the back. The lip is 11 mm high, so the keyboard half slopes
   3.1° and the screen is at 48° from the table, not 45°.
@@ -84,5 +91,4 @@ slot and 0.2 mm at each side of it; 0.05 mm drawn between the two faces of the s
   the slots hold the closed halves in line well enough for the snap.
 - The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
   tablet half's free edge leads it over the bump.
-- Nothing holds the stowed prop in its slot.
-- The chamfers are on the long outer edges only. The corners are square.
+- Nothing holds the stowed prop in its opening.

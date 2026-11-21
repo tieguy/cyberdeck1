@@ -13,7 +13,7 @@ tpart = "plate";     // plate | assembly
 ta = 0;  tw_ = 360;  // assembly: link angle and angle between the halves (0, 360 = closed)
 
 WT = 30;  BODY = 30; // width of the slice, and length of the K half behind its pin
-BODY_T = 15.8;       // length of the T half behind its pin: it ends before the slot for the prop's bar
+BODY_T = 20;         // length of the T half behind its pin: it ends before the opening for the prop
 
 module k_piece() { intersection() { k_half(); translate([0, -RK - 1, -T_K - 1]) cube([WT, RK + 1 + BODY, T_K + 30]); } }
 module t_piece() { intersection() { t_half(); translate([0, -BODY_T, -T_T - 1]) cube([WT, BODY_T + RT + 1, T_T + 2]); } }

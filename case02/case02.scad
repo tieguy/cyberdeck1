@@ -6,12 +6,12 @@
 //     The halves start 3.5 mm behind the pins: no arms, tabs or tapers.
 //   - The bed side of each nose is a 45 degree chamfer, so no part needs supports.
 //   - In the stand, the flat back of the T half rests on the chamfer of the K half's nose.
-//   - The prop is a U-shaped frame. It lies in a slot in the back of the T half and
+//   - The prop is a solid panel. It lies in an opening in the back of the T half and
 //     prints there, in place, on two cone pivots. Its feet go into slots through the
 //     floor of the K half.
-//   - The back of the T half is a web, not a solid floor.
+//   - The back of the T half above the prop is a web, not a solid floor.
 //   - A snap tongue on the K half's lip holds the case shut.
-//   - The outer edges have chamfers.
+//   - The outer edges and corners are round, or have chamfers where they are on the bed.
 //
 // Frames: X is the hinge axis. K half: body at +Y, inner face at z = 0, material at
 // z < 0, nose toward -Y. T half, drawn flat: body at -Y, inner face at z = 0, nose toward
@@ -41,7 +41,9 @@ tpw = tw + 0.6;  tpd = th + 0.6;
 D_T = D_K - WALL - 0.4;  wb = D_T - tpd;  px0 = (W - tpw) / 2;
 OV = 2.5;                     // how far the lips cover the tablet's face
 USB_C = 19.5;  USB_HW = 11;   // USB-C port: from the tablet's corner to its middle; half cut-out
-EDGE = 1.5;                   // chamfer on the outer edges
+EDGE = 1.5;                   // chamfer on the long bed-side edges
+ER = 1;                       // round on the other outer edges (a 45 degree chamfer where the edge is on the bed)
+CR = 4;  CR_KN = 3;  CR_TN = 2;   // round on the vertical corners: free end, K nose, T nose
 
 // ---- Hinge ----
 HG  = 0.25;       // half the gap between the inner faces of the closed case
@@ -70,12 +72,17 @@ A_MAX = A_ST + 3;  B_MAX = B_ST + 3;
 
 // ---- Prop ----
 SP    = 127.5;    // pivot: distance from the T half's pin, along the T half
-TIP_S = 12;       // where the feet lie when the prop is stowed: behind the slots for the links
+TIP_S = 22;       // where the feet lie when the prop is stowed
 PL    = SP - TIP_S;           // length from the pivot to the tips of the feet
-AW    = 8;        // width of each arm
+FOOT_L = 5;       // the feet stand this far out of the panel's edge
+AW    = 8;        // width of each foot
 PZ    = -T_T + T_FLOOR / 2;   // height of the pivot axis, in the T half's frame
-ARM_X = [px0 + 0.4, W - px0 - 0.4 - AW];
-BAR_S = [TIP_S + 4.4, TIP_S + 12.4];   // the cross bar, behind the feet
+LEDGE = 10;       // floor that stays under each long edge of the tablet, beside the panel
+PX    = [px0 + LEDGE, W - px0 - LEDGE];        // the sides of the panel
+EAR_X = [px0 + 0.4, W - px0 - 0.4];            // at the pivot, ears reach the side walls
+EAR_L = 8;
+ARM_X = [PX[0], PX[1] - AW];                   // the feet
+NOTCH_R = 10;     // finger notch in the panel's edge
 ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
@@ -152,22 +159,52 @@ module chamfer_x(y0, dir, x0, x1, z0, c = EDGE) {   // edge along X at y = y0
 // ---- K half: keyboard tray ----
 SNAP_W = 20;  SNAP_T = 1.2;  SNAP_B = 1.2;     // snap tongue: width, thickness, bump
 SNAP_TOP = LIP_H - (T_T + 2 * HG + 0.15);      // the bump ends at the top of the lip; the chamfer on the T half's edge leads it in
+module plan(cs, d) { hull() for (c = cs) translate([c[0], c[1]]) circle(c[2] - d); }
+// The tool that rounds the edges: a half ball above, a cone below, so that an edge on the
+// bed gets a chamfer and needs no supports.
+module round_tool() { hull() { intersection() { sphere(ER, $fn = 16); translate([-2, -2, 0]) cube(4); }
+    translate([0, 0, -ER]) cylinder(r1 = 0.01, r2 = ER, h = ER, $fn = 16); } }
+// The outside of the K half, with round edges and corners. The half is cut to it.
+module k_env() {
+    y_end = E0 + D_K;
+    cs = [[CR_KN, -RK + CR_KN, CR_KN], [W - CR_KN, -RK + CR_KN, CR_KN], [CR, y_end - CR, CR], [W - CR, y_end - CR, CR]];
+    minkowski() {
+        intersection() {
+            yz(ER, W - ER) offset(delta = -ER) union() { k_nose_2d(); translate([0, -T_K]) square([y_end, T_K]); }
+            translate([0, 0, -50]) linear_extrude(100) plan(cs, ER);
+        }
+        round_tool();
+    }
+    minkowski() {   // lip
+        intersection() {
+            translate([ER, y_end - WALL + ER, -3]) cube([W - 2 * ER, WALL - 2 * ER, LIP_H + 3 - ER]);
+            translate([0, 0, -50]) linear_extrude(100) plan(cs, ER);
+        }
+        round_tool();
+    }
+    // the snap tongue keeps its square top, for the bump
+    translate([W / 2 - SNAP_W / 2 - 1, y_end - WALL - 2, 5]) cube([SNAP_W + 2, WALL + 2, LIP_H]);
+}
 module k_half() {
     y_end = E0 + D_K;
     crush_ribs(A_K);
+    // snap bump on the tongue: it hooks over the edge of the T half's back
+    translate([W / 2 - SNAP_W / 2 + 0.6, y_end - WALL, T_T + 2 * HG + 0.15]) rotate([90, 0, 90])
+        linear_extrude(SNAP_W - 1.2) polygon([[0.01, 0], [-SNAP_B, 0.6], [-SNAP_B, SNAP_TOP], [0.01, SNAP_TOP]]);
+    intersection() { k_env(); k_raw(); }
+}
+module k_raw() {
+    y_end = E0 + D_K;
     difference() {
         union() {
             translate([0, 0, -T_K]) cube([W, y_end, T_K]);
             yz(0, W) k_nose_2d();
             translate([0, y_end - WALL, -0.01]) cube([W, WALL, LIP_H + 0.01]);       // lip, rear foot
-            // snap bump on the tongue: it hooks over the edge of the T half's back
-            translate([W / 2 - SNAP_W / 2 + 0.6, y_end - WALL, T_T + 2 * HG + 0.15]) rotate([90, 0, 90])
-                linear_extrude(SNAP_W - 1.2) polygon([[0.01, 0], [-SNAP_B, 0.6], [-SNAP_B, SNAP_TOP], [0.01, SNAP_TOP]]);
         }
         translate([WALL, E0 + WALL, -KPD]) cube([kpw, kpd, KPD + 1]);                // pocket
         pin_holes(A_K);
         for (x = LINK_X) yz(x, x + SLOT_W) k_slot_2d();
-        // comfortable edges
+        // long edges on the bed
         chamfer_y(0, 1, -RK, y_end, -T_K);  chamfer_y(W, -1, -RK, y_end, -T_K);
         chamfer_x(y_end, -1, 0, W, -T_K);
         // finger notches in the side walls, to lift the keyboard out
@@ -184,8 +221,19 @@ module k_half() {
 
 // ---- T half: tablet holder. Drawn flat, on the -Y side. ----
 WEB_BAR = 4;  WEB_CELL = 15;
-module t_half() {
-    crush_ribs(B_T);
+module t_env() {
+    y_free = -E0 - D_T;
+    cs = [[CR_TN, RT - CR_TN, CR_TN], [W - CR_TN, RT - CR_TN, CR_TN], [CR, y_free + CR, CR], [W - CR, y_free + CR, CR]];
+    minkowski() {
+        intersection() {
+            yz(ER, W - ER) offset(delta = -ER) union() { t_nose_2d(); translate([y_free, -T_T]) square([-y_free, T_T]); }
+            translate([0, 0, -50]) linear_extrude(100) plan(cs, ER);
+        }
+        round_tool();
+    }
+}
+module t_half() { crush_ribs(B_T);  intersection() { t_env(); t_raw(); } }
+module t_raw() {
     y_free = -E0 - D_T;  y_low = -E0 - wb;  z_floor = -T_T + T_FLOOR;
     usb_x0 = px0 + tpw - 0.3 - USB_C - USB_HW;
     difference() {
@@ -199,8 +247,8 @@ module t_half() {
         translate([usb_x0, y_low - OV - 0.01, z_floor]) cube([2 * USB_HW, wb + OV + E0 + RT + 1, T_T]);   // plug: through the nose
         pin_holes(B_T);
         prop_slot();
-        // web: square holes in the floor, between the prop's arms
-        wx0 = ARM_X[0] + AW + 7;  wx1 = ARM_X[1] - 7;  wy0 = y_free + 10;  wy1 = -BAR_S[1] - 7;
+        // web: square holes in the floor, between the prop's pivot and the free edge
+        wx0 = px0 + 10;  wx1 = W - px0 - 10;  wy0 = y_free + 10;  wy1 = -SP - 8;
         nx = floor((wx1 - wx0 + WEB_BAR) / (WEB_CELL + WEB_BAR));
         ny = floor((wy1 - wy0 + WEB_BAR) / (WEB_CELL + WEB_BAR));
         ox = (wx1 - wx0 - nx * WEB_CELL - (nx - 1) * WEB_BAR) / 2;
@@ -208,33 +256,38 @@ module t_half() {
         for (i = [0 : nx - 1], j = [0 : ny - 1])
             translate([wx0 + ox + i * (WEB_CELL + WEB_BAR), wy0 + oy + j * (WEB_CELL + WEB_BAR), -T_T - 1])
                 cube([WEB_CELL, WEB_CELL, T_FLOOR + 2]);
-        // comfortable edges
+        // long edges on the bed
         chamfer_y(0, 1, y_free, RT, -T_T);  chamfer_y(W, -1, y_free, RT, -T_T);
         chamfer_x(y_free, 1, 0, W, -T_T);
     }
 }
 
-// ---- Prop: a U-shaped frame, drawn stowed in the T half's frame ----
-GAPP = 0.4;   // gap round the prop in its slot
+// ---- Prop: a solid panel, drawn stowed in the T half's frame ----
+GAPP = 0.4;   // gap round the prop in its opening
+// The outline of the prop, seen from the back, grown by d.
+module prop_2d(d) {
+    y_edge = -TIP_S - FOOT_L;
+    translate([PX[0] - d, -SP - d]) square([PX[1] - PX[0] + 2 * d, SP + y_edge + 2 * d]);          // panel
+    for (x = ARM_X) translate([x - d, y_edge - d]) square([AW + 2 * d, FOOT_L + 2 * d]);           // feet
+    translate([EAR_X[0] - d, -SP - d]) square([EAR_X[1] - EAR_X[0] + 2 * d, EAR_L + 2 * d]);       // ears
+}
 module prop() {
-    for (x = ARM_X) {
-        translate([x, -SP, -T_T]) cube([AW, PL, T_FLOOR]);
-        x_cyl([-SP, PZ], T_FLOOR / 2, x, x + AW);                         // round end at the pivot
+    translate([0, 0, -T_T]) linear_extrude(T_FLOOR) difference() {
+        prop_2d(0);
+        translate([W / 2, -TIP_S - FOOT_L]) circle(NOTCH_R);                                       // finger notch
     }
-    translate([ARM_X[0], -BAR_S[1], -T_T]) cube([ARM_X[1] + AW - ARM_X[0], BAR_S[1] - BAR_S[0], T_FLOOR]);
+    x_cyl([-SP, PZ], T_FLOOR / 2, EAR_X[0], EAR_X[1]);                    // round end at the pivot
     // cone pivots, pointing outward into the T half
-    translate([ARM_X[0], -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
-    translate([ARM_X[1] + AW, -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
+    translate([EAR_X[0], -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
+    translate([EAR_X[1], -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
 }
 module prop_slot() {
-    z1 = T_FLOOR + GAPP;   // the slot is a little higher than the prop, where the lower wall is above it
-    for (x = ARM_X) translate([x - GAPP, -SP - T_FLOOR / 2 - GAPP, -T_T - 1])
-        cube([AW + 2 * GAPP, PL + T_FLOOR / 2 + 2 * GAPP, z1 + 1]);
-    translate([ARM_X[0], -BAR_S[1] - GAPP, -T_T - 1])
-        cube([ARM_X[1] + AW - ARM_X[0], BAR_S[1] - BAR_S[0] + 2 * GAPP, z1 + 1]);
+    z1 = T_FLOOR + GAPP;   // the opening is a little higher than the prop
+    translate([0, 0, -T_T - 1]) linear_extrude(z1 + 1) prop_2d(GAPP);
+    translate([EAR_X[0] - GAPP, -SP - T_FLOOR / 2 - GAPP, -T_T - 1]) cube([EAR_X[1] - EAR_X[0] + 2 * GAPP, T_FLOOR, z1 + 1]);
     // sockets for the cone pivots
-    translate([ARM_X[0] - GAPP + 0.01, -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
-    translate([ARM_X[1] + AW + GAPP - 0.01, -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
+    translate([EAR_X[0] - GAPP + 0.01, -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
+    translate([EAR_X[1] + GAPP - 0.01, -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
 }
 module prop_at(turn) { translate([0, -SP, PZ]) rotate([turn, 0, 0]) translate([0, SP, -PZ]) prop(); }
 

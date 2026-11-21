@@ -30,7 +30,7 @@ From the owner, 2026-11-20:
   it does not move.
 - **The lip on the keyboard half's free edge, and the snap, can change or go** if that makes the
   stand more steady.
-- **Prop**: a U-shaped frame on an axle in the tablet half, stowed in its back, with the position
+- **Prop**: a mostly solid panel, for a sticker or art (2026-11-20), on an axle in the tablet half, stowed in its back, with the position
   notches in the keyboard half.
 - **Back of the tablet half**: partly open, as a web.
 - **The angle**: the stop between the halves sets 45°. The prop only steadies the screen against
@@ -38,7 +38,7 @@ From the owner, 2026-11-20:
 - **Charging**: only with the case closed. A battery waits; battery life is fine with the
   keyboard on Bluetooth, and was bad with it on USB.
 - **Closing**: a printed snap, if a simple one is possible.
-- **Edges**: comfortable to hold. This is in rev 0.2.
+- **Edges**: comfortable to hold. All outer edges and corners are round (2026-11-20).
 - **The lower lip stays.** The owner will look into the strings.
 - **Pin**: printed. A bought rod is a nuisance.
 - **Supports**: the owner found the supports of rev 0.1 hard to remove. Rev 0.2 avoids them.
@@ -71,21 +71,29 @@ barrel "was the best idea we had at the time".
 
 ### Prop
 
-- The prop is 3 mm thick, the thickness of the tablet half's floor. Stowed, it lies in a slot
-  in that floor, flush with the back, with its feet toward the hinge.
-- It prints in place in the tablet half. Its axle is two cone pivots that reach into the tablet
-  half, 127.5 mm from the tablet half's pin. Print-in-place needs no second material: the parts print in one
-  job with a small gap between them, and the cones need no supports.
-- Its two feet go into slots through the floor of the keyboard half. There are slots for screen
-  angles of 45°, 52° and 59°.
+- The prop is a solid panel, 118 × 100 mm, so that it can carry a sticker or art. It is 3 mm
+  thick, the thickness of the tablet half's floor. Stowed, it lies in an opening in that floor,
+  flush with the back, with its feet toward the hinge.
+- Floor stays under the edges of the tablet beside the panel: 10 mm at each long edge and 12 mm
+  at the lower edge. With no floor there, a press on the screen pushes the tablet out of the
+  back when the prop is out.
+- It prints in place in the tablet half. Its axle is two cone pivots, 127.5 mm from the tablet
+  half's pin. At the pivot the panel has two ears that reach the side walls, because the 3 mm
+  floor is too thin for the sockets. Print-in-place needs no second material: the parts print in
+  one job with a small gap between them, and the cones need no supports.
+- Two feet, 5 mm long, stand out of the panel's edge and go into slots through the floor of the
+  keyboard half. There are slots for screen angles of 45°, 52° and 59°.
+- A notch in the panel's edge, 20 mm wide, lets a finger pull the panel out.
 
 ### Back, snap and edges
 
-- The floor behind the tablet is a grid of 4 mm bars with 15 mm openings, between the arms of
-  the prop.
+- The floor between the prop's pivot and the free edge is a grid of 4 mm bars with 15 mm
+  openings.
 - The snap is a tongue cut into the lip on the keyboard half's free edge, with a bump that hooks
   over the edge of the tablet half's back.
-- The long outer edges of both halves have 1.5 mm chamfers.
+- The outer edges and the vertical corners of both halves are round. An edge on the print bed
+  has a 45° chamfer in place of a round, so that it needs no supports. The edges of the openings
+  (finger notches, web, slots, the USB-C cut-out) are square. `case02/README.md` gives the sizes.
 
 ## Open questions
 
@@ -95,8 +103,8 @@ barrel "was the best idea we had at the time".
 
 - Do the cone pivots of the prop print free? A small test piece can show it.
 - Does the snap hold, and does it release without too much force?
-- Something to hold the stowed prop in its slot.
-- Rounded corners, and how far to take the chamfers.
+- Something to hold the stowed prop in its opening.
+- Is the finger notch enough to pull the stowed prop out?
 
 ## Next step
 
