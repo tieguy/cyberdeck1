@@ -16,13 +16,15 @@ A 3D-printed case for a portable writing setup made of three parts:
 ## Status
 
 Rev 0.1 is complete: printed and assembled (2026-11-20). It holds the tablet in portrait. Its
-results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files. Rev 0.2 is in design. The hinge test piece (`hinge-test/`) and the fit test (`fit-test/`) are printed; their results
+results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files. Rev 0.2 is in design: a first model is in `case02/`, and the next step is a more elegant hinge
+(`DESIGN-0.2.md`, section "Next step"). The hinge test piece (`hinge-test/`) and the fit test (`fit-test/`) are printed; their results
 are in their READMEs.
 
 ## Files
 
 | File | Contents |
 |---|---|
+| `HINGE.md` | What is known about the hinge: the geometry it must obey, and the hinges tried |
 | `PARTS.md` | Dimensions and other facts about the tablet, the keyboard and the battery candidates |
 | `DESIGN-0.1.md` | The design of rev 0.1: layout, hinge, tablet holder, decisions and open questions |
 | `DESIGN-0.2.md` | The design of rev 0.2, in progress: what it must fix, proposals and ideas |

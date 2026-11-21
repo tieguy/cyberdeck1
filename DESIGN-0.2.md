@@ -88,6 +88,28 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 - Something to hold the stowed prop in its slot.
 - Rounded corners, and how far to take the chamfers.
 
+## Next step
+
+Make the hinge more elegant. The owner asked for this on 2026-11-20, after the model in `case02/`
+had the barrel hinge with the keyboard half's segments at its edges. The owner has not said yet
+what is wrong with the look of that hinge; ask first.
+
+Before you draw a hinge, read `HINGE.md`. It holds the rule that makes every hinge about 26 mm
+long, the facts from the test prints, the hinges already tried, and what the owner has said about
+the look.
+
+Things that are not settled and bear on the hinge:
+
+- The barrel's size. The model has 22 mm, as a reading of "similar to the thickness of the whole
+  work".
+- The tabs and notches. They replace the tapers of rev 0.1 so that no part needs supports. The
+  owner liked the pointed, tapered profile of rev 0.1 and disliked removing its supports.
+- The screen angle. 45° is the owner's estimate. A steeper screen shortens the hinge.
+
+Not printed or tested in rev 0.2: the 6 mm pin, the 45° chamfer stop, the cone pivots of the prop,
+the snap tongue, the web. A small test piece for the pivots and the snap is the planned print
+before any full print.
+
 ## Other ideas for this revision or later
 
 - Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. The tablet
