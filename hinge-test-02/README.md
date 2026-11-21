@@ -11,36 +11,43 @@ from `../case02/case02.scad`.
 ## The plate
 
 - The keyboard-half piece and the tablet-half piece, each with its outer face on the bed.
-- Three links and three pins. One link and two pins are needed; the others are spares.
+- Three links, 4.8, 4.9 and 5.0 mm thick, with one, two and three small holes as marks. The
+  slot is 5.0 mm wide. One link is needed.
+- Three pins. Two are needed.
 
 No part needs supports. The plate is not checked in a slicer.
 
 ## How to put it together
 
 1. Put a link in the slot of the keyboard-half piece. Push a pin in from the edge, through the
-   link, until its head is in its recess.
+   link, with the flat of its head toward the outer face (the face that was on the bed). The
+   recess lets the head in only in that position.
 2. Put the other end of the link in the slot of the tablet-half piece, and push the second pin in.
 
 ## What to look for, and what to report
 
-1. **Print**: do the chamfers under the noses and the slanted wall of the slot in the tablet-half
-   piece print clean, with no supports?
-2. **Pins**: does each pin go in by hand, and do the crush ribs hold it? Can you pull it out by
-   its head? The ribs are 3.5 mm long; the ribs of the rev 0.1 test were longer.
-3. **Link**: does the link turn freely on both pins?
-4. **Closed**: put the inner faces together. How far can one piece slide along the other? The
-   slot walls must stop it; the snap of the case needs less than about 1 mm.
-5. **Swing**: turn the tablet-half piece over the hinge, then the link down, then the tablet-half
-   piece onto the chamfer of the other nose. Does anything rub or catch?
-6. **Stop**: with the keyboard-half piece flat on the table, inner face down, press the
-   tablet-half piece back onto the chamfer. Is it at about 45°? How many degrees does it rock?
+1. **Pins**: does the head go into its recess in one position only? Do the ribs hold the pin in
+   that position? Can you pull it out by its head, which stands 1 mm out?
+2. **Links**: try each of the three links. Which thickness gives the feel that you want: a
+   little friction, and no play from side to side? Are the 3.1 mm holes free on the pins?
+3. **Closed**: put the inner faces together. How far can one piece slide along the other? It
+   was 1 mm at most on the first plate; the snap of the case needs less.
+4. **Stop**: with the keyboard-half piece flat on the table, inner face down, press the
+   tablet-half piece back onto the chamfer. Is the gap toward the tip of the nose gone?
+5. **Swing**: is it still smooth with the link that you chose?
 
 The piece has one link, so it twists more than the case, which has two.
 
 ## Results
 
-Printed 2026-11-21, on the plate in `../test-plate-02/`. The numbers are the items of "What to
-look for".
+### Second plate
+
+Not printed yet. It has the changes that are listed at the end of the first plate's results.
+
+### First plate
+
+Printed 2026-11-21. That plate had links 4.6 mm thick with 3.3 mm holes, a round recess for the
+pin head, and ribs at other angles. Its items were: print, pins, link, closed, swing, stop.
 
 1. **Print**: the chamfers and the slanted slot wall are clean, with one very small string. The
    recess for the pin head in the tablet-half piece breaks into the chamfer under the nose. This
@@ -62,7 +69,7 @@ look for".
    before the link pulls. The piece does not stay on the stop when it is let go; it is 20 mm
    long, and its weight is in front of the stop. The case has the prop for this.
 
-Changes that follow, for the model and the next test plate:
+Changes made in the model for the second plate:
 
 - A recess for the pin head with a flat, so that a pin goes in only in the position where all
   three ribs hold it, and the recess stays clear of the chamfer. A head that stands 1 mm out.

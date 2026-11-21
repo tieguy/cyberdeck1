@@ -25,17 +25,18 @@ are for looking at, not for printing. GitHub shows each one in 3D.
 - **Slots**: the end walls of the slots stop the links. They hold the closed halves in line, and
   they hold the links in the stand when the screen is steeper than 45°.
 - **Pins**: four, each 13 mm long with a head, pushed in from the edges of the case. Crush ribs
-  hold each pin in the nose beyond its link.
+  hold each pin in the nose beyond its link. The head and its recess have a flat, so a pin goes
+  in only in the position where all three ribs hold it. The head stands 1 mm out.
 - **Plug**: the tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about
   10 mm out of the closed case.
 - **Prop**: a solid panel, 118 × 100 mm and 3 mm thick, for a sticker or art. Stowed, it lies
-  flush in an opening in the back of the tablet half. It turns on two cone pivots, 127.5 mm from
-  the tablet half's pin; at the pivot, two ears reach the side walls. Two feet, 5 mm long, stand
+  flush in an opening in the back of the tablet half. Its axle is two pieces of 1.75 mm filament, pushed in from the edges of the case, 127.5 mm
+  from the tablet half's pin; at the axle, two ears reach the side walls. Two feet, 5 mm long, stand
   out of its edge and go into slots through the floor of the keyboard half. There are slots for
   screen angles of 45°, 52° and 59°. A notch in its edge, 20 mm wide, is for a finger.
-- **Click**: a bump on the outer side of each foot, 0.7 mm high, sits in a dimple in the wall of
+- **Click**: a bump on the outer side of each foot, 0.9 mm high, sits in a dimple in the wall of
   the opening and holds the stowed prop. A slit beside each bump makes that side of the foot a
-  spring, 1.2 mm thick and 7 mm long. The bump must pass 0.3 mm of wall to come out.
+  spring, 1.2 mm thick and 9 mm long. The bump must pass 0.5 mm of wall to come out.
 - **Ledges**: 10 mm of floor stays under each long edge of the tablet and 12 mm under its lower
   edge, so the tablet has support on all sides when the prop is out.
 - **Web**: the back of the tablet half between the prop's pivot and the free edge is a grid of
@@ -81,18 +82,17 @@ All pass (2026-11-20). `x_swing` at 35/-1 and `x_link` at 360/30 are not empty, 
 the checks find a collision.
 
 Gaps where parts pass each other: 0.5 mm between the noses at every angle, and between the
-tablet half's back and the keyboard half's nose while the links turn; 0.25 mm round a link in its
-slot and 0.2 mm at each side of it; 0.05 mm drawn between the two faces of the stop.
+tablet half's back and the keyboard half's nose while the links turn; 0.15 mm round a link in its
+slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the stop.
 
 ## Not done yet
 
 - No print files. No part is checked in a slicer.
-- The prop prints in place in the tablet half, with gaps of 0.4 mm round it and 0.3 mm round
-  its cone pivots. This is not tested: the pivots can fuse, or be loose.
+- The filament axle of the prop is not tested.
 - The hinge is not tested: the 13 mm pins and their crush ribs, the links, the play of the stop
   (each pin has 0.2 mm of clearance, and the stop works on a lever of about 8 mm), and whether
   the slots hold the closed halves in line well enough for the snap.
 - The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
   tablet half's free edge leads it over the bump.
-- The click that holds the stowed prop is not tested: it can be too weak or too stiff, and the
-  bump prints with a gap of 0.3 mm round it, so it can fuse to its dimple.
+- The click that holds the stowed prop was weak with bumps 0.7 mm high. With bumps 0.9 mm high
+  it is not tested.

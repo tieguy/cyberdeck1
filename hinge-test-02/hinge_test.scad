@@ -12,6 +12,7 @@ view = "none";       // draw nothing from case02.scad itself
 tpart = "plate";     // plate | assembly
 ta = 0;  tw_ = 360;  // assembly: link angle and angle between the halves (0, 360 = closed)
 
+TEST_T = [4.8, 4.9, 5.0];   // thickness of the three test links
 WT = 30;  BODY = 30; // width of the slice, and length of the K half behind its pin
 BODY_T = 20;         // length of the T half behind its pin: it ends before the opening for the prop
 
@@ -21,7 +22,8 @@ module t_piece() { intersection() { t_half(); translate([0, -BODY_T, -T_T - 1]) 
 module hinge_plate() {
     translate([0, RK, T_K]) k_piece();
     translate([WT + 8, BODY_T, T_T]) t_piece();
-    for (i = [0, 1, 2]) translate([2 * WT + 16 + LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link();   // one spare
+    // three links to choose from: 1, 2 or 3 small holes mark the thickness
+    for (i = [0, 1, 2]) translate([2 * WT + 16 + LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link(TEST_T[i], i + 1);
     for (i = [0, 1, 2]) translate([2 * WT + 16 + HEAD_T, 3 * (2 * LINK_R + 6) + 3 + i * (HEAD_D + 6), 0]) pin_part();   // one spare
 }
 

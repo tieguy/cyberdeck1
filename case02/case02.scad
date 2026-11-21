@@ -7,7 +7,7 @@
 //   - The bed side of each nose is a 45 degree chamfer, so no part needs supports.
 //   - In the stand, the flat back of the T half rests on the chamfer of the K half's nose.
 //   - The prop is a solid panel. It lies in an opening in the back of the T half and
-//     prints there, in place, on two cone pivots. Its feet go into slots through the
+//     prints there, in place. Its axle is two pieces of filament. Its feet go into slots through the
 //     floor of the K half.
 //   - The back of the T half above the prop is a web, not a solid floor.
 //   - A snap tongue on the K half's lip holds the case shut.
@@ -50,12 +50,14 @@ HG  = 0.25;       // half the gap between the inner faces of the closed case
 RK  = T_K / 2;  RT = T_T / 2;          // nose radius of each half
 A_K = [0, -RK];  B_T = [0, -RT];       // the pin of each half, in its own frame
 LINK_L = RK + RT + 2 * HG;             // distance between the pins
-LINK_R = 4;  LINK_T = 4.6;             // link: end radius, thickness
-SLOT_W = 5;  SLOT_C = 0.25;            // slot for a link: width, clearance round the link
+LINK_R = 4;  LINK_T = 4.8;             // link: end radius, thickness
+LINK_HOLE = 3.1;                       // pin hole in a link. It is smaller than PIN_D: less play at the stop.
+SLOT_W = 5;  SLOT_C = 0.15;            // slot for a link: width, clearance round the link
 LINK_X = [4.3, W - 4.3 - SLOT_W];      // where the slots start, along the hinge
 PIN_D = 3.3;  PIN_DIA = 2.9;  RIB = 0.25;
 PIN_IN = 4.5;     // how far a pin goes into the nose beyond the slot
-HEAD_D = 5;  HEAD_T = 1.4;  HEAD_IN = 0.8;   // pin head, and how deep it sits in the edge
+HEAD_D = 5;  HEAD_T = 1.8;  HEAD_IN = 0.8;   // pin head, and how deep it sits in the edge
+PIN_FLAT = PIN_DIA / 2 - 0.6;   // the pin and its head have a flat, this far from the axis. It lies on the bed.
 E0  = 3.5;        // the bodies start this far behind the pins
 LIP_H = 11.25;    // lip on the K half's free edge. It is the rear foot of the stand.
 SEAT_C = 0.05;    // gap drawn between the two faces of the stop
@@ -79,15 +81,19 @@ AW    = 8;        // width of each foot
 PZ    = -T_T + T_FLOOR / 2;   // height of the pivot axis, in the T half's frame
 LEDGE = 10;       // floor that stays under each long edge of the tablet, beside the panel
 PX    = [px0 + LEDGE, W - px0 - LEDGE];        // the sides of the panel
-EAR_X = [px0 + 0.4, W - px0 - 0.4];            // at the pivot, ears reach the side walls
+EAR_GAP = 0.3;    // gap at the end of each ear: the side play of the prop
+EAR_X = [px0 + EAR_GAP, W - px0 - EAR_GAP];    // at the pivot, ears reach the side walls
+// Axle: a piece of 1.75 mm filament from each edge of the case, tight in the side wall and
+// free in the ear.
+AXLE_WALL = 1.9;  AXLE_EAR = 2.2;  AXLE_IN = 8;
 EAR_L = 8;
 ARM_X = [PX[0], PX[1] - AW];                   // the feet
 NOTCH_R = 10;     // finger notch in the panel's edge
 // Click that holds the stowed prop: a bump on the outer side of each foot, in a dimple in the
 // wall of the opening. A slit makes the side of the foot a spring.
-CLK_B = 0.7;  CLK_D = 1.0;    // radius of the bump, and of the dimple (same centre)
+CLK_B = 0.9;  CLK_D = 1.2;    // radius of the bump, and of the dimple (same centre)
 CLK_Y = -TIP_S - 1.5;         // where the bump is
-CLK_W = 1.2;  CLK_S = 0.8;  CLK_L = 7;   // spring: thickness, width of the slit, length
+CLK_W = 1.2;  CLK_S = 0.8;  CLK_L = 9;   // spring: thickness, width of the slit, length
 ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
@@ -124,24 +130,30 @@ module pin_holes(c) {
     for (i = [0, 1]) {
         x0 = i == 0 ? -1 : LINK_X[1] - PIN_IN;  x1 = i == 0 ? LINK_X[0] + SLOT_W + PIN_IN : W + 1;
         x_cyl(c, PIN_D / 2, x0, x1);
-        x_cyl(c, HEAD_D / 2 + 0.2, i == 0 ? -1 : W - HEAD_IN, i == 0 ? HEAD_IN : W + 1);
+        // The recess for the head has the head's flat, toward the outer face. A pin goes in in
+        // one position only: with its flat between two ribs, so that all three ribs hold it.
+        intersection() {
+            x_cyl(c, HEAD_D / 2 + 0.2, i == 0 ? -1 : W - HEAD_IN, i == 0 ? HEAD_IN : W + 1);
+            translate([-2, c[0] - HEAD_D, c[1] - PIN_FLAT - 0.2]) cube([W + 4, 2 * HEAD_D, HEAD_D]);
+        }
     }
 }
 module crush_ribs(c) {
-    for (i = [0, 1], a = [90, 210, 330]) translate([0, c[0], c[1]]) rotate([a, 0, 0])
+    for (i = [0, 1], a = [0, 120, 240]) translate([0, c[0], c[1]]) rotate([a, 0, 0])   // none at the flat
         translate([i == 0 ? LINK_X[0] + SLOT_W + 0.8 : LINK_X[1] - PIN_IN + 0.2, -0.3, PIN_D / 2 - RIB])
             cube([PIN_IN - 1, 0.6, RIB + 0.3]);
 }
-module link() {   // in its print frame: flat, pins along Z
-    linear_extrude(LINK_T) difference() {
+module link(t = LINK_T, marks = 0) {   // in its print frame: flat, pins along Z. Marks: small holes that tell test links apart.
+    linear_extrude(t) difference() {
         stadium([0, 0], [LINK_L, 0], LINK_R);
-        circle(d = PIN_D);  translate([LINK_L, 0]) circle(d = PIN_D);
+        circle(d = LINK_HOLE);  translate([LINK_L, 0]) circle(d = LINK_HOLE);
+        if (marks > 0) for (i = [0 : marks - 1]) translate([LINK_L / 2 + (i - (marks - 1) / 2) * 2.6, 0]) circle(d = 1.4, $fn = 12);
     }
 }
 module links_at(a) {   // in the K half's frame
     for (x = LINK_X) yz(x + (SLOT_W - LINK_T) / 2, x + (SLOT_W + LINK_T) / 2) difference() {
         stadium(A_K, b_k(a), LINK_R);
-        translate(A_K) circle(d = PIN_D);  translate(b_k(a)) circle(d = PIN_D);
+        translate(A_K) circle(d = LINK_HOLE);  translate(b_k(a)) circle(d = LINK_HOLE);
     }
 }
 
@@ -162,7 +174,7 @@ module chamfer_x(y0, dir, x0, x1, z0, c = EDGE) {   // edge along X at y = y0
 }
 
 // ---- K half: keyboard tray ----
-SNAP_W = 20;  SNAP_T = 1.2;  SNAP_B = 1.2;     // snap tongue: width, thickness, bump
+SNAP_W = 20;  SNAP_T = 1.2;  SNAP_B = 1.6;     // snap tongue: width, thickness, bump
 SNAP_TOP = LIP_H - (T_T + 2 * HG + 0.15);      // the bump ends at the top of the lip; the chamfer on the T half's edge leads it in
 module plan(cs, d) { hull() for (c = cs) translate([c[0], c[1]]) circle(c[2] - d); }
 // The tool that rounds the edges: a half ball above, a cone below, so that an edge on the
@@ -220,7 +232,7 @@ module k_raw() {
         translate([W / 2 - SNAP_W / 2, y_end - WALL + SNAP_T, -6]) cube([SNAP_W, WALL, LIP_H + 7]);
         // slots through the floor for the prop's feet
         for (a = ANGLES, x = ARM_X)
-            translate([x - 1.1, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 2.2, 8, K_FLOOR + 2]);   // wide enough for the click bumps
+            translate([x - 1.3, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 2.6, 8, K_FLOOR + 2]);   // wide enough for the click bumps
     }
 }
 
@@ -274,35 +286,36 @@ module prop_2d(d) {
     y_edge = -TIP_S - FOOT_L;
     translate([PX[0] - d, -SP - d]) square([PX[1] - PX[0] + 2 * d, SP + y_edge + 2 * d]);          // panel
     for (x = ARM_X) translate([x - d, y_edge - d]) square([AW + 2 * d, FOOT_L + 2 * d]);           // feet
-    translate([EAR_X[0] - d, -SP - d]) square([EAR_X[1] - EAR_X[0] + 2 * d, EAR_L + 2 * d]);       // ears
+    translate([EAR_X[0], -SP - d]) square([EAR_X[1] - EAR_X[0], EAR_L + 2 * d]);                   // ears
 }
-module prop() {
+module prop_body() {
     translate([0, 0, -T_T]) linear_extrude(T_FLOOR) difference() {
         prop_2d(0);
         translate([W / 2, -TIP_S - FOOT_L]) circle(NOTCH_R);                                       // finger notch
         for (x = [PX[0] + CLK_W, PX[1] - CLK_W - CLK_S]) translate([x, -TIP_S - CLK_L]) square([CLK_S, CLK_L + 1]);   // slits
     }
     for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_B, $fn = 20);       // click bumps
-    x_cyl([-SP, PZ], T_FLOOR / 2, EAR_X[0], EAR_X[1]);                    // round end at the pivot
-    // cone pivots, pointing outward into the T half
-    translate([EAR_X[0], -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
-    translate([EAR_X[1], -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.3, r2 = 0.3, h = 1.1, $fn = 24);
+}
+module prop() {
+    difference() {
+        union() { prop_body();  x_cyl([-SP, PZ], T_FLOOR / 2, EAR_X[0], EAR_X[1]); }   // round end at the pivot
+        for (x = [EAR_X[0] - 1, EAR_X[1] - AXLE_IN]) x_cyl([-SP, PZ], AXLE_EAR / 2, x, x + AXLE_IN + 1, $fn = 24);   // axle holes
+    }
 }
 module prop_slot() {
     z1 = T_FLOOR + GAPP;   // the opening is a little higher than the prop
     translate([0, 0, -T_T - 1]) linear_extrude(z1 + 1) prop_2d(GAPP);
-    translate([EAR_X[0] - GAPP, -SP - T_FLOOR / 2 - GAPP, -T_T - 1]) cube([EAR_X[1] - EAR_X[0] + 2 * GAPP, T_FLOOR, z1 + 1]);
+    translate([px0, -SP - T_FLOOR / 2 - GAPP, -T_T - 1]) cube([W - 2 * px0, T_FLOOR / 2 + EAR_L + 2 * GAPP, z1 + 1]);   // ears: the gap at their ends is EAR_GAP
     for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_D, $fn = 20);       // dimples for the click
-    // sockets for the cone pivots
-    translate([EAR_X[0] - GAPP + 0.01, -SP, PZ]) rotate([0, -90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
-    translate([EAR_X[1] + GAPP - 0.01, -SP, PZ]) rotate([0, 90, 0]) cylinder(r1 = 1.6, r2 = 0.6, h = 1.1, $fn = 24);
+    // axle holes through the side walls
+    x_cyl([-SP, PZ], AXLE_WALL / 2, -1, EAR_X[0], $fn = 24);  x_cyl([-SP, PZ], AXLE_WALL / 2, EAR_X[1], W + 1, $fn = 24);
 }
 module prop_at(turn) { translate([0, -SP, PZ]) rotate([turn, 0, 0]) translate([0, SP, -PZ]) prop(); }
 
 // ---- Pin, in its print frame. Four are needed. It lies on a flat. ----
 PIN_LEN = LINK_X[0] + SLOT_W + PIN_IN - 0.5;
 module pin_part() {
-    cut = PIN_DIA / 2 - 0.6;
+    cut = PIN_FLAT;
     translate([0, 0, cut]) difference() {
         union() {
             translate([-(HEAD_T - HEAD_IN), 0, 0]) rotate([0, 90, 0]) cylinder(d = HEAD_D, h = HEAD_T);

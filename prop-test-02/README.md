@@ -1,7 +1,6 @@
 # Prop test piece, rev 0.2
 
-A test of the two features of the prop that print in place: the cone pivots, and the click that
-holds the stowed prop. The piece is the four corners of the prop and of its opening, cut from
+A test of the prop's axle and of the click that holds the stowed prop. The piece is the four corners of the prop and of its opening, cut from
 the real tablet half (`../case02/case02.scad`) and moved together. The middle of the panel is
 left out.
 
@@ -11,35 +10,44 @@ left out.
 | `prop_test_plate.stl` | The print plate, 60 × 50 mm, about 12 cm³ |
 
 The plate is one job with two bodies: the frame, and the prop inside it. The prop lies on the
-bed, as in the case. No part needs supports. The gap round the prop is 0.4 mm, and 0.3 mm round
-the cone pivots and the click bumps. The plate is not checked in a slicer.
+bed, as in the case. No part needs supports. The gap round the prop is 0.4 mm, 0.3 mm at the
+ends of its ears and round the click bumps. The plate is not checked in a slicer.
+
+## How to put it together
+
+The prop needs an axle: two pieces of 1.75 mm filament, each about 12 mm long. Push one into
+the small hole in each side of the frame, at the end with the round bar, until it is flush. The
+hole is 1.9 mm in the frame, to hold the filament, and 2.2 mm in the prop, to turn on it.
 
 ## Differences from the case
 
 - The prop is 39 mm long from pivot to feet; in the case it is 105.5 mm. A pull at the feet has
-  the same effect on the click in both. The pivots carry less leverage here.
+  the same effect on the click in both. The axle carries less leverage here.
 - The prop is 30 mm wide; in the case it is 118.6 mm. The frame is stiffer across this width, so
   the click can feel a little harder here than in the case.
 - The finger notch is in the part that is left out. Push the prop out from the pocket side.
 
 ## What to look for, and what to report
 
-1. **Free or fused**: after the print, push the feet end of the prop out from the pocket side.
-   Does the prop come free, or is it fused at the pivots, at the click bumps, or along an edge?
-2. **Pivots**: does the prop turn freely to 90°? How much does it rattle from side to side? Does
-   it stay in its pivots when you pull on it?
-3. **Click**: push the prop back in. Do you feel a click at both feet? Does the prop stay in
-   when you shake the piece with the back down? How hard is it to push out: easy with one
-   finger, hard, or not possible without a tool?
-4. **Springs**: after ten clicks, are the two thin springs beside the feet whole, and are the
-   bumps still there?
-5. **The back**: is the prop flush with the back of the frame? Is the bed-side face clean round
-   the 0.4 mm gap?
+1. **Free or fused**: does the prop come free? The ends of its ears now have a gap of 0.3 mm.
+2. **Axle**: does the filament go into the frame by hand, and stay? Does the prop turn freely on
+   it? Does the prop stay in when you pull on it?
+3. **Click**: is the click clear at both feet? Does the prop stay in when you shake the piece
+   with the back down? Is it still easy enough to push out?
+4. **Springs**: after ten clicks, are the two thin springs beside the feet whole? They are 9 mm
+   long now, and they bend further.
+5. **The back**: is the stowed prop flush with the back of the frame?
 
 ## Results
 
-Printed 2026-11-21, on the plate in `../test-plate-02/`. The numbers are the items of "What to
-look for".
+### Second plate
+
+Not printed yet. It has the changes that are listed at the end of the first plate's results.
+
+### First plate
+
+Printed 2026-11-21. That plate had cone pivots, not an axle, and click bumps 0.7 mm high. Its
+items were: free or fused, pivots, click, springs, the back.
 
 1. **Free or fused**: the prop is very free. Nothing fused.
 2. **Pivots**: the prop turns freely, but it comes out of its pivots very easily. The owner saw
@@ -51,10 +59,10 @@ look for".
    dimple, and the prop has 0.4 mm of play to each side, so the prop can move until one bump is
    out of its dimple.
 4. **Springs**: no cracks after about ten clicks.
-5. **The back**: the stowed prop is about 0.25 mm below the back face of the frame. The cause is
-   not known. The gap round the prop is even everywhere.
+5. **The back**: the stowed prop is about 0.25 mm below the back face of the frame. The owner's
+   explanation: the play of the cone pivots, which was 0.3 mm. Not confirmed. The gap round the prop is even everywhere.
 
-Changes that follow, for the model and the next test plate:
+Changes made in the model for the second plate:
 
 - An axle in place of the cone pivots: a 2 mm hole through each side wall into the ear of the
   prop, for a piece of 1.75 mm filament.

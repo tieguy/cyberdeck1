@@ -40,7 +40,7 @@ From the owner, 2026-11-20:
 - **Closing**: a printed snap, if a simple one is possible.
 - **Edges**: comfortable to hold. All outer edges and corners are round (2026-11-20).
 - **The lower lip stays.** The owner will look into the strings.
-- **Pin**: printed. A bought rod is a nuisance.
+- **Pin**: printed. A bought rod is a nuisance. Filament is acceptable as the axle of the prop.
 - **Supports**: the owner found the supports of rev 0.1 hard to remove. Rev 0.2 avoids them.
 
 ## The design
@@ -77,16 +77,18 @@ barrel "was the best idea we had at the time".
 - Floor stays under the edges of the tablet beside the panel: 10 mm at each long edge and 12 mm
   at the lower edge. With no floor there, a press on the screen pushes the tablet out of the
   back when the prop is out.
-- It prints in place in the tablet half. Its axle is two cone pivots, 127.5 mm from the tablet
-  half's pin. At the pivot the panel has two ears that reach the side walls, because the 3 mm
-  floor is too thin for the sockets. Print-in-place needs no second material: the parts print in
-  one job with a small gap between them, and the cones need no supports.
+- It prints in place in the tablet half, with a small gap round it. Its axle is two pieces of
+  1.75 mm filament, 127.5 mm from the tablet half's pin, pushed in from the edges of the case
+  after the print. At the axle the panel has two ears that reach the side walls. The owner
+  accepted the filament axle for rev 0.2, and can glue the pieces in when the design works
+  (2026-11-21). Cone pivots that print in place do not hold in a floor of 3 mm; the first test
+  plate showed it.
 - Two feet, 5 mm long, stand out of the panel's edge and go into slots through the floor of the
   keyboard half. There are slots for screen angles of 45°, 52° and 59°.
 - A notch in the panel's edge, 20 mm wide, lets a finger pull the panel out.
 - A click holds the stowed panel: a bump on the outer side of each foot, in a dimple in the wall
-  of the opening. A slit beside each bump makes that side of the foot a spring. The cone pivots
-  cannot hold the panel, because they print with clearance and turn freely.
+  of the opening. A slit beside each bump makes that side of the foot a spring. The axle
+  cannot hold the panel, because the panel turns freely on it.
 
 ### Back, snap and edges
 
@@ -104,22 +106,23 @@ barrel "was the best idea we had at the time".
 - The slope of the stand. Ways to remove it: feet at the front corners of the keyboard half,
   which need notches in the corners of the tablet half; or a closure that needs no high lip.
 
-- Do the cone pivots of the prop print free? A small test piece can show it.
 - Does the snap hold, and does it release without too much force?
 - Does the click hold the stowed prop, and does it release without too much force?
 - Is the finger notch enough to pull the stowed prop out?
 
 ## Next step
 
-The first test plate is printed (2026-11-21). The results, and the changes that follow from
-them, are in `hinge-test-02/README.md` and `prop-test-02/README.md`. In short: the link hinge
-prints clean, moves well and has a firm stop, but its pins need one fixed position, its links
-are too loose, and the stop leaves a gap. The prop prints free, but its cone pivots do not hold
-it, and its click is weak.
+Print the second test plate, `test-plate-02/test_plate.stl`, and record the results in
+`hinge-test-02/README.md` and `prop-test-02/README.md`. Those files hold the results of the
+first plate (2026-11-21) and the changes that came from them: a recess with a flat for the pin
+head, tighter links in three thicknesses to choose from, a filament axle for the prop, and
+higher click bumps.
 
-Make those changes in `case02/case02.scad`, then print a second test plate.
+One point from the first plate is open: the tablet-half piece left a gap on the 45° stop. The
+tighter holes in the links are meant to close it. If the gap stays, the geometry of the stop
+needs a change; read `HINGE.md` first.
 
-Before you change the hinge, read `HINGE.md`.
+When the owner has chosen a link thickness, set `LINK_T` in `case02/case02.scad` to it.
 
 Not printed or tested in rev 0.2: the snap tongue, the web. No test piece covers the snap tongue.
 
