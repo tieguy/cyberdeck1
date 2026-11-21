@@ -129,9 +129,9 @@ Printed and assembled 2026-11-20. The owner's first notes:
 - All three lips over the tablet print with some strings, with no bevel on them. The owner
   accepts it. The bevel was not the cause, or not the only cause.
 - The stand is not stable. When the owner presses the screen, the tablet half sags toward the
-  corner with the slot for the USB-C plug. Probable cause, not confirmed: the hinge has no
-  knuckle on that side of the slot, and the slot cuts the tablet half's taper, so that corner of
-  the tablet half is not held to the pin.
+  corner with the slot for the USB-C plug. The cause, found by the owner: the keyboard half, which lies on the table, has its one hinge
+  knuckle in the middle. The knuckles are the front feet of the stand, so the keyboard half has
+  no foot at its front corners.
 - The bail helps a little when the screen is pressed, and no more. Probable cause, not confirmed: the tapers already hold the angle,
   and the bail's cross bar sits in its groove with clearance, on thin arms and short stubs, so it
   takes no load until the tablet half has already moved.

@@ -2,7 +2,7 @@
 //
 // Changes from rev 0.1 (refer to ../DESIGN-0.2.md):
 //   - The hinge is a barrel 22 mm across, close to the thickness of the closed case, on
-//     a 6 mm pin over the whole width.
+//     a 6 mm pin over the whole width. The K half has the segments at both edges.
 //   - No tapers. Each half reaches the barrel with full-thickness tabs, where the other
 //     half has notches. Nothing overhangs the print bed, so no part needs supports.
 //   - In the stand, the flat back of the T half rests on a 45 degree chamfer on the K half.
@@ -51,19 +51,22 @@ WS  = SCREEN - 0.3;
 E0  = ((T_T + HG) + (T_K + HG) * cos(WS)) / sin(WS) - CH;
 NT  = E0 + wb;    // in the K half's bands the T half is cut back to here, to pass the K half
 // Bands along the hinge, [start, length].
-T_BANDS = [[0, 28], [56.4, 27.6], [135.2, W - 135.2]];
-K_BANDS = [[28.4, 27.6], [84.4, 27.6]];
+// The K half lies on the table in the stand, and its barrel segments are its front feet. They
+// are at both edges and in the middle, so that it stands on its corners. In rev 0.1 the K half's
+// one knuckle was in the middle, and the stand sagged toward a corner when the screen was pressed.
+K_BANDS = [[0, 28], [56.4, 27.6], [135.2, W - 135.2]];
+T_BANDS = [[28.4, 27.6], [84.4, 27.6]];
 GAP     = [112.4, 22.4];   // no barrel here: room for the USB-C plug and its cable
 
 // ---- Prop ----
 SP    = 150;      // pivot: distance from the hinge axis, along the T half
-TIP_S = 30.6;     // where the feet lie when the prop is stowed
+TIP_S = 34.4;     // where the feet lie when the prop is stowed: inside the T half's cut-backs
 PL    = SP - TIP_S;           // length from the pivot to the tips of the feet
 AW    = 8;        // width of each arm
 PZ    = -T_T + T_FLOOR / 2;   // height of the pivot axis, in the T half's frame
 ARM_X = [px0 + 0.4, W - px0 - 0.4 - AW];
 BAR_S = [TIP_S + 4.4, TIP_S + 12.4];   // the cross bar, behind the feet
-ANGLES = [45, 55, 65];        // screen angles that have slots for the feet
+ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
 function rot(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
 function t_shift(wedge) = [0, HG] - rot([0, HG], 180 - wedge);

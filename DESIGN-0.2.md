@@ -7,9 +7,10 @@ results are in `DESIGN-0.1.md`. Part dimensions are in `PARTS.md`.
 
 From the owner's use of rev 0.1 (2026-11-20):
 
-1. **Stability.** When the owner presses the screen, the tablet half sags toward the corner with
-   the slot for the USB-C plug. A knuckle on the far side of that slot, or a much larger hinge,
-   is necessary.
+1. **Stability.** When the owner presses the screen, the stand sags toward the corner with the
+   slot for the USB-C plug. The owner found the cause: the half that lies on the table has its
+   hinge knuckle in the middle, not at its edges, so it has no foot at its front corners. The
+   half on the table must have its hinge at both edges.
 2. **The prop.** The bail of rev 0.1 helps a little when the screen is pressed, so a prop stays.
    But it needs a real hinge with an axle, and it must fold into the case when the case is
    closed, not lie proud on the outside.
@@ -46,8 +47,9 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 - The barrel is 22 mm across; the closed case is 25 mm thick. Its pin is 6 mm, over the whole
   width, in a hole that is closed at one end, with crush ribs in the keyboard half's segments.
   A 6 mm pin lies on the print bed on a wider flat than the 2.9 mm pin of rev 0.1.
-- The barrel has five segments: three on the tablet half, at both ends and in the middle, and
-  two on the keyboard half. One band, 22 mm wide, has no barrel. The USB-C plug goes there, and
+- The barrel has five segments: three on the keyboard half, at both edges and in the middle, and
+  two on the tablet half between them. The keyboard half lies on the table in the stand, and its
+  segments are its front feet, so it stands on its corners. One band, 22 mm wide, has no barrel. The USB-C plug goes there, and
   the cable leaves over the pin.
 - Rev 0.1 had tapers so that the halves could lie back to back at 45°. Rev 0.2 has none. Each
   half reaches its barrel segments with tabs of its full thickness, and the other half has a
@@ -66,7 +68,7 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
   half, 150 mm from the hinge. Print-in-place needs no second material: the parts print in one
   job with a small gap between them, and the cones need no supports.
 - Its two feet go into slots through the floor of the keyboard half. There are slots for screen
-  angles of 45°, 55° and 65°.
+  angles of 45°, 52° and 59°.
 - The main hinge cannot print in place: the two halves, laid open, are about 470 mm long, and the
   bed is 325 mm.
 
@@ -85,9 +87,6 @@ The model is in `case02/`. It follows the decisions as below. The owner has not 
 - Does the snap hold, and does it release without too much force?
 - Something to hold the stowed prop in its slot.
 - Rounded corners, and how far to take the chamfers.
-- The cause of the sag in rev 0.1. The owner pinched the corner with the USB-C slot and it did
-  not help, so the missing knuckle is not confirmed as the cause. Rev 0.2 has barrel segments on
-  both sides of the plug in any case.
 
 ## Other ideas for this revision or later
 
