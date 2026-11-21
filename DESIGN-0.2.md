@@ -1,7 +1,46 @@
-# Ideas for rev 0.2
+# Design of rev 0.2
 
-Rev 0.2 is not in design. This file collects the ideas that wait for it. Part dimensions are in
-`PARTS.md`.
+Rev 0.2 is in design. It starts from rev 0.1, which is printed and in use as a prototype; its
+results are in `DESIGN-0.1.md`. Part dimensions are in `PARTS.md`.
+
+## What rev 0.2 must fix
+
+From the owner's use of rev 0.1 (2026-11-20):
+
+1. **Stability.** When the owner presses the screen, the tablet half sags toward the corner with
+   the slot for the USB-C plug. A knuckle on the far side of that slot, or a much larger hinge,
+   is necessary.
+2. **The prop.** The bail of rev 0.1 helps a little when the screen is pressed, so a prop stays.
+   But it needs a real hinge with an axle, and it must fold into the case when the case is
+   closed, not lie proud on the outside.
+3. **A thinner, lighter back** behind the tablet, which prints faster. The prop can lie in that
+   back.
+
+Not a problem to fix now: all three lips over the tablet print with some strings. The owner
+accepts it.
+
+## Proposals, not decided
+
+### Hinge
+
+- Knuckles on both sides of the slot for the plug, so that both edges of the tablet half are
+  tied to a pin. The far side has a short pin of its own, because a pin across the slot is in
+  the way of the cable.
+- A larger hinge everywhere: thicker knuckles and a pin of about 5 mm. A thicker pin is stiffer
+  and lies better on the print bed than the 2.9 mm pin of rev 0.1, which came loose in printing.
+
+### Prop
+
+- The prop is a U-shaped frame that turns on an axle through the solid borders of the tablet
+  half, at the back.
+- The back of the tablet half is an open frame, not a solid floor. When the prop is stowed, it
+  lies in that frame, flush with the back.
+- The position notches move to the keyboard half: slots through its floor, which take the feet
+  of the prop. In the stand the keyboard half is upside down and empty, so the slots are free.
+  The slots print without supports, because they are holes in the face on the bed.
+- With the notches gone from the tablet half, its back needs no 3 mm floor.
+
+## Other ideas for this revision or later
 
 - Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. The tablet
   has magnets inside for the official case. Find their positions and polarity with a small magnet

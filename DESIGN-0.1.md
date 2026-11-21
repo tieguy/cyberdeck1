@@ -1,5 +1,8 @@
 # Design of rev 0.1
 
+Rev 0.1 is complete: it is printed and assembled (2026-11-20), and no more changes go into it. The
+git tag `rev-0.1` marks its files. Changes go into rev 0.2 (`DESIGN-0.2.md`).
+
 Rev 0.1 is the first prototype. Its purpose is to learn whether a case that folds into a stand is
 good to use at a cafe table. Part dimensions are in `PARTS.md`.
 
@@ -123,13 +126,13 @@ can be the same size. The folded keyboard is 13 mm thick.
 
 Printed and assembled 2026-11-20. The owner's first notes:
 
-- A lip over the tablet still prints as strings, with no bevel on it. The bevel was not the
-  cause, or not the only cause.
+- All three lips over the tablet print with some strings, with no bevel on them. The owner
+  accepts it. The bevel was not the cause, or not the only cause.
 - The stand is not stable. When the owner presses the screen, the tablet half sags toward the
   corner with the slot for the USB-C plug. Probable cause, not confirmed: the hinge has no
   knuckle on that side of the slot, and the slot cuts the tablet half's taper, so that corner of
   the tablet half is not held to the pin.
-- The bail does very little. Probable cause, not confirmed: the tapers already hold the angle,
+- The bail helps a little when the screen is pressed, and no more. Probable cause, not confirmed: the tapers already hold the angle,
   and the bail's cross bar sits in its groove with clearance, on thin arms and short stubs, so it
   takes no load until the tablet half has already moved.
 
