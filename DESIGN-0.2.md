@@ -143,8 +143,16 @@ Three small test plates were printed on 2026-11-21. Their results are in
 
 ## Results of the print
 
-The first full print started on 2026-11-21. No results are recorded yet. Record here what the
-owner reports, with the date, and mark each cause as confirmed or not confirmed.
+The first full print started on 2026-11-21. Record here what the owner reports, with the date,
+and mark each cause as confirmed or not confirmed.
+
+- **2026-11-21, `print/parts.stl`**: the small parts (links, hinge pins, axle pins) failed as
+  spaghetti. They were printed in one job with another plate, so short layers on a plate of
+  small parts alone are not the likely cause. The cause is not known. The owner will send a
+  picture when the rest of the job is done. Questions that are open: which parts failed, and
+  whether their first layers stayed on the bed. The same shapes printed well on the three test
+  plates; the changes since then are that the links have no marks and the axle pins are 0.6 mm
+  shorter.
 
 Not tested before this print, so look at these first:
 
