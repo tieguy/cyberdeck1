@@ -146,13 +146,21 @@ Three small test plates were printed on 2026-11-21. Their results are in
 The first full print started on 2026-11-21. Record here what the owner reports, with the date,
 and mark each cause as confirmed or not confirmed.
 
-- **2026-11-21, `print/parts.stl`**: the small parts (links, hinge pins, axle pins) failed as
-  spaghetti. They were printed in one job with another plate, so short layers on a plate of
-  small parts alone are not the likely cause. The cause is not known. The owner will send a
-  picture when the rest of the job is done. Questions that are open: which parts failed, and
-  whether their first layers stayed on the bed. The same shapes printed well on the three test
-  plates; the changes since then are that the links have no marks and the axle pins are 0.6 mm
-  shorter.
+- **2026-11-21, `print/parts.stl`**: the small parts failed in part. They were printed in one
+  job with the keyboard half, near an edge of a textured PEI plate. From the owner's picture:
+  - One link is off its place, a few layers thick, with strings where it was. It came off the
+    bed early.
+  - Two hinge pins of five and one axle pin of three are gone. Three hinge pins and two axle
+    pins are whole.
+  - Two links are in place but not finished: their infill shows. Why they stopped is not known
+    (the owner has not said whether those objects were skipped).
+  - Cause: parts came off the bed; this is seen for the link. Why they came off is not
+    confirmed. Short layers are not the likely cause, because the keyboard half was in the same
+    job. A link has about 150 mm² on the bed, more than a pin that printed whole, so the place
+    on the plate or the state of the plate is as likely as the shape of the parts.
+  - The same shapes printed well on the three test plates.
+  - What is left to print: one link. The whole pins from this plate and the pins and the 4.9 mm
+    link of the test plates make a full set. `case02/print/links.stl` has two links alone.
 
 Not tested before this print, so look at these first:
 

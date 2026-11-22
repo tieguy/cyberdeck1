@@ -104,6 +104,7 @@ slot and 0.05 mm at each side of it; 0.05 mm drawn between the two faces of the 
 | `print/k_half.stl` | The keyboard half, outer face on the bed | 1 h 57 min, 95 g |
 | `print/t_half.stl` | The tablet half, outer face on the bed, with the prop in place | 2 h 2 min, 78 g |
 | `print/parts.stl` | Three links, five hinge pins, three axle pins. Two, four and two are needed. | 8 min, 3 g |
+| `print/links.stl` | Two links alone, to print again | not sliced |
 
 The estimates are from PrusaSlicer with the converted H2D profile (`../../slicer/`), 0.2 mm
 layers, PLA, no supports (2026-11-21). They are not Bambu Studio times, and they do not include
@@ -111,6 +112,9 @@ the printer's start sequence. Each plate fits the reach of the right nozzle. Pru
 "consider enabling supports" for the tablet half. The cause is not checked; the faces that hang
 are the lips over the tablet, which printed clean with no supports in rev 0.1, and the small
 arches over the prop's knuckles, which are not tested at full size. Print with no supports.
+
+On the first print some small parts of `parts.stl` came off the bed (`../DESIGN-0.2.md`,
+"Results of the print"). Print the small parts with a brim, away from the edges of the plate.
 
 Assembly:
 

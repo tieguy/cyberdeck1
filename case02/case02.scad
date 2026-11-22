@@ -22,7 +22,7 @@
 //
 // Make a view:  openscad-nightly -D 'view="stand"' -o view.stl case02.scad
 
-view = "stand";   // stand | closed | k_half | t_half | parts | link | pin | axle_pin | x_* (checks)
+view = "stand";   // stand | closed | k_half | t_half | parts | links | link | pin | axle_pin | x_* (checks)
 
 $fn = 48;
 
@@ -450,6 +450,7 @@ else if (view == "t_half") translate([0, 0, T_T]) { t_half(); prop(); }
 else if (view == "link") link();
 else if (view == "pin") pin_part();
 else if (view == "axle_pin") axle_pin();
+else if (view == "links") for (i = [0, 1]) translate([LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link();   // two links alone, to print again
 else if (view == "web") web_2d(W - 2 * px0 - 20, -SP - 8 + E0 + D_T - 10);   // the pattern alone, in 2D
 // Print plates. The halves are the views k_half and t_half.
 else if (view == "parts") {   // two links, four hinge pins, two axle pins, and one spare of each
