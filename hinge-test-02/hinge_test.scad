@@ -27,8 +27,10 @@ module hinge_plate() {
     for (i = [0, 1, 2]) translate([2 * WT + 16 + HEAD_T, 3 * (2 * LINK_R + 6) + 3 + i * (HEAD_D + 6), 0]) pin_part();   // one spare
 }
 
+module k_plate() { translate([0, RK, T_K]) k_piece(); }   // the K-half piece alone, to print again
+
 if (tpart == "plate") hinge_plate();
-else if (tpart == "k_piece") translate([0, RK, T_K]) k_piece();   // the K-half piece alone, to print again
+else if (tpart == "k_piece") k_plate();
 else {
     k_piece();
     posed(tw_, ta) t_piece();
