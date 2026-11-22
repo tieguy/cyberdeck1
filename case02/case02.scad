@@ -253,7 +253,62 @@ module k_raw() {
 }
 
 // ---- T half: tablet holder. Drawn flat, on the -Y side. ----
-WEB_BAR = 4;  WEB_CELL = 15;
+WEB = "bubbles";   // the pattern of the web: bubbles | circles | fleur | grid
+WEB_BAR = 4;  WEB_CELL = 15;   // grid: width of the bars, size of the square holes
+// 37 bubbles in 118.6 x 57.3 mm, 52% open. Made by web_bubbles.py.
+BUBBLES = [
+    [25.3, 34.1, 10.6], [62.8, 23.7, 10.1], [15.9, 12.5, 8.9], [92.3, 13.8, 8.9],
+    [72.2, 46.7, 8.5], [48.5, 49.2, 7.1], [86.8, 31.8, 7.2], [105.4, 27.6, 7.5],
+    [99.6, 48.7, 6.8], [44.9, 7.6, 6.4], [7.0, 41.9, 6.6], [59.8, 5.4, 5.2],
+    [74.6, 9.2, 5.6], [41.7, 24.9, 5.0], [108.5, 11.1, 5.3], [32.0, 16.7, 5.2],
+    [112.8, 40.5, 5.0], [6.1, 27.5, 5.1], [30.9, 51.7, 5.0], [18.3, 51.2, 5.3],
+    [32.9, 4.5, 3.7], [51.6, 36.3, 3.8], [114.4, 51.8, 3.7], [86.4, 50.7, 3.9],
+    [41.8, 37.8, 3.7], [59.8, 39.9, 2.7], [3.7, 5.2, 2.9], [78.0, 21.1, 3.0],
+    [7.8, 53.6, 2.8], [74.6, 33.1, 2.8], [60.0, 54.2, 2.8], [83.1, 2.3, 2.1],
+    [115.4, 20.5, 2.1], [114.2, 2.8, 2.2], [48.8, 18.4, 2.1], [102.9, 2.6, 2.0],
+    [2.5, 14.8, 2.3],
+];
+
+// One fleur-de-lis, about 16 mm wide and 22 mm high, with its middle at the origin. It is one
+// hole: where its parts come close, they are joined, so that no piece of the floor is cut free.
+module lens(w, h) { r = (h * h / 4 + w * w / 4) / w;  intersection_for (s = [-1, 1]) translate([s * (r - w / 2), 0]) circle(r, $fn = 64); }
+module fleur_2d() { offset(r = -1.1) offset(r = 1.1) fleur_parts_2d(); }
+module fleur_parts_2d() {
+    translate([0, 3.5]) lens(5.6, 15);                                  // middle petal
+    for (s = [-1, 1]) scale([s, 1]) {
+        difference() {                                                  // side petal, curled out
+            translate([4.6, 2.2]) rotate(-28) lens(4.6, 13.5);
+            translate([8.6, 6.8]) circle(2.6, $fn = 32);
+        }
+        translate([6.6, -6.8]) rotate(40) lens(2.6, 6.5);               // tail at the side
+    }
+    translate([0, -3.6]) square([9.5, 1.7], center = true);             // band
+    translate([0, -8.2]) lens(3, 6);                                    // tail in the middle
+}
+// The holes of the web, in a rectangle w x h with its corner at the origin.
+module web_2d(w, h) {
+    if (WEB == "bubbles") {
+        for (b = BUBBLES) translate([b[0], b[1]]) circle(b[2], $fn = 48);
+    } else if (WEB == "circles") {
+        r = 6.5;  px = 2 * r + 3;  py = px * sqrt(3) / 2;
+        ny = floor((h - 2 * r) / py) + 1;  oy = (h - (ny - 1) * py) / 2;
+        for (j = [0 : ny - 1]) {
+            n0 = floor((w - 2 * r) / px) + 1;  nx = n0 - (j % 2);  ox = (w - (nx - 1) * px) / 2;   // odd rows sit between the holes of even rows
+            for (i = [0 : nx - 1]) translate([ox + i * px, oy + j * py]) circle(r, $fn = 48);
+        }
+    } else if (WEB == "fleur") {
+        px = 19.5;  py = 26;
+        ny = floor(h / py);  oy = (h - (ny - 1) * py) / 2;
+        for (j = [0 : ny - 1]) {
+            nx = floor(w / px) - (j % 2);  ox = (w - (nx - 1) * px) / 2;
+            for (i = [0 : nx - 1]) translate([ox + i * px, oy + j * py]) fleur_2d();
+        }
+    } else {
+        nx = floor((w + WEB_BAR) / (WEB_CELL + WEB_BAR));  ny = floor((h + WEB_BAR) / (WEB_CELL + WEB_BAR));
+        ox = (w - nx * WEB_CELL - (nx - 1) * WEB_BAR) / 2;  oy = (h - ny * WEB_CELL - (ny - 1) * WEB_BAR) / 2;
+        for (i = [0 : nx - 1], j = [0 : ny - 1]) translate([ox + i * (WEB_CELL + WEB_BAR), oy + j * (WEB_CELL + WEB_BAR)]) square(WEB_CELL);
+    }
+}
 module t_env() {
     y_free = -E0 - D_T;
     cs = [[CR_TN, RT - CR_TN, CR_TN], [W - CR_TN, RT - CR_TN, CR_TN], [CR, y_free + CR, CR], [W - CR, y_free + CR, CR]];
@@ -280,15 +335,8 @@ module t_raw() {
         translate([usb_x0, y_low - OV - 0.01, z_floor]) cube([2 * USB_HW, wb + OV + E0 + RT + 1, T_T]);   // plug: through the nose
         pin_holes(B_T);
         prop_slot();
-        // web: square holes in the floor, between the prop's pivot and the free edge
-        wx0 = px0 + 10;  wx1 = W - px0 - 10;  wy0 = y_free + 10;  wy1 = -SP - 8;
-        nx = floor((wx1 - wx0 + WEB_BAR) / (WEB_CELL + WEB_BAR));
-        ny = floor((wy1 - wy0 + WEB_BAR) / (WEB_CELL + WEB_BAR));
-        ox = (wx1 - wx0 - nx * WEB_CELL - (nx - 1) * WEB_BAR) / 2;
-        oy = (wy1 - wy0 - ny * WEB_CELL - (ny - 1) * WEB_BAR) / 2;
-        for (i = [0 : nx - 1], j = [0 : ny - 1])
-            translate([wx0 + ox + i * (WEB_CELL + WEB_BAR), wy0 + oy + j * (WEB_CELL + WEB_BAR), -T_T - 1])
-                cube([WEB_CELL, WEB_CELL, T_FLOOR + 2]);
+        // web: holes in the floor, between the prop's pivot and the free edge
+        translate([px0 + 10, y_free + 10, -T_T - 1]) linear_extrude(T_FLOOR + 2) web_2d(W - 2 * px0 - 20, -SP - 8 - y_free - 10);
         // long edges on the bed
         chamfer_y(0, 1, y_free, RT, -T_T);  chamfer_y(W, -1, y_free, RT, -T_T);
         chamfer_x(y_free, 1, 0, W, -T_T);
@@ -402,6 +450,7 @@ else if (view == "t_half") translate([0, 0, T_T]) { t_half(); prop(); }
 else if (view == "link") link();
 else if (view == "pin") pin_part();
 else if (view == "axle_pin") axle_pin();
+else if (view == "web") web_2d(W - 2 * px0 - 20, -SP - 8 + E0 + D_T - 10);   // the pattern alone, in 2D
 // Print plates. The halves are the views k_half and t_half.
 else if (view == "parts") {   // two links, four hinge pins, two axle pins, and one spare of each
     for (i = [0, 1, 2]) translate([LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link();

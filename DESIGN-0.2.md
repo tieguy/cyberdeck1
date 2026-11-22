@@ -97,8 +97,10 @@ barrel "was the best idea we had at the time".
 
 ### Back, snap and edges
 
-- The floor between the prop's pivot and the free edge is a grid of 4 mm bars with 15 mm
-  openings.
+- The floor between the prop's axle and the free edge has holes in a pattern of bubbles. The
+  owner found the first pattern, a grid of square holes, too brutal (2026-11-21). The model
+  can also draw circles in rows, fleurs-de-lis and the grid; the owner has not chosen yet, and
+  bubbles is the pattern in the print files.
 - The snap is a tongue cut into the lip on the keyboard half's free edge, with a bump that hooks
   over the edge of the tablet half's back.
 - The outer edges and the vertical corners of both halves are round. An edge on the print bed

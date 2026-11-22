@@ -43,8 +43,10 @@ are for looking at, not for printing. GitHub shows each one in 3D.
   spring, 1.2 mm thick and 9 mm long. The bump must pass 0.5 mm of wall to come out.
 - **Ledges**: 10 mm of floor stays under each long edge of the tablet and 10 mm under its lower
   edge, so the tablet has support on all sides when the prop is out.
-- **Web**: the back of the tablet half between the prop's pivot and the free edge is a grid of
-  4 mm bars with 15 mm openings.
+- **Web**: the back of the tablet half between the prop's axle and the free edge has holes in a
+  pattern of bubbles: 37 round holes, 4 to 21 mm across, with at least 2.2 mm between them. The
+  variable `WEB` in the model chooses the pattern: `bubbles`, `circles`, `fleur` or `grid`.
+  `views/web-options.png` shows the four. `web_bubbles.py` made the table of bubbles.
 - **Snap**: a tongue in the lip on the keyboard half's free edge, with a bump that hooks over the
   edge of the tablet half's back.
 - **Edges**: the outer edges of both halves are round, with a 1 mm radius: the edges of the inner
@@ -95,7 +97,7 @@ slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the s
 | File | Contents | PrusaSlicer estimate |
 |---|---|---|
 | `print/k_half.stl` | The keyboard half, outer face on the bed | 1 h 57 min, 95 g |
-| `print/t_half.stl` | The tablet half, outer face on the bed, with the prop in place | 1 h 54 min, 77 g |
+| `print/t_half.stl` | The tablet half, outer face on the bed, with the prop in place | 2 h 2 min, 78 g |
 | `print/parts.stl` | Three links, five hinge pins, three axle pins. Two, four and two are needed. | 8 min, 3 g |
 
 The estimates are from PrusaSlicer with the converted H2D profile (`../../slicer/`), 0.2 mm
