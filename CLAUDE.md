@@ -3,8 +3,10 @@
 Read `../CLAUDE.md` and `../PRINTER.md` first. They hold the printer limits and the rule on
 OpenGL programs for all projects in `3D-Printing/`.
 
-Then read, in this order: `README.md` (status and file index), `DESIGN-0.2.md` (the revision in
-design, and its section "Next step"), and `HINGE.md` (what is known about the hinge).
+Then read, in this order: `README.md` (status and file index), `DESIGN-0.3.md` (the revision
+that is next, and what it starts from), `DESIGN-0.2.md` (the revision that is printed last: its
+design, what its tests showed, and the results of its print), and `HINGE.md` (what is known
+about the hinge).
 
 ## Where things are
 
@@ -12,11 +14,14 @@ design, and its section "Next step"), and `HINGE.md` (what is known about the hi
 |---|---|
 | `PARTS.md` | The bought parts and their dimensions. Each dimension has a source tag. |
 | `DESIGN-0.1.md` | Rev 0.1: complete, printed 2026-11-20. Its results. Git tag `rev-0.1`. |
-| `DESIGN-0.2.md` | Rev 0.2: in design. Decisions, the design, open questions, the next step. |
+| `DESIGN-0.2.md` | Rev 0.2: designed; its first full print started 2026-11-21. Decisions, the design, what the tests showed, the results of the print. |
+| `DESIGN-0.3.md` | Rev 0.3: not started. What it starts from. |
 | `DESIGN-1.0.md` | Ideas for rev 1.0: the look, the material. |
 | `HINGE.md` | The geometry that every hinge for this case must obey, and the hinges tried so far. |
 | `case/` | Rev 0.1 model (`case.scad`), views and print files. Do not change it. |
-| `case02/` | Rev 0.2 model (`case02.scad`) and views. |
+| `case02/` | Rev 0.2 model (`case02.scad`), views, print files, the list of checks, the assembly. |
+| `hinge-test-02/`, `prop-test-02/` | Test pieces for the rev 0.2 hinge and prop, with the results of three test plates. They include `case02/case02.scad`. |
+| `test-plate-02/` | One print plate that takes pieces from both. |
 | `hinge-test/`, `fit-test/` | Test pieces for rev 0.1, with their results. They include `case/case.scad`. |
 
 ## Documents
@@ -70,11 +75,32 @@ A trimesh report of "not watertight" for an OpenSCAD STL can be points that diff
 0.001 mm. Weld the points (`merge_vertices(digits_vertex=3)`) before you conclude that the mesh is
 open.
 
+More checks, from rev 0.2:
+
+6. **Loose pieces.** Count the solid bodies of each print file: weld the points, make a
+   `manifold3d.Manifold` from the mesh, and call `decompose()`. A plate must have exactly the
+   bodies that you put on it. A pattern of holes can cut pieces of a floor free, and a part that
+   prints in place must be a body of its own.
+7. **Moving parts through their whole travel.** Check a part that turns at several angles
+   between its end positions, not only at the ends.
+8. **Look at it.** After each change of shape, render the part and look at the picture before
+   you tell the owner. A cut through the model for a test piece can leave thin bars or chips.
+9. **Check that a check can fail.** Run a collision check on a pose that must collide.
+
+Use dimensions from the model, not from memory, when you place a cut or state a size.
+
+In a file that takes modules from another file with `use`, set `$fn` again: `use` does not
+bring it.
+
 ## Print before you trust
 
 The owner prefers a small test print to a long explanation. Before a print of several hours, cut a
 small piece from the real model that tests the new or doubtful features, and say what to look for
 and what to report. The results go in the README of the test piece.
+
+Draw a test piece so that the owner can choose: three links of different thickness, with small
+holes as marks, settled the fit of the links in one print. Walk the owner through the items of
+a test one at a time, and write each result in the README of the test piece on the same day.
 
 The owner prints in Bambu Studio. Supports under a face are hard to remove and leave lines; avoid
 them in the design. Lips that overhang a pocket by 2.5 mm print without supports, with some
@@ -97,3 +123,13 @@ Each of these happened in this project.
 - A feature that helps printing but breaks something else: the bevel on a lip made a knife edge
   and cut a notch in the next lip.
 - The half that lies on the table needs its hinge segments, which are its feet, at its edges.
+- A cause stated as fact, again: a gap on the 45° stop was put down to play at the pins, and
+  then to a slot wall in the wrong half. The owner pointed at the real place both times. Ask
+  the owner for a simple test that separates the causes before you change the model.
+- A fix made without a test of its cause, which made the fault worse: the slot walls were moved
+  further away, and the tablet half leaned back more.
+- A pivot drawn in a floor that is too thin for it: a socket 3.2 mm across in a floor of 3 mm
+  breaks through the face. Add up the hole, the gap and the walls before you draw a pivot.
+- A test piece cut through a lip: two thin bars of the lip stayed in the air, on three plates.
+- A mechanism with a free angle that the drawing did not show: a link and one contact do not
+  hold a part. Count the free angles of a linkage, and say what stops each one.

@@ -15,10 +15,14 @@ A 3D-printed case for a portable writing setup made of three parts:
 
 ## Status
 
-Rev 0.1 is complete: printed and assembled (2026-11-20). It holds the tablet in portrait. Its
-results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files. Rev 0.2 is in design: a first model is in `case02/`, and the next step is a more elegant hinge
-(`DESIGN-0.2.md`, section "Next step"). The hinge test piece (`hinge-test/`) and the fit test (`fit-test/`) are printed; their results
-are in their READMEs.
+- **Rev 0.1** is complete: printed and assembled (2026-11-20). It holds the tablet in portrait.
+  Its results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files.
+- **Rev 0.2** is designed, and its first full print started on 2026-11-21 from the files in
+  `case02/print/`. It has a two-pin link hinge, a solid prop that stows in the back of the
+  tablet half, and round edges. The hinge and the prop passed their tests on three small test
+  plates. The results of the full print are not recorded yet; they go in `DESIGN-0.2.md`,
+  section "Results of the print".
+- **Rev 0.3** is not started. `DESIGN-0.3.md` lists what it starts from.
 
 ## Files
 
@@ -26,10 +30,14 @@ are in their READMEs.
 |---|---|
 | `HINGE.md` | What is known about the hinge: the geometry it must obey, and the hinges tried |
 | `PARTS.md` | Dimensions and other facts about the tablet, the keyboard and the battery candidates |
-| `DESIGN-0.1.md` | The design of rev 0.1: layout, hinge, tablet holder, decisions and open questions |
-| `DESIGN-0.2.md` | The design of rev 0.2, in progress: what it must fix, proposals and ideas |
+| `DESIGN-0.1.md` | The design of rev 0.1 and the results of its print |
+| `DESIGN-0.2.md` | The design of rev 0.2: decisions, the design, what the tests showed, what is not tested |
+| `DESIGN-0.3.md` | Rev 0.3, not started: what it starts from, and the ideas that wait for it |
 | `DESIGN-1.0.md` | Ideas that wait for rev 1.0, where the look matters |
 | `case/` | The OpenSCAD model of rev 0.1, with 3D views and print files |
-| `case02/` | The OpenSCAD model of rev 0.2, with 3D views |
-| `fit-test/` | Test pieces for the fit of the tablet and the keyboard in their pockets |
-| `hinge-test/` | A test piece for the hinge, with its own README |
+| `case02/` | The OpenSCAD model of rev 0.2, with 3D views, print files, the checks and the assembly |
+| `hinge-test-02/` | The test piece for the rev 0.2 hinge, with the results of three test plates |
+| `prop-test-02/` | The test piece for the rev 0.2 prop, with the results of three test plates |
+| `test-plate-02/` | One print plate that takes pieces from both rev 0.2 test pieces |
+| `fit-test/` | Test pieces for the fit of the tablet and the keyboard in their pockets (rev 0.1) |
+| `hinge-test/` | The test piece for the rev 0.1 hinge |
