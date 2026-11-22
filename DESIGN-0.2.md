@@ -32,7 +32,8 @@ From the owner, 2026-11-20:
   stand more steady.
 - **Prop**: a mostly solid panel, for a sticker or art (2026-11-20), on an axle in the tablet half, stowed in its back, with the position
   notches in the keyboard half.
-- **Back of the tablet half**: partly open, as a web.
+- **Back of the tablet half**: partly open, as a web. The pattern of the web is bubbles
+  (2026-11-21).
 - **The angle**: the stop between the halves sets 45°. The prop only steadies the screen against
   flex. The tests show that the stop is rough (about 2° for 0.1 mm of print error), so in
   practice the prop sets the angle.
@@ -98,9 +99,9 @@ barrel "was the best idea we had at the time".
 ### Back, snap and edges
 
 - The floor between the prop's axle and the free edge has holes in a pattern of bubbles. The
-  owner found the first pattern, a grid of square holes, too brutal (2026-11-21). The model
-  can also draw circles in rows, fleurs-de-lis and the grid; the owner has not chosen yet, and
-  bubbles is the pattern in the print files.
+  owner found the first pattern, a grid of square holes, too brutal (2026-11-21). The owner
+  chose bubbles from four patterns (2026-11-21). The model can also draw circles in rows,
+  fleurs-de-lis and the grid.
 - The snap is a tongue cut into the lip on the keyboard half's free edge, with a bump that hooks
   over the edge of the tablet half's back.
 - The outer edges and the vertical corners of both halves are round. An edge on the print bed
