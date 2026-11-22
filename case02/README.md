@@ -1,6 +1,7 @@
 # Case model, rev 0.2
 
-`case02.scad` is the first geometry of rev 0.2, for review. It is not ready to print. The design
+`case02.scad` is the model of rev 0.2. Its hinge and its prop passed their tests on small
+pieces; the whole case is not printed yet. The design
 is in `../DESIGN-0.2.md`. Rev 0.1 is in `../case/`.
 
 ## Views
@@ -89,15 +90,35 @@ Gaps where parts pass each other: 0.5 mm between the noses at every angle, and b
 tablet half's back and the keyboard half's nose while the links turn; 0.15 mm round a link in its
 slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the stop.
 
+## Print files
+
+| File | Contents | PrusaSlicer estimate |
+|---|---|---|
+| `print/k_half.stl` | The keyboard half, outer face on the bed | 1 h 57 min, 95 g |
+| `print/t_half.stl` | The tablet half, outer face on the bed, with the prop in place | 1 h 54 min, 77 g |
+| `print/parts.stl` | Three links, five hinge pins, three axle pins. Two, four and two are needed. | 8 min, 3 g |
+
+The estimates are from PrusaSlicer with the converted H2D profile (`../../slicer/`), 0.2 mm
+layers, PLA, no supports (2026-11-21). They are not Bambu Studio times, and they do not include
+the printer's start sequence. Each plate fits the reach of the right nozzle. PrusaSlicer says
+"consider enabling supports" for the tablet half. The cause is not checked; the faces that hang
+are the lips over the tablet, which printed clean with no supports in rev 0.1, and the small
+arches over the prop's knuckles, which are not tested at full size. Print with no supports.
+
+Assembly:
+
+1. Push the feet end of the prop out of the tablet half to free it. Push an axle pin through
+   each side wall into the prop's knuckle, flat toward the back face.
+2. Put a link in each slot of the keyboard half and push a hinge pin in from each edge, flat
+   toward the outer face.
+3. Put the other ends of the links in the slots of the tablet half and push in the last two
+   hinge pins.
+
 ## Not done yet
 
-- No print files. No part is checked in a slicer.
-- The printed axle of the prop, in its knuckles, is not tested.
-- The hinge is tested on one test plate (`../hinge-test-02/README.md`): it prints clean, moves
-  well and has a firm stop. Not tested yet: the recess with a flat for the pin head, the links
-  with 3.1 mm holes, whether they close the gap that the first plate showed on the 45° stop, and
-  whether the slots hold the closed halves in line well enough for the snap.
+- No part is checked in Bambu Studio.
+- The recess for the heads of the prop's axle pins is not tested; the axle itself passed its test.
+- The hinge passed its test with one link (`../hinge-test-02/README.md`). With two links, and
+  under the weight of the tablet, it is not tested.
 - The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
   tablet half's free edge leads it over the bump.
-- The click that holds the stowed prop was weak with bumps 0.7 mm high. With bumps 0.9 mm high
-  it is not tested.

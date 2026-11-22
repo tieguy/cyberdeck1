@@ -44,7 +44,18 @@ same flat. The head of the pin stays outside, 1 mm proud.
 
 ### Third plate
 
-Not printed yet. It has printed axle pins in knuckles, in place of the filament.
+Printed 2026-11-21, with printed axle pins in knuckles, click bumps 0.9 mm high and springs 9 mm
+long.
+
+1. **Free or fused**: free.
+2. **Axle**: pass. The pins go in by hand and stay in, and the prop stays on when it is pulled.
+   The owner noted that the heads of the pins stand out of the sides; on this plate they stood
+   1 mm out. In the model they now sit 0.6 mm deep in a round recess, and stand 0.4 mm out.
+3. **Click**: pass. A clear click, and the prop is easy to push out.
+4. **Springs**: no cracks.
+5. **The back**: the groove along the axle is acceptable to the owner.
+
+All items of the prop test now pass. The recess for the heads of the axle pins is not tested.
 
 ### Second plate
 

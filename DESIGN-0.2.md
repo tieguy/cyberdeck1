@@ -112,23 +112,23 @@ barrel "was the best idea we had at the time".
   which need notches in the corners of the tablet half; or a closure that needs no high lip.
 
 - Does the snap hold, and does it release without too much force?
-- Does the click hold the stowed prop, and does it release without too much force?
 - Is the finger notch enough to pull the stowed prop out?
 
 ## Next step
 
-Print the test plate, `test-plate-02/test_plate.stl`, and record the results in
-`hinge-test-02/README.md` and `prop-test-02/README.md`. Those files hold the results of the
-first plate (2026-11-21) and the changes that came from them: a recess with a flat for the pin
-head, tighter links, a printed axle for the prop in knuckles, and higher click bumps. The
-second plate is printed too; the plate in `test-plate-02/` is the third.
+Print the case: the files are in `case02/print/`, and `case02/README.md` has the estimates and
+the assembly. The hinge and the prop passed their tests on the third test plate (2026-11-21);
+the results of all three plates are in `hinge-test-02/README.md` and `prop-test-02/README.md`.
 
-One point is open: on both plates the tablet-half piece could lean back past the 45° stop. The
-far wall of the slot in the keyboard half is the stop for that, and it is now exactly at the
-stop position (`HINGE.md` has the geometry). Print `hinge-test-02/hinge_test_k_piece.stl` to
-test it. The hinge sets the angle only roughly; the prop sets it exactly.
+Not tested before the full print:
 
-Not printed or tested in rev 0.2: the snap tongue, the web. No test piece covers the snap tongue.
+- The snap tongue on the keyboard half's lip. No test piece covers it.
+- The web.
+- The recess for the heads of the prop's axle pins, which came after the last test plate.
+- The hinge with two links, and the 45° stop under the weight of the tablet. The stop is rough
+  (`HINGE.md`); the prop sets the angle.
+
+Before you change the hinge, read `HINGE.md`.
 
 ## Other ideas for this revision or later
 

@@ -16,8 +16,8 @@ A 3D-printed case for a portable writing setup made of three parts:
 ## Status
 
 Rev 0.1 is complete: printed and assembled (2026-11-20). It holds the tablet in portrait. Its
-results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files. Rev 0.2 is in design: a model with a two-pin link hinge is in `case02/`, two test plates are printed (2026-11-21), the model has the changes from their results, and the next
-step is the print of the third plate, `test-plate-02/`
+results are in `DESIGN-0.1.md`, and the git tag `rev-0.1` marks its files. Rev 0.2 is in design: a model with a two-pin link hinge is in `case02/`, the hinge and the prop passed their tests on three test plates (2026-11-21), and the next
+step is the print of the case from `case02/print/`
 (`DESIGN-0.2.md`, section "Next step"). The hinge test piece (`hinge-test/`) and the fit test (`fit-test/`) are printed; their results
 are in their READMEs.
 

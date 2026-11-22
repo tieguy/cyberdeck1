@@ -42,6 +42,16 @@ The piece has one link, so it twists more than the case, which has two.
 
 ## Results
 
+### Third plate
+
+Printed 2026-11-21: the keyboard-half piece alone, with the far wall of its slot exactly at the
+position of the stop. It was tested with the tablet-half piece, the 4.9 mm link and the pins of
+the second plate.
+
+- **Stop**: pass. The tablet-half piece lies flat on the chamfer, and it does not lean back.
+
+All items of the hinge test now pass.
+
 ### Second plate
 
 Printed 2026-11-21. It has the changes that are listed at the end of the first plate's results.

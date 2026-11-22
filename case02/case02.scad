@@ -22,7 +22,7 @@
 //
 // Make a view:  openscad-nightly -D 'view="stand"' -o view.stl case02.scad
 
-view = "stand";   // stand | closed | k_half | t_half | link | pin | axle_pin | x_* (checks)
+view = "stand";   // stand | closed | k_half | t_half | parts | link | pin | axle_pin | x_* (checks)
 
 $fn = 48;
 
@@ -93,6 +93,7 @@ KN_X  = 1.9;      // the outer face of a knuckle: the side wall outside it is th
 KN_GAP = 0.3;  KN_C = 0.4;    // gap at the outer face of a knuckle (the side play), and round it
 FLOOR_R = 4.0;    // the floor is cut back to this radius about the axis, so that the end of the panel can turn 86 degrees
 AXLE_LEN = px0 - 0.2;         // a pin reaches from the edge of the case to the pocket
+AXLE_HEAD_IN = 0.6;           // the head of a pin, 1 mm thick, sits this deep in the side wall. It turns there with the prop.
 LEDGE = 10;       // floor that stays under each long edge of the tablet, beside the panel
 PX    = [px0 + LEDGE, W - px0 - LEDGE];        // the sides of the panel
 EAR_X = [KN_X, W - KN_X];                      // at the pivot, ears reach into the side walls
@@ -341,6 +342,7 @@ module prop_slot() {
     // the axle in the back of the T half.
     intersection() { x_cyl([-SP, PZ], FLOOR_R, KN_X - KN_GAP, W - KN_X + KN_GAP);  translate([0, -SP - 10, -T_T - 1]) cube([W, 10, T_FLOOR + GAPP + 1]); }
     x_cyl([-SP, PZ], PIN_D / 2, -1, W + 1);                               // pin holes through the side walls
+    x_cyl([-SP, PZ], HEAD_D / 2 + 0.25, -1, AXLE_HEAD_IN);  x_cyl([-SP, PZ], HEAD_D / 2 + 0.25, W - AXLE_HEAD_IN, W + 1);   // round recesses for the heads
     for (x = PX) translate([x, CLK_Y, CLK_Z]) sphere(CLK_D, $fn = 20);    // dimples for the click
 }
 // The pin of the prop's axle, in its print frame. Two are needed. Its head stays outside the case.
@@ -348,7 +350,7 @@ module axle_pin() {
     translate([0, 0, PIN_FLAT]) difference() {
         union() {
             translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = HEAD_D, h = 1);
-            rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = AXLE_LEN);
+            rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = AXLE_LEN - AXLE_HEAD_IN);
         }
         translate([-5, -HEAD_D, -HEAD_D - PIN_FLAT]) cube([AXLE_LEN + 10, 2 * HEAD_D, HEAD_D]);
     }
@@ -371,7 +373,7 @@ module pin_part() {
 // ---- Stand-ins ----
 module tablet() { translate([px0 + 0.3, -E0 - wb - 0.3 - th, -T_T + T_FLOOR]) cube([tw, th, TAB_T]); }
 module keyboard_folded() { translate([WALL + 0.35, E0 + WALL + 0.5, -KPD]) cube([kw, kd, KB_T]); }
-module axles_in() { x_cyl([-SP, PZ], PIN_DIA / 2, 0, AXLE_LEN);  x_cyl([-SP, PZ], PIN_DIA / 2, W - AXLE_LEN, W); }
+module axles_in() { x_cyl([-SP, PZ], PIN_DIA / 2, AXLE_HEAD_IN, AXLE_LEN);  x_cyl([-SP, PZ], PIN_DIA / 2, W - AXLE_LEN, W - AXLE_HEAD_IN); }
 module pins_in(c) { x_cyl(c, PIN_DIA / 2, 0, PIN_LEN);  x_cyl(c, PIN_DIA / 2, W - PIN_LEN, W); }
 
 module view_closed() {
@@ -400,6 +402,12 @@ else if (view == "t_half") translate([0, 0, T_T]) { t_half(); prop(); }
 else if (view == "link") link();
 else if (view == "pin") pin_part();
 else if (view == "axle_pin") axle_pin();
+// Print plates. The halves are the views k_half and t_half.
+else if (view == "parts") {   // two links, four hinge pins, two axle pins, and one spare of each
+    for (i = [0, 1, 2]) translate([LINK_R, LINK_R + i * (2 * LINK_R + 6), 0]) link();
+    for (i = [0 : 4]) translate([LINK_L + 2 * LINK_R + 8, HEAD_D / 2 + i * (HEAD_D + 6), 0]) pin_part();
+    for (i = [0, 1, 2]) translate([LINK_L + 2 * LINK_R + PIN_LEN + 18, HEAD_D / 2 + i * (HEAD_D + 6), 0]) axle_pin();
+}
 // Collision checks: each must be empty.
 else if (view == "x_swing") intersection() { k_half(); posed(chk, ca) t_half(); }
 else if (view == "x_link") intersection() { union() { k_half(); posed(chk, ca) t_half(); } links_at(ca); }
