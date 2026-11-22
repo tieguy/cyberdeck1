@@ -1,7 +1,8 @@
 # Design of rev 0.2
 
-Rev 0.2 is in design. It starts from rev 0.1, which is printed and in use as a prototype; its
-results are in `DESIGN-0.1.md`. Part dimensions are in `PARTS.md`.
+Rev 0.2 is designed, and its first full print started on 2026-11-21. It starts from rev 0.1,
+which is printed and in use as a prototype; its results are in `DESIGN-0.1.md`. Part dimensions
+are in `PARTS.md`. The model, the print files, the checks and the assembly are in `case02/`.
 
 ## What rev 0.2 must fix
 
@@ -22,7 +23,7 @@ accepts it.
 
 ## Decisions
 
-From the owner, 2026-11-20:
+From the owner, 2026-11-20 and 2026-11-21:
 
 - **Hinge**: two pins and two links (refer to "The design"). It replaces the first decision, a
   barrel whose diameter is close to the thickness of the whole closed case.
@@ -30,8 +31,8 @@ From the owner, 2026-11-20:
   it does not move.
 - **The lip on the keyboard half's free edge, and the snap, can change or go** if that makes the
   stand more steady.
-- **Prop**: a mostly solid panel, for a sticker or art (2026-11-20), on an axle in the tablet half, stowed in its back, with the position
-  notches in the keyboard half.
+- **Prop**: a mostly solid panel, for a sticker or art, on an axle in the tablet half, stowed in
+  its back, with the position notches in the keyboard half. A click holds it when it is stowed.
 - **Back of the tablet half**: partly open, as a web. The pattern of the web is bubbles
   (2026-11-21).
 - **The angle**: the stop between the halves sets 45°. The prop only steadies the screen against
@@ -47,12 +48,13 @@ From the owner, 2026-11-20:
 
 ## The design
 
-The model is in `case02/`. It follows the decisions as below. The owner has not reviewed it.
+The model is in `case02/`. It follows the decisions as below. The owner reviewed pictures of it
+and test pieces of its hinge and its prop, not a whole printed case.
 
 ### Hinge
 
-The owner accepted this hinge in place of the barrel on 2026-11-20, from its description. The
-barrel "was the best idea we had at the time".
+The owner accepted this hinge in place of the barrel on 2026-11-20. The barrel "was the best
+idea we had at the time". A one-pin hinge cannot be much shorter than the barrel (`HINGE.md`).
 
 - The hinge has two pins. Each half ends in a nose as thick as the half, with its pin at the
   middle of its thickness. Two links, each in a slot near an edge of the case, join the pins.
@@ -62,10 +64,16 @@ barrel "was the best idea we had at the time".
 - The bed side of each nose is a 45° chamfer, so no part needs supports. The closed profile has a
   chamfer of 11 mm on the keyboard half and one of 7 mm on the tablet half, with two rounds
   between them.
-- The stop: in the stand, the flat back of the tablet half lies on the chamfer of the keyboard
-  half's nose, and the links pull.
-- The pins are four printed pins, 2.9 mm across and 13 mm long, each with a head. The 2.9 mm pin
-  in a 3.3 mm hole with crush ribs is the fit that the rev 0.1 test piece proved.
+- The stop has two parts. In the stand, the flat back of the tablet half lies on the chamfer of
+  the keyboard half's nose. The far wall of each slot in the keyboard half meets its link at
+  the same position, and stops the tablet half from leaning back further. `HINGE.md` explains
+  why both are needed.
+- The links are 4.9 mm thick in slots 5.0 mm wide, with 3.1 mm holes. The owner chose the
+  thickness from three test links, for a little friction and no play.
+- The pins are four printed pins, 2.9 mm across and 13 mm long. Each has a head with a flat,
+  and its recess has the same flat, so a pin goes in only in the position where all three
+  crush ribs hold it. With the flat at a rib, a pin falls out. The head stands 1 mm out, so
+  that a fingernail can pull it.
 - The tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about 10 mm out
   of the closed case.
 - In the stand the keyboard half lies on its nose and on its lip. The lip is 11 mm high, so the
@@ -108,32 +116,53 @@ barrel "was the best idea we had at the time".
   has a 45° chamfer in place of a round, so that it needs no supports. The edges of the openings
   (finger notches, web, slots, the USB-C cut-out) are square. `case02/README.md` gives the sizes.
 
+## What the tests showed
+
+Three small test plates were printed on 2026-11-21. Their results are in
+`hinge-test-02/README.md` and `prop-test-02/README.md`. The points that changed the design:
+
+- A pin with a flat holds only when the flat is between two ribs. The recess now forces that
+  position.
+- The 45° stop needs the link to meet a wall in the keyboard half at exactly the stop position.
+  With the wall 3° or 6° too far, the tablet half leaned back.
+- Links with 0.2 mm of clearance at each side felt loose. The owner chose 0.05 mm at each side.
+- A pivot does not fit in a floor of 3 mm: cone pivots came out, and a hole for an axle broke
+  through. The prop's axle is now in knuckles in the side walls.
+- A click bump must go deeper into its dimple than the part can move sideways.
+- Holes in a thin floor do not save print time. Refer to "Open patterns in the large flat
+  faces" below.
+
 ## Open questions
 
-- The owner's review of the look of the closed profile, in the 3D views.
-- The slope of the stand. Ways to remove it: feet at the front corners of the keyboard half,
-  which need notches in the corners of the tablet half; or a closure that needs no high lip.
-
+- The slope of the stand, 3.1°. Ways to remove it: feet at the front corners of the keyboard
+  half, which need notches in the corners of the tablet half; or a closure that needs no high
+  lip. The owner allows a change to the lip and the snap for this.
 - Does the snap hold, and does it release without too much force?
 - Is the finger notch enough to pull the stowed prop out?
+- Do the heads of the hinge pins, 1 mm out of the sides, get in the way?
+
+## Results of the print
+
+The first full print started on 2026-11-21. No results are recorded yet. Record here what the
+owner reports, with the date, and mark each cause as confirmed or not confirmed.
+
+Not tested before this print, so look at these first:
+
+- The snap tongue on the keyboard half's lip. No test piece covers it.
+- The hinge with two links, and the 45° stop under the weight of the tablet. The stop is rough
+  (`HINGE.md`); the prop sets the angle.
+- The bubble web, and the tablet half as a whole: PrusaSlicer says "consider enabling supports"
+  for it, and it was sent to print with none.
+- The recess for the heads of the prop's axle pins, which came after the last test plate.
+- The prop at full size: its feet in the slots of the keyboard half at 45°, 52° and 59°.
 
 ## Next step
 
-Print the case: the files are in `case02/print/`, and `case02/README.md` has the estimates and
-the assembly. The hinge and the prop passed their tests on the third test plate (2026-11-21);
-the results of all three plates are in `hinge-test-02/README.md` and `prop-test-02/README.md`.
-
-Not tested before the full print:
-
-- The snap tongue on the keyboard half's lip. No test piece covers it.
-- The web.
-- The recess for the heads of the prop's axle pins, which came after the last test plate.
-- The hinge with two links, and the 45° stop under the weight of the tablet. The stop is rough
-  (`HINGE.md`); the prop sets the angle.
+Record the results of the print above. Then start rev 0.3 from them, in `DESIGN-0.3.md`.
 
 Before you change the hinge, read `HINGE.md`.
 
-## Other ideas for this revision or later
+## Other ideas for a later revision
 
 - Magnets to hold the tablet in the case. Bambu Lab sells magnets for printed parts. The tablet
   has magnets inside for the official case. Find their positions and polarity with a small magnet
@@ -180,8 +209,13 @@ deep in it.
 
 Does a pattern of vines or circuit traces, with gaps, also print faster?
 
-- Less material does not always mean less time. Each gap adds walls for the printer to trace. A
-  coarse pattern with large gaps saves both. A fine pattern can take longer than a solid face.
+- Less material does not always mean less time. Each gap adds walls for the printer to trace.
+- Measured with PrusaSlicer estimates on 2026-11-21, for bubbles over about half of the area:
+  the keyboard half (floor 2 mm) went from 1 h 57 min and 95 g to 2 h 13 min and 79 g, and the
+  tablet half with bubbles in the prop (3 mm) went from 2 h 2 min and 78 g to 2 h 16 min and
+  70 g. The bubble web of the tablet half costs about 8 minutes more than the square grid. So
+  holes in these thin floors save filament and cost time. The owner left the keyboard half and
+  the prop solid.
 - Where the tablet or the keyboard needs cover, a pattern with gaps protects less.
 - Another way to the circuit-board look, with no gaps: print the traces in a second colour in the
   first layers of the face that lies on the bed. The H2D has two nozzles for this. The face stays

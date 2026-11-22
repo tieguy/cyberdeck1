@@ -57,7 +57,10 @@ pin moves round the keyboard half. Two forms are in the list below.
   when the tablet half is flat on the chamfer. Two test plates had the wall 3° and 6° too far,
   and both pieces leaned back and left a gap at the tip of the nose.
 - That wall touches the link over about 2 mm, close to the pin, so 0.1 mm of error in the print
-  is about 2° of lean. The hinge alone sets the angle only roughly. The prop sets it exactly.
+  is about 2° of lean (computed). The hinge alone sets the angle only roughly. The prop sets it
+  exactly. On the test piece, with the wall at the stop position, the stop was flat and firm.
+- Links 4.9 mm thick in slots 5.0 mm wide, with 3.1 mm holes on 2.9 mm pins, gave the owner the
+  feel that was wanted. Links 4.6 mm thick with 3.3 mm holes felt loose.
 - The hinge has two free angles, not one. The end walls of the slots for the links remove the
   spare one: closed, each link lies against a wall in each half, so the halves cannot slide.
 - In the stand the keyboard half has no hinge part below its inner face, so it has no front
@@ -65,13 +68,15 @@ pin moves round the keyboard half. Two forms are in the list below.
 
 ## Other facts
 
-- The hinge knuckles of the half on the table are the front feet of the stand. They must be at
-  both edges of that half. A lip on its free edge, as high as the knuckle radius, is the rear
-  foot.
+- With one pin, the hinge knuckles of the half on the table are the front feet of the stand.
+  They must be at both edges of that half. A lip on its free edge, as high as the knuckle
+  radius, is the rear foot.
 - The pin's axis is 0.25 mm outside each inner face. With the axis exactly in the plane of the
   faces, the closed halves of a test piece touched at the hinge and stood apart at the far end.
 - Pin fit on this printer, PLA: a 2.9 mm printed pin in a 3.3 mm hole turns freely, and three
-  crush ribs 0.25 mm high in one knuckle hold it firmly. A 3.0 mm pin is too big. A hole that is
+  crush ribs 0.25 mm high in one knuckle hold it firmly. A 3.0 mm pin is too big. A pin that lies
+  on a flat to print holds only with the flat between two ribs; give its head and its recess a
+  flat to force that position. Ribs 3.5 mm long are enough. A hole that is
   closed at one end, with a 1.6 mm hole through the closed end for a paper clip, keeps the pin in
   and lets it out. A 6 mm pin with the same clearances is not tested.
 - A pin 2.9 mm across and 108 mm long came off the bed in printing. Ears one layer thick are in
@@ -90,7 +95,7 @@ pin moves round the keyboard half. Two forms are in the list below.
 | One pin, square tabs | Drawn (`hinge="tabs"`) | No supports. The owner preferred the look of tapers. |
 | One pin, tapers of 27° and 18°, knuckles 8 mm | Printed: rev 0.1 (`hinge="bevel"`) | The owner sketched it and liked the asymmetric look. The tapers meet face to face and hold 45° without a prop. But the tapers print on supports, which are hard to remove and leave lines, and the keyboard half's one knuckle was in the middle, so the stand sagged toward a corner. |
 | One pin, barrel 22 mm, full-thickness tabs, stop on a 45° chamfer | Drawn: rev 0.2 (git commit `a4ebb1b`) | No supports. Barrel segments of the keyboard half at both edges. Not printed. The owner wants a more elegant hinge than this. |
-| Two pins at mid-thickness, two links, noses with 45° chamfers | Drawn: rev 0.2 (`case02/case02.scad`) | No supports. The closed case is 26 mm shorter than with the barrel. Nothing stands proud. The keyboard half slopes 3.1° in the stand. A plug in the closed case stands 10 mm out. The owner accepted it in place of the barrel. Not printed. |
+| Two pins at mid-thickness, two links, noses with 45° chamfers | Rev 0.2 (`case02/case02.scad`). Tested on three small pieces (`hinge-test-02/README.md`); the full print started 2026-11-21. | No supports. The closed case is 26 mm shorter than with the barrel. Nothing stands proud but the pin heads. On the test piece the motion was smooth and obvious to the owner, the closed halves did not slide, and the stop was flat and firm after the link stop was put at the stop position. The keyboard half slopes 3.1° in the stand. A plug in the closed case stands 10 mm out. With two links and the tablet's weight it is not tested. |
 | A ratchet in the hinge | Test piece drawn, never printed | Dropped when a prop took over the job of holding the angle. |
 
 ## What the owner has said about the look

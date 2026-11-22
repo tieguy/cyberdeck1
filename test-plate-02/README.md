@@ -1,6 +1,8 @@
 # Test plate, rev 0.2
 
-One print plate with the test pieces of rev 0.2 that are still open, 111 × 48 mm, about 18 cm³.
+One print plate, 111 × 48 mm, about 18 cm³, with the pieces of the third test of rev 0.2: the
+keyboard-half piece of the hinge test, and the prop test. It was printed on 2026-11-21 and both
+tests passed.
 
 | File | Contents |
 |---|---|
@@ -13,6 +15,6 @@ One print plate with the test pieces of rev 0.2 that are still open, 111 × 48 m
 | Prop test: a frame with the prop in place, and three axle pins | `../prop-test-02/README.md` |
 
 The plate has six bodies. The smallest gap between two of them is 5 mm, apart from the prop in
-its frame, which prints in place. No part needs supports. The plate is not checked in a slicer.
+its frame, which prints in place. No part needs supports. The plate was not checked in a slicer before it was printed.
 
 The full hinge test, with both pieces, links and pins, is `../hinge-test-02/hinge_test_plate.stl`.

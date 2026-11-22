@@ -1,8 +1,8 @@
 # Case model, rev 0.2
 
 `case02.scad` is the model of rev 0.2. Its hinge and its prop passed their tests on small
-pieces; the whole case is not printed yet. The design
-is in `../DESIGN-0.2.md`. Rev 0.1 is in `../case/`.
+pieces, and the first print of the whole case started on 2026-11-21. The design is in
+`../DESIGN-0.2.md`, and the results of the print go there. Rev 0.1 is in `../case/`.
 
 ## Views
 
@@ -13,30 +13,33 @@ are for looking at, not for printing. GitHub shows each one in 3D.
 |---|---|
 | `views/stand.stl` | The case as a stand, with the unfolded keyboard in front |
 | `views/closed.stl` | The case closed, with the folded keyboard and the tablet inside |
+| `views/web-options.png` | The back of the tablet half with each of the four web patterns |
 
 ## What to look for
 
 - **Hinge**: two pins and two links. Each half ends in a nose as thick as the half, with a
-  2.9 mm pin at the middle of its thickness. A link 8 mm wide joins the two pins in a slot near
-  each edge. The halves start 3.5 mm behind their pins.
+  2.9 mm pin at the middle of its thickness. A link 8 mm wide and 4.9 mm thick joins the two pins
+  in a slot near each edge. The halves start 3.5 mm behind their pins.
 - **Noses**: the inner side of each nose is a quarter round. The bed side is a 45° chamfer from
   the outer face to the tip. No surface needs supports.
 - **Stop**: in the stand, the flat back of the tablet half lies on the chamfer of the keyboard
-  half's nose, over the whole width. The links hold it there in tension.
-- **Slots**: the end walls of the slots stop the links. They hold the closed halves in line, and
-  they hold the links in the stand when the screen is steeper than 45°.
+  half's nose, over the whole width. The far wall of each slot in the keyboard half meets its
+  link at that position, so the tablet half cannot lean back further.
+- **Slots**: the end walls of the slots stop the links. The near walls hold the closed halves in
+  line. The far wall in the keyboard half is part of the 45° stop.
 - **Pins**: four, each 13 mm long with a head, pushed in from the edges of the case. Crush ribs
   hold each pin in the nose beyond its link. The head and its recess have a flat, so a pin goes
   in only in the position where all three ribs hold it. The head stands 1 mm out.
 - **Plug**: the tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about
   10 mm out of the closed case.
 - **Prop**: a solid panel, 118 × 100 mm and 3 mm thick, for a sticker or art. Stowed, it lies
-  flush in an opening in the back of the tablet half. Its axle is two printed pins, 2.9 mm across and 5 mm long, pushed in from the edges of
-  the case, 127.5 mm from the tablet half's pin. Each pin is in a knuckle on the prop that lies
+  flush in an opening in the back of the tablet half. Its axle is two printed pins, 2.9 mm
+  across and 5 mm long, pushed in from the edges of the case, 127.5 mm from the tablet half's pin. Each pin is in a knuckle on the prop that lies
   inside the side wall, because the 3 mm floor is too thin for a pin hole. The axis is 2.7 mm
   above the back face, so the end of the prop swings back as it turns, and the floor is cut
-  back for it: a groove 3 mm wide along the axle shows in the back. The prop turns 86°. Two feet, 5 mm long, stand
-  out of its edge and go into slots through the floor of the keyboard half. There are slots for
+  back for it: a groove 3 mm wide along the axle shows in the back. The prop turns 86°. The
+  heads of the axle pins sit 0.6 mm deep in the side walls and stand 0.4 mm out. Two feet, 5 mm
+  long, stand out of its edge and go into slots through the floor of the keyboard half. There are slots for
   screen angles of 45°, 52° and 59°. A notch in its edge, 20 mm wide, is for a finger.
 - **Click**: a bump on the outer side of each foot, 0.9 mm high, sits in a dimple in the wall of
   the opening and holds the stowed prop. A slit beside each bump makes that side of the foot a
@@ -81,16 +84,18 @@ Make these views; each must be empty, or a film of no thickness where two faces 
 
 A pose has two angles: `chk` is the angle between the halves, and `chk_a` is the angle of the
 links (`-1` means the stand angle, 97.4°). The path from closed to the stand, as `chk`/`chk_a`:
-360/0, 315/0, 270/0, 225/0, 180/0 (the tablet half turns on the links), 150/30, 120/60, 100/80,
+360/0, 315/0, 270/0, 225/0, 180/0 (the tablet half turns on the links), 150/30, 120/60, 90/90,
 83/-1 (the links turn on the keyboard half), 70/-1, 60/-1, 45/-1 (the tablet half goes down to
 the stop), then 52/-1 and 59/-1.
 
-All pass (2026-11-20). `x_swing` at 35/-1 and `x_link` at 360/30 are not empty, which shows that
-the checks find a collision.
+All pass (2026-11-21). `x_swing` at 35/-1 and `x_link` at 360/30 are not empty, which shows that
+the checks find a collision. `x_link` at 44/98.4 is not empty either: that is the link on its
+stop, one degree beyond the stand.
 
 Gaps where parts pass each other: 0.5 mm between the noses at every angle, and between the
 tablet half's back and the keyboard half's nose while the links turn; 0.15 mm round a link in its
-slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the stop.
+slot and 0.05 mm at each side of it; 0.05 mm drawn between the two faces of the stop, and
+0.02 mm between a link and the far wall of its slot in the keyboard half.
 
 ## Print files
 
@@ -116,11 +121,16 @@ Assembly:
 3. Put the other ends of the links in the slots of the tablet half and push in the last two
    hinge pins.
 
-## Not done yet
+## Not tested before the first print
+
+The first print started on 2026-11-21. `../DESIGN-0.2.md`, section "Results of the print", lists
+what to look at first and holds the results.
 
 - No part is checked in Bambu Studio.
-- The recess for the heads of the prop's axle pins is not tested; the axle itself passed its test.
-- The hinge passed its test with one link (`../hinge-test-02/README.md`). With two links, and
-  under the weight of the tablet, it is not tested.
-- The snap tongue is not tested. Its bump ends at the top of the lip, and the chamfer on the
-  tablet half's free edge leads it over the bump.
+- The snap tongue. Its bump ends at the top of the lip, and the chamfer on the tablet half's
+  free edge leads it over the bump.
+- The hinge with two links, and under the weight of the tablet. It passed its test with one
+  link (`../hinge-test-02/README.md`).
+- The recess for the heads of the prop's axle pins. The axle itself passed its test
+  (`../prop-test-02/README.md`).
+- The bubble web.
