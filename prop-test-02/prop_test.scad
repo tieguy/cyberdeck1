@@ -33,6 +33,7 @@ module prop_plate(part = "plate") {
         if (part != "prop") corners() t_half();
         if (part != "frame") corners() prop();
     }
+    if (part == "plate") for (i = [0, 1, 2]) translate([2 * XK + 8, 6 + i * 10, 0]) axle_pin();   // two, and a spare
 }
 
 prop_plate(tpart);

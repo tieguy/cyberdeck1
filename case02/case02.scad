@@ -7,7 +7,7 @@
 //   - The bed side of each nose is a 45 degree chamfer, so no part needs supports.
 //   - In the stand, the flat back of the T half rests on the chamfer of the K half's nose.
 //   - The prop is a solid panel. It lies in an opening in the back of the T half and
-//     prints there, in place. Its axle is two pieces of filament. Its feet go into slots through the
+//     prints there, in place. Its axle is two short printed pins, in knuckles in the side walls. Its feet go into slots through the
 //     floor of the K half.
 //   - The back of the T half above the prop is a web, not a solid floor.
 //   - A snap tongue on the K half's lip holds the case shut.
@@ -22,7 +22,7 @@
 //
 // Make a view:  openscad-nightly -D 'view="stand"' -o view.stl case02.scad
 
-view = "stand";   // stand | closed | k_half | t_half | link | pin | x_* (checks)
+view = "stand";   // stand | closed | k_half | t_half | link | pin | axle_pin | x_* (checks)
 
 $fn = 48;
 
@@ -83,21 +83,26 @@ TIP_S = 22;       // where the feet lie when the prop is stowed
 PL    = SP - TIP_S;           // length from the pivot to the tips of the feet
 FOOT_L = 5;       // the feet stand this far out of the panel's edge
 AW    = 8;        // width of each foot
-PZ    = -T_T + T_FLOOR / 2;   // height of the pivot axis, in the T half's frame
+// Axle: a printed pin at each side. The 3 mm floor is too thin for a pin hole, so each pin is
+// in a knuckle on the prop that lies inside the side wall, where the wall is high enough. The
+// axis is higher than the middle of the panel.
+AX_Z  = 2.7;      // height of the axis above the back face
+PZ    = -T_T + AX_Z;          // height of the pivot axis, in the T half's frame
+KN_R  = 2.7;      // radius of a knuckle
+KN_X  = 1.9;      // the outer face of a knuckle: the side wall outside it is this thick, less the gap
+KN_GAP = 0.3;  KN_C = 0.4;    // gap at the outer face of a knuckle (the side play), and round it
+FLOOR_R = 4.0;    // the floor is cut back to this radius about the axis, so that the end of the panel can turn 86 degrees
+AXLE_LEN = px0 - 0.2;         // a pin reaches from the edge of the case to the pocket
 LEDGE = 10;       // floor that stays under each long edge of the tablet, beside the panel
 PX    = [px0 + LEDGE, W - px0 - LEDGE];        // the sides of the panel
-EAR_GAP = 0.3;    // gap at the end of each ear: the side play of the prop
-EAR_X = [px0 + EAR_GAP, W - px0 - EAR_GAP];    // at the pivot, ears reach the side walls
-// Axle: a piece of 1.75 mm filament from each edge of the case, tight in the side wall and
-// free in the ear.
-AXLE_WALL = 1.9;  AXLE_EAR = 2.2;  AXLE_IN = 8;
+EAR_X = [KN_X, W - KN_X];                      // at the pivot, ears reach into the side walls
 EAR_L = 8;
 ARM_X = [PX[0], PX[1] - AW];                   // the feet
 NOTCH_R = 10;     // finger notch in the panel's edge
 // Click that holds the stowed prop: a bump on the outer side of each foot, in a dimple in the
 // wall of the opening. A slit makes the side of the foot a spring.
 CLK_B = 0.9;  CLK_D = 1.2;    // radius of the bump, and of the dimple (same centre)
-CLK_Y = -TIP_S - 1.5;         // where the bump is
+CLK_Y = -TIP_S - 1.5;  CLK_Z = -T_T + T_FLOOR / 2;   // where the bump is
 CLK_W = 1.2;  CLK_S = 0.8;  CLK_L = 9;   // spring: thickness, width of the slit, length
 ANGLES = [45, 52, 59];        // screen angles that have slots for the feet. The prop reaches no steeper.
 
@@ -110,6 +115,8 @@ function prop_a(wedge) = asin(((-T_K + 1.5) - pivot_k(wedge)[1]) / PL);
 function tip_k(wedge) = pivot_k(wedge) + PL * [cos(prop_a(wedge)), sin(prop_a(wedge))];
 // The same direction in the T half's frame, as a turn about the pivot from the stowed pose.
 function prop_turn(wedge) = prop_a(wedge) - (180 - wedge);
+// The panel is not on the line from the axis to the tips of the feet, so a steep foot needs a longer slot.
+function foot_dy(wedge) = T_FLOOR * abs(sin(prop_a(wedge)));
 
 echo(W = W, D_K = D_K, D_T = D_T, T_K = T_K, T_T = T_T, LINK_L = LINK_L, A_ST = A_ST, B_ST = B_ST, PL = PL);
 echo(feet_y = [for (a = ANGLES) tip_k(a)[0]], prop_turn = [for (a = ANGLES) prop_turn(a)]);
@@ -240,7 +247,7 @@ module k_raw() {
         translate([W / 2 - SNAP_W / 2, y_end - WALL + SNAP_T, -6]) cube([SNAP_W, WALL, LIP_H + 7]);
         // slots through the floor for the prop's feet
         for (a = ANGLES, x = ARM_X)
-            translate([x - 1.3, tip_k(a)[0] - 6, -T_K - 1]) cube([AW + 2.6, 8, K_FLOOR + 2]);   // wide enough for the click bumps
+            translate([x - 1.3, tip_k(a)[0] - 6 - foot_dy(a), -T_K - 1]) cube([AW + 2.6, 8 + 2 * foot_dy(a), K_FLOOR + 2]);   // wide enough for the click bumps
     }
 }
 
@@ -291,10 +298,10 @@ module t_raw() {
 GAPP = 0.4;   // gap round the prop in its opening
 // The outline of the prop, seen from the back, grown by d.
 module prop_2d(d) {
-    y_edge = -TIP_S - FOOT_L;
+    y_edge = -TIP_S - FOOT_L;  g = d > 0 ? KN_GAP : 0;
     translate([PX[0] - d, -SP - d]) square([PX[1] - PX[0] + 2 * d, SP + y_edge + 2 * d]);          // panel
     for (x = ARM_X) translate([x - d, y_edge - d]) square([AW + 2 * d, FOOT_L + 2 * d]);           // feet
-    translate([EAR_X[0], -SP - d]) square([EAR_X[1] - EAR_X[0], EAR_L + 2 * d]);                   // ears
+    translate([EAR_X[0] - g, -SP - d]) square([EAR_X[1] - EAR_X[0] + 2 * g, EAR_L + 2 * d]);       // ears
 }
 module prop_body() {
     translate([0, 0, -T_T]) linear_extrude(T_FLOOR) difference() {
@@ -302,21 +309,49 @@ module prop_body() {
         translate([W / 2, -TIP_S - FOOT_L]) circle(NOTCH_R);                                       // finger notch
         for (x = [PX[0] + CLK_W, PX[1] - CLK_W - CLK_S]) translate([x, -TIP_S - CLK_L]) square([CLK_S, CLK_L + 1]);   // slits
     }
-    for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_B, $fn = 20);       // click bumps
+    for (x = PX) translate([x, CLK_Y, CLK_Z]) sphere(CLK_B, $fn = 20);    // click bumps
 }
+KN_XS = [[KN_X, px0], [W - px0, W - KN_X]];   // the two knuckles, along X
 module prop() {
     difference() {
-        union() { prop_body();  x_cyl([-SP, PZ], T_FLOOR / 2, EAR_X[0], EAR_X[1]); }   // round end at the pivot
-        for (x = [EAR_X[0] - 1, EAR_X[1] - AXLE_IN]) x_cyl([-SP, PZ], AXLE_EAR / 2, x, x + AXLE_IN + 1, $fn = 24);   // axle holes
+        union() {
+            prop_body();
+            for (k = KN_XS) intersection() {                              // knuckles, flat on the bed
+                x_cyl([-SP, PZ], KN_R, k[0], k[1]);
+                translate([0, -SP - 10, -T_T]) cube([W, 20, 20]);
+            }
+        }
+        // Pin holes with a flat toward the back face: a pin goes in with its flat there, where
+        // no rib is.
+        for (k = KN_XS) intersection() {
+            x_cyl([-SP, PZ], PIN_D / 2, k[0] - 1, k[1] + 1);
+            translate([0, -SP - 5, PZ - PIN_FLAT - 0.2]) cube([W, 10, 10]);
+        }
     }
+    for (k = KN_XS, a = [0, 120, 240]) translate([0, -SP, PZ]) rotate([a, 0, 0])   // crush ribs
+        translate([k[0] + 0.4, -0.3, PIN_D / 2 - RIB]) cube([k[1] - k[0] - 0.8, 0.6, RIB + 0.3]);
 }
 module prop_slot() {
     z1 = T_FLOOR + GAPP;   // the opening is a little higher than the prop
     translate([0, 0, -T_T - 1]) linear_extrude(z1 + 1) prop_2d(GAPP);
-    translate([px0, -SP - T_FLOOR / 2 - GAPP, -T_T - 1]) cube([W - 2 * px0, T_FLOOR / 2 + EAR_L + 2 * GAPP, z1 + 1]);   // ears: the gap at their ends is EAR_GAP
-    for (x = PX) translate([x, CLK_Y, PZ]) sphere(CLK_D, $fn = 20);       // dimples for the click
-    // axle holes through the side walls
-    x_cyl([-SP, PZ], AXLE_WALL / 2, -1, EAR_X[0], $fn = 24);  x_cyl([-SP, PZ], AXLE_WALL / 2, EAR_X[1], W + 1, $fn = 24);
+    // Room for the knuckles in the side walls.
+    x_cyl([-SP, PZ], KN_R + KN_C, KN_X - KN_GAP, W - KN_X + KN_GAP);
+    // The axis is above the panel, so the end of the panel swings back and down as it turns.
+    // The edge of the floor is cut back for it, and the side walls for the ears. This leaves a groove along
+    // the axle in the back of the T half.
+    intersection() { x_cyl([-SP, PZ], FLOOR_R, KN_X - KN_GAP, W - KN_X + KN_GAP);  translate([0, -SP - 10, -T_T - 1]) cube([W, 10, T_FLOOR + GAPP + 1]); }
+    x_cyl([-SP, PZ], PIN_D / 2, -1, W + 1);                               // pin holes through the side walls
+    for (x = PX) translate([x, CLK_Y, CLK_Z]) sphere(CLK_D, $fn = 20);    // dimples for the click
+}
+// The pin of the prop's axle, in its print frame. Two are needed. Its head stays outside the case.
+module axle_pin() {
+    translate([0, 0, PIN_FLAT]) difference() {
+        union() {
+            translate([-1, 0, 0]) rotate([0, 90, 0]) cylinder(d = HEAD_D, h = 1);
+            rotate([0, 90, 0]) cylinder(d = PIN_DIA, h = AXLE_LEN);
+        }
+        translate([-5, -HEAD_D, -HEAD_D - PIN_FLAT]) cube([AXLE_LEN + 10, 2 * HEAD_D, HEAD_D]);
+    }
 }
 module prop_at(turn) { translate([0, -SP, PZ]) rotate([turn, 0, 0]) translate([0, SP, -PZ]) prop(); }
 
@@ -336,12 +371,13 @@ module pin_part() {
 // ---- Stand-ins ----
 module tablet() { translate([px0 + 0.3, -E0 - wb - 0.3 - th, -T_T + T_FLOOR]) cube([tw, th, TAB_T]); }
 module keyboard_folded() { translate([WALL + 0.35, E0 + WALL + 0.5, -KPD]) cube([kw, kd, KB_T]); }
+module axles_in() { x_cyl([-SP, PZ], PIN_DIA / 2, 0, AXLE_LEN);  x_cyl([-SP, PZ], PIN_DIA / 2, W - AXLE_LEN, W); }
 module pins_in(c) { x_cyl(c, PIN_DIA / 2, 0, PIN_LEN);  x_cyl(c, PIN_DIA / 2, W - PIN_LEN, W); }
 
 module view_closed() {
     translate([0, 0, T_K]) {
         k_half(); keyboard_folded(); pins_in(A_K); links_at(0);
-        posed(360, 0) { t_half(); tablet(); prop(); pins_in(B_T); }
+        posed(360, 0) { t_half(); tablet(); prop(); pins_in(B_T); axles_in(); }
     }
 }
 // In the stand the K half lies on the tip of its nose and on its lip, so it slopes.
@@ -349,7 +385,7 @@ TILT = atan(LIP_H / (E0 + D_K));
 module view_stand(wedge = SCREEN) {
     rotate([TILT, 0, 0]) translate([W, 0, 0]) rotate([0, 180, 0]) {
         k_half(); pins_in(A_K); links_at(A_ST);
-        posed(wedge) { t_half(); tablet(); prop_at(prop_turn(wedge)); pins_in(B_T); }
+        posed(wedge) { t_half(); tablet(); prop_at(prop_turn(wedge)); pins_in(B_T); axles_in(); }
     }
     translate([(W - KB_OPEN[0]) / 2, -45 - KB_OPEN[1], 0]) cube(KB_OPEN);
 }
@@ -363,9 +399,11 @@ else if (view == "k_half") translate([0, 0, T_K]) k_half();
 else if (view == "t_half") translate([0, 0, T_T]) { t_half(); prop(); }
 else if (view == "link") link();
 else if (view == "pin") pin_part();
+else if (view == "axle_pin") axle_pin();
 // Collision checks: each must be empty.
 else if (view == "x_swing") intersection() { k_half(); posed(chk, ca) t_half(); }
 else if (view == "x_link") intersection() { union() { k_half(); posed(chk, ca) t_half(); } links_at(ca); }
 else if (view == "x_prop") intersection() { union() { k_half(); posed(chk) t_half(); } posed(chk) prop_at(prop_turn(chk)); }
 else if (view == "x_stow") intersection() { t_half(); prop(); }
+else if (view == "x_turn") intersection() { t_half(); prop_at(-chk); }   // the prop, turned chk degrees out, against the T half
 else if (view == "x_stowk") intersection() { k_half(); posed(360, 0) prop(); }

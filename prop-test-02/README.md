@@ -7,17 +7,19 @@ left out.
 | File | Contents |
 |---|---|
 | `prop_test.scad` | The model. `tpart="frame"` and `tpart="prop"` show the two bodies alone. |
-| `prop_test_plate.stl` | The print plate, 60 × 50 mm, about 12 cm³ |
+| `prop_test_plate.stl` | The print plate, 73 × 50 mm, about 12 cm³ |
 
-The plate is one job with two bodies: the frame, and the prop inside it. The prop lies on the
-bed, as in the case. No part needs supports. The gap round the prop is 0.4 mm, 0.3 mm at the
-ends of its ears and round the click bumps. The plate is not checked in a slicer.
+The plate has the frame with the prop inside it, printed in place, and three axle pins (two are
+needed). The prop lies on the bed, as in the case. No part needs supports. The gap round the
+prop is 0.4 mm, and 0.3 mm at the outer faces of its knuckles and round the click bumps. The
+plate is not checked in a slicer.
 
 ## How to put it together
 
-The prop needs an axle: two pieces of 1.75 mm filament, each about 12 mm long. Push one into
-the small hole in each side of the frame, at the end with the round bar, until it is flush. The
-hole is 1.9 mm in the frame, to hold the filament, and 2.2 mm in the prop, to turn on it.
+At the end of the prop away from its feet, each side has a knuckle inside the side wall of the
+frame. Push an axle pin through the hole in each side wall into the knuckle, with the flat of
+the pin toward the back face (the face that was on the bed). The hole in the knuckle has the
+same flat. The head of the pin stays outside, 1 mm proud.
 
 ## Differences from the case
 
@@ -29,20 +31,31 @@ hole is 1.9 mm in the frame, to hold the filament, and 2.2 mm in the prop, to tu
 
 ## What to look for, and what to report
 
-1. **Free or fused**: does the prop come free? The ends of its ears now have a gap of 0.3 mm.
-2. **Axle**: does the filament go into the frame by hand, and stay? Does the prop turn freely on
-   it? Does the prop stay in when you pull on it?
+1. **Free or fused**: does the prop come free, also at the knuckles inside the side walls?
+2. **Axle**: do the pins go in by hand, and do the ribs in the knuckles hold them? Does the prop
+   turn freely to about 85°, where the frame stops it? Does it stay in when you pull on it?
 3. **Click**: is the click clear at both feet? Does the prop stay in when you shake the piece
    with the back down? Is it still easy enough to push out?
-4. **Springs**: after ten clicks, are the two thin springs beside the feet whole? They are 9 mm
-   long now, and they bend further.
-5. **The back**: is the stowed prop flush with the back of the frame?
+4. **Springs**: after ten clicks, are the two thin springs beside the feet whole?
+5. **The back**: is the stowed prop flush with the back of the frame? There is a groove 3 mm
+   wide along the axle; the end of the prop needs it to turn. Is its look acceptable?
 
 ## Results
 
+### Third plate
+
+Not printed yet. It has printed axle pins in knuckles, in place of the filament.
+
 ### Second plate
 
-Not printed yet. It has the changes that are listed at the end of the first plate's results.
+Printed 2026-11-21, with a filament axle: a 2.2 mm hole along the end of the prop, in a floor
+3 mm thick.
+
+1. **Free or fused**: the prop comes free.
+2. **Axle**: the hole breaks through the surfaces at the end of the prop, because the walls
+   round it are 0.4 mm. The axle works otherwise. The owner wants a printed axle, not filament.
+
+The click, the springs and the back were not checked on this plate.
 
 ### First plate
 

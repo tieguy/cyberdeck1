@@ -41,7 +41,7 @@ From the owner, 2026-11-20:
 - **Closing**: a printed snap, if a simple one is possible.
 - **Edges**: comfortable to hold. All outer edges and corners are round (2026-11-20).
 - **The lower lip stays.** The owner will look into the strings.
-- **Pin**: printed. A bought rod is a nuisance. Filament is acceptable as the axle of the prop.
+- **Pin**: printed. A bought rod is a nuisance. The axle of the prop is printed too (2026-11-21).
 - **Supports**: the owner found the supports of rev 0.1 hard to remove. Rev 0.2 avoids them.
 
 ## The design
@@ -78,12 +78,16 @@ barrel "was the best idea we had at the time".
 - Floor stays under the edges of the tablet beside the panel: 10 mm at each long edge and 12 mm
   at the lower edge. With no floor there, a press on the screen pushes the tablet out of the
   back when the prop is out.
-- It prints in place in the tablet half, with a small gap round it. Its axle is two pieces of
-  1.75 mm filament, 127.5 mm from the tablet half's pin, pushed in from the edges of the case
-  after the print. At the axle the panel has two ears that reach the side walls. The owner
-  accepted the filament axle for rev 0.2, and can glue the pieces in when the design works
-  (2026-11-21). Cone pivots that print in place do not hold in a floor of 3 mm; the first test
-  plate showed it.
+- It prints in place in the tablet half, with a small gap round it. Its axle is two printed
+  pins, 127.5 mm from the tablet half's pin, pushed in from the edges of the case after the
+  print. The owner wants a printed axle (2026-11-21).
+- A floor of 3 mm is too thin for a pivot. Cone pivots that print in place did not hold (first
+  test plate), and a hole for a filament axle left walls of 0.4 mm that did not print whole
+  (second plate). So each pin is in a knuckle on the prop, 5.4 mm high, that lies inside the
+  side wall, where the wall is 9.7 mm high.
+- The cost: the axis is 2.7 mm above the back face, not in the middle of the panel. The end of
+  the panel swings back as it turns, and the floor is cut back for it. A groove 3 mm wide along
+  the axle shows in the back, with the tablet behind it.
 - Two feet, 5 mm long, stand out of the panel's edge and go into slots through the floor of the
   keyboard half. There are slots for screen angles of 45°, 52° and 59°.
 - A notch in the panel's edge, 20 mm wide, lets a finger pull the panel out.
@@ -113,11 +117,11 @@ barrel "was the best idea we had at the time".
 
 ## Next step
 
-Print the second test plate, `test-plate-02/test_plate.stl`, and record the results in
+Print the test plate, `test-plate-02/test_plate.stl`, and record the results in
 `hinge-test-02/README.md` and `prop-test-02/README.md`. Those files hold the results of the
 first plate (2026-11-21) and the changes that came from them: a recess with a flat for the pin
-head, tighter links in three thicknesses to choose from, a filament axle for the prop, and
-higher click bumps.
+head, tighter links, a printed axle for the prop in knuckles, and higher click bumps. The
+second plate is printed too; the plate in `test-plate-02/` is the third.
 
 One point is open: on both plates the tablet-half piece could lean back past the 45° stop. The
 far wall of the slot in the keyboard half is the stop for that, and it is now exactly at the

@@ -30,8 +30,11 @@ are for looking at, not for printing. GitHub shows each one in 3D.
 - **Plug**: the tablet half's nose has a gap at the USB-C port. A plug 25 mm long stands about
   10 mm out of the closed case.
 - **Prop**: a solid panel, 118 × 100 mm and 3 mm thick, for a sticker or art. Stowed, it lies
-  flush in an opening in the back of the tablet half. Its axle is two pieces of 1.75 mm filament, pushed in from the edges of the case, 127.5 mm
-  from the tablet half's pin; at the axle, two ears reach the side walls. Two feet, 5 mm long, stand
+  flush in an opening in the back of the tablet half. Its axle is two printed pins, 2.9 mm across and 5 mm long, pushed in from the edges of
+  the case, 127.5 mm from the tablet half's pin. Each pin is in a knuckle on the prop that lies
+  inside the side wall, because the 3 mm floor is too thin for a pin hole. The axis is 2.7 mm
+  above the back face, so the end of the prop swings back as it turns, and the floor is cut
+  back for it: a groove 3 mm wide along the axle shows in the back. The prop turns 86°. Two feet, 5 mm long, stand
   out of its edge and go into slots through the floor of the keyboard half. There are slots for
   screen angles of 45°, 52° and 59°. A notch in its edge, 20 mm wide, is for a finger.
 - **Click**: a bump on the outer side of each foot, 0.9 mm high, sits in a dimple in the wall of
@@ -70,6 +73,7 @@ Make these views; each must be empty, or a film of no thickness where two faces 
 | `x_link` on the path below | The links against both halves |
 | `x_prop` with `chk` = 45, 52, 59 | The prop, set up, against both halves |
 | `x_stow` | The stowed prop against the tablet half |
+| `x_turn` with `chk` = 3, 5, 15, 30, 45, 60, 75, 83, 86 | The prop, turned that far out, against the tablet half. At 0.5 it is not empty: that is the click. |
 | `x_stowk` | The stowed prop against the keyboard half, case closed |
 
 A pose has two angles: `chk` is the angle between the halves, and `chk_a` is the angle of the
@@ -88,7 +92,7 @@ slot and 0.1 mm at each side of it; 0.05 mm drawn between the two faces of the s
 ## Not done yet
 
 - No print files. No part is checked in a slicer.
-- The filament axle of the prop is not tested.
+- The printed axle of the prop, in its knuckles, is not tested.
 - The hinge is tested on one test plate (`../hinge-test-02/README.md`): it prints clean, moves
   well and has a firm stop. Not tested yet: the recess with a flat for the pin head, the links
   with 3.1 mm holes, whether they close the gap that the first plate showed on the 45° stop, and
