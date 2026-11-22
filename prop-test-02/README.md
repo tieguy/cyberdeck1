@@ -7,7 +7,7 @@ left out.
 | File | Contents |
 |---|---|
 | `prop_test.scad` | The model. `tpart="frame"` and `tpart="prop"` show the two bodies alone. |
-| `prop_test_plate.stl` | The print plate, 73 × 50 mm, about 12 cm³ |
+| `prop_test_plate.stl` | The print plate, 73 × 48 mm, about 12 cm³ |
 
 The plate has the frame with the prop inside it, printed in place, and three axle pins (two are
 needed). The prop lies on the bed, as in the case. No part needs supports. The gap round the

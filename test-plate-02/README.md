@@ -1,6 +1,6 @@
 # Test plate, rev 0.2
 
-One print plate with the test pieces of rev 0.2 that are still open, 111 × 50 mm, about 18 cm³.
+One print plate with the test pieces of rev 0.2 that are still open, 111 × 48 mm, about 18 cm³.
 
 | File | Contents |
 |---|---|

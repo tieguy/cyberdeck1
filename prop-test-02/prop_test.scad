@@ -14,7 +14,9 @@ view = "none";       // draw nothing from case02.scad itself
 tpart = "plate";     // plate | frame | prop
 XK = 30;             // width kept at each side
 Y_PIV = [-SP - 7, -SP + 15];          // length kept at the pivot
-Y_TIP = [-TIP_S - 18, -TIP_S + 10];   // length kept at the feet
+// Length kept at the feet. It ends before the lip over the tablet's lower edge: a cut through
+// that lip leaves two thin bars in the air.
+Y_TIP = [-TIP_S - 18, -E0 - wb - OV - 0.3];
 DX = W - 2 * XK;  DY = Y_PIV[1] - Y_TIP[0];
 
 // Keep the four corners of the child and move them together.

@@ -75,7 +75,7 @@ barrel "was the best idea we had at the time".
 - The prop is a solid panel, 118 × 100 mm, so that it can carry a sticker or art. It is 3 mm
   thick, the thickness of the tablet half's floor. Stowed, it lies in an opening in that floor,
   flush with the back, with its feet toward the hinge.
-- Floor stays under the edges of the tablet beside the panel: 10 mm at each long edge and 12 mm
+- Floor stays under the edges of the tablet beside the panel: 10 mm at each long edge and 10 mm
   at the lower edge. With no floor there, a press on the screen pushes the tablet out of the
   back when the prop is out.
 - It prints in place in the tablet half, with a small gap round it. Its axle is two printed

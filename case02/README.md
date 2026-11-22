@@ -40,7 +40,7 @@ are for looking at, not for printing. GitHub shows each one in 3D.
 - **Click**: a bump on the outer side of each foot, 0.9 mm high, sits in a dimple in the wall of
   the opening and holds the stowed prop. A slit beside each bump makes that side of the foot a
   spring, 1.2 mm thick and 9 mm long. The bump must pass 0.5 mm of wall to come out.
-- **Ledges**: 10 mm of floor stays under each long edge of the tablet and 12 mm under its lower
+- **Ledges**: 10 mm of floor stays under each long edge of the tablet and 10 mm under its lower
   edge, so the tablet has support on all sides when the prop is out.
 - **Web**: the back of the tablet half between the prop's pivot and the free edge is a grid of
   4 mm bars with 15 mm openings.
